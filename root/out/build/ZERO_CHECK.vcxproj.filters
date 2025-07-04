@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\out\build\CMakeFiles\cae21d3fb0425e7f75fdf428d3c445b4\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{B83E7FAC-FC34-347F-8967-E09B9BEADE8E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
