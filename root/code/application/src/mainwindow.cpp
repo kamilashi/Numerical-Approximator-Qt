@@ -7,6 +7,7 @@
 #include <QMessageBox>
 #include <QVBoxLayout>
 #include <QWidget>
+#include <QMenu>
 
 struct Dimensions
 {
@@ -17,6 +18,14 @@ struct Dimensions
 };
 
 static const Dimensions dim;
+
+// should be back end
+static const int programCount = 5;
+ProgramItem programItems[programCount] = { ProgramItem("Determinant"),
+							ProgramItem("Other"),
+							ProgramItem("Other"),
+							ProgramItem("Other"),
+							ProgramItem("Other") };
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent)
@@ -46,28 +55,57 @@ MainWindow::MainWindow(QWidget* parent)
 	horizontalLayout->setAlignment(Qt::AlignVCenter);
 	header->setLayout(horizontalLayout);
 
-	headerMenu = new QListWidget();
+	pHeaderMenu = new QListWidget();
 
-	headerMenu->setFlow(QListView::LeftToRight);
-	headerMenu->setWrapping(true);
-	headerMenu->setResizeMode(QListView::Adjust);
-	headerMenu->setSpacing(dim.topMenuSpacing);
+	pHeaderMenu->setFlow(QListView::LeftToRight);
+	pHeaderMenu->setWrapping(true);
+	pHeaderMenu->setResizeMode(QListView::Adjust);
+	pHeaderMenu->setSpacing(dim.topMenuSpacing);
 
-	for (int i = 0; i<5;i++)
+	for (int i = 0; i< programCount; i++)
 	{
-		AppMenuItem* menu = new AppMenuItem("Menu", 0);
-		headerMenu->addItem(menu);
+		AppMenuItem* menu = new AppMenuItem(programItems[i].pName, programItems[i].index);
+		pHeaderMenu->addItem(menu);
 	}
 
-	horizontalLayout->addWidget(headerMenu);
+	horizontalLayout->addWidget(pHeaderMenu);
 
 	// Connect signal to slot
-	connect(headerMenu, &QListWidget::itemClicked, this, &MainWindow::onItemClicked);
+	connect(pHeaderMenu, &QListWidget::itemClicked, this, &MainWindow::onItemClicked);
 
 }
 
 MainWindow::~MainWindow() {}
 
-void MainWindow::onItemClicked(QListWidgetItem* item) {
-	QMessageBox::information(this, "Item clicked", "You clicked: " + item->text());
+void MainWindow::onItemClicked(QListWidgetItem* item) 
+{
+	QString itemText = item->text();
+
+	AppMenuItem* pAppMenuItem = static_cast<AppMenuItem*>(item);
+
+	pSelectedMenuEntry = &programItems[pAppMenuItem->index]; 
+
+	// Create menu
+	QMenu* menu = new QMenu(pHeaderMenu);
+	QAction* actionA = menu->addAction("Show Code");
+	QAction* actionB = menu->addAction("Run Program");
+
+	connect(actionA, &QAction::triggered, this, &MainWindow::showCode);
+	connect(actionB, &QAction::triggered, this, &MainWindow::runProgram);
+
+	QRect itemRect = pHeaderMenu->visualItemRect(item);
+	QPoint globalPos = pHeaderMenu->viewport()->mapToGlobal(itemRect.bottomLeft());
+	menu->exec(globalPos);
+}
+
+void MainWindow::showCode()
+{
+	qDebug() << "Show Code" << pSelectedMenuEntry;
+	// Add logic depending on selectedItemText
+}
+
+void MainWindow::runProgram()
+{
+	qDebug() << "Run Program" << pSelectedMenuEntry;
+	// Add logic depending on selectedItemText
 }

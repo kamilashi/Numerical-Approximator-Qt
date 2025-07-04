@@ -6,6 +6,8 @@ class Approximator{
 public:
 	Approximator();
 	~Approximator();
+
+
 };
 
 #endif
