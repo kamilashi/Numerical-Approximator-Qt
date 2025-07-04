@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../../../code/application/include/listwidget.h"
+#include "../../../../../../../code/application/include/listwidget.h"
 #include <QtCore/qmetatype.h>
 
 #include <QtCore/qtmochelpers.h>

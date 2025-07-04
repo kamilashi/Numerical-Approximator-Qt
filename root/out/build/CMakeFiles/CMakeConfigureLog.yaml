@@ -92,7 +92,7 @@ events:
       The output was:
       0
       MSBuild version 17.14.10+8b8e13593 for .NET Framework
-      Build started 04/07/2025 19:10:36.
+      Build started 04/07/2025 19:54:52.
       
       Project "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\4.1.0-rc1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
       PrepareForBuild:
@@ -121,7 +121,7 @@ events:
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:00.55
+      Time Elapsed 00:00:00.37
       
       
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -845,9 +845,9 @@ events:
       - "C:/Program Files/CMake/bin/"
       - "C:/Program Files/CMake/sbin/"
       - "C:/Program Files/CMake/"
-      - "C:/Program Files (x86)/NumAprx/bin/"
-      - "C:/Program Files (x86)/NumAprx/sbin/"
-      - "C:/Program Files (x86)/NumAprx/"
+      - "C:/Program Files (x86)/application/bin/"
+      - "C:/Program Files (x86)/application/sbin/"
+      - "C:/Program Files (x86)/application/"
     searched_directories:
       - "C:/Qt/6.9.1/msvc2022_64/bin/rc.com"
       - "C:/Qt/6.9.1/msvc2022_64/bin/rc.exe"
@@ -969,15 +969,15 @@ events:
       - "C:/Program Files/CMake/rc.com"
       - "C:/Program Files/CMake/rc.exe"
       - "C:/Program Files/CMake/rc"
-      - "C:/Program Files (x86)/NumAprx/bin/rc.com"
-      - "C:/Program Files (x86)/NumAprx/bin/rc.exe"
-      - "C:/Program Files (x86)/NumAprx/bin/rc"
-      - "C:/Program Files (x86)/NumAprx/sbin/rc.com"
-      - "C:/Program Files (x86)/NumAprx/sbin/rc.exe"
-      - "C:/Program Files (x86)/NumAprx/sbin/rc"
-      - "C:/Program Files (x86)/NumAprx/rc.com"
-      - "C:/Program Files (x86)/NumAprx/rc.exe"
-      - "C:/Program Files (x86)/NumAprx/rc"
+      - "C:/Program Files (x86)/application/bin/rc.com"
+      - "C:/Program Files (x86)/application/bin/rc.exe"
+      - "C:/Program Files (x86)/application/bin/rc"
+      - "C:/Program Files (x86)/application/sbin/rc.com"
+      - "C:/Program Files (x86)/application/sbin/rc.exe"
+      - "C:/Program Files (x86)/application/sbin/rc"
+      - "C:/Program Files (x86)/application/rc.com"
+      - "C:/Program Files (x86)/application/rc.exe"
+      - "C:/Program Files (x86)/application/rc"
     found: false
     search_context:
       ENV{CMAKE_PREFIX_PATH}:
@@ -1022,12 +1022,12 @@ events:
         - "C:\\Users\\shiza\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\butler-windows-amd64\\butler.exe"
         - "C:\\jdk-24.0.1\\bin"
-      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NumAprx"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/application"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
         - "C:/Program Files (x86)"
         - "C:/Program Files/CMake"
-        - "C:/Program Files (x86)/NumAprx"
+        - "C:/Program Files (x86)/application"
   -
     kind: "try_compile-v1"
     backtrace:
@@ -1037,8 +1037,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-c9a4d4"
-      binary: "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-c9a4d4"
+      source: "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-c9wlvk"
+      binary: "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-c9wlvk"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -1048,40 +1048,40 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-c9a4d4'
+        Change Dir: 'C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-c9wlvk'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_5c427.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_99b10.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.14.10+8b8e13593 for .NET Framework
-        Build started 04/07/2025 19:10:37.
+        Build started 04/07/2025 19:54:53.
         
-        Project "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-c9a4d4\\cmTC_5c427.vcxproj" on node 1 (default targets).
+        Project "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-c9wlvk\\cmTC_99b10.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_5c427.dir\\Debug\\".
+          Creating directory "cmTC_99b10.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-c9a4d4\\Debug\\".
-          Creating directory "cmTC_5c427.dir\\Debug\\cmTC_5c427.tlog\\".
+          Creating directory "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-c9wlvk\\Debug\\".
+          Creating directory "cmTC_99b10.dir\\Debug\\cmTC_99b10.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_5c427.dir\\Debug\\cmTC_5c427.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_5c427.dir\\Debug\\cmTC_5c427.tlog\\unsuccessfulbuild".
+          Creating "cmTC_99b10.dir\\Debug\\cmTC_99b10.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_99b10.dir\\Debug\\cmTC_99b10.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_5c427.dir\\Debug\\\\" /Fd"cmTC_5c427.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCXXCompilerABI.cpp"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_99b10.dir\\Debug\\\\" /Fd"cmTC_99b10.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCXXCompilerABI.cpp"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35209 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_5c427.dir\\Debug\\\\" /Fd"cmTC_5c427.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCXXCompilerABI.cpp"
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_99b10.dir\\Debug\\\\" /Fd"cmTC_99b10.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCXXCompilerABI.cpp"
           CMakeCXXCompilerABI.cpp
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-c9a4d4\\Debug\\cmTC_5c427.exe" /INCREMENTAL /ILK:"cmTC_5c427.dir\\Debug\\cmTC_5c427.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-c9a4d4/Debug/cmTC_5c427.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-c9a4d4/Debug/cmTC_5c427.lib" /MACHINE:X64  /machine:x64 cmTC_5c427.dir\\Debug\\CMakeCXXCompilerABI.obj
-          cmTC_5c427.vcxproj -> C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-c9a4d4\\Debug\\cmTC_5c427.exe
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-c9wlvk\\Debug\\cmTC_99b10.exe" /INCREMENTAL /ILK:"cmTC_99b10.dir\\Debug\\cmTC_99b10.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-c9wlvk/Debug/cmTC_99b10.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-c9wlvk/Debug/cmTC_99b10.lib" /MACHINE:X64  /machine:x64 cmTC_99b10.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_99b10.vcxproj -> C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-c9wlvk\\Debug\\cmTC_99b10.exe
         FinalizeBuildStatus:
-          Deleting file "cmTC_5c427.dir\\Debug\\cmTC_5c427.tlog\\unsuccessfulbuild".
-          Touching "cmTC_5c427.dir\\Debug\\cmTC_5c427.tlog\\cmTC_5c427.lastbuildstate".
-        Done Building Project "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-c9a4d4\\cmTC_5c427.vcxproj" (default targets).
+          Deleting file "cmTC_99b10.dir\\Debug\\cmTC_99b10.tlog\\unsuccessfulbuild".
+          Touching "cmTC_99b10.dir\\Debug\\cmTC_99b10.tlog\\cmTC_99b10.lastbuildstate".
+        Done Building Project "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-c9wlvk\\cmTC_99b10.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:00.36
+        Time Elapsed 00:00:00.35
         
       exitCode: 0
   -
@@ -1123,12 +1123,12 @@ events:
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:36 (find_dependency)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/Qt6Dependencies.cmake:35 (_qt_internal_find_third_party_dependencies)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/Qt6Config.cmake:168 (include)"
-      - "CMakeLists.txt:18 (find_package)"
+      - "code/application/CMakeLists.txt:12 (find_package)"
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-kvw5yu"
-      binary: "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-kvw5yu"
+      source: "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-maulrm"
+      binary: "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-maulrm"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -1138,40 +1138,40 @@ events:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: 'C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-kvw5yu'
+        Change Dir: 'C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-maulrm'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_bca01.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_77b4a.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.14.10+8b8e13593 for .NET Framework
-        Build started 04/07/2025 19:10:37.
+        Build started 04/07/2025 19:54:54.
         
-        Project "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kvw5yu\\cmTC_bca01.vcxproj" on node 1 (default targets).
+        Project "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-maulrm\\cmTC_77b4a.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_bca01.dir\\Debug\\".
+          Creating directory "cmTC_77b4a.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kvw5yu\\Debug\\".
-          Creating directory "cmTC_bca01.dir\\Debug\\cmTC_bca01.tlog\\".
+          Creating directory "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-maulrm\\Debug\\".
+          Creating directory "cmTC_77b4a.dir\\Debug\\cmTC_77b4a.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_bca01.dir\\Debug\\cmTC_bca01.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_bca01.dir\\Debug\\cmTC_bca01.tlog\\unsuccessfulbuild".
+          Creating "cmTC_77b4a.dir\\Debug\\cmTC_77b4a.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_77b4a.dir\\Debug\\cmTC_77b4a.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_bca01.dir\\Debug\\\\" /Fd"cmTC_bca01.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kvw5yu\\src.cxx"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_77b4a.dir\\Debug\\\\" /Fd"cmTC_77b4a.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-maulrm\\src.cxx"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35209 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_bca01.dir\\Debug\\\\" /Fd"cmTC_bca01.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kvw5yu\\src.cxx"
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_77b4a.dir\\Debug\\\\" /Fd"cmTC_77b4a.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-maulrm\\src.cxx"
           src.cxx
-        C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kvw5yu\\src.cxx(1,10): error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kvw5yu\\cmTC_bca01.vcxproj]
-        Done Building Project "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kvw5yu\\cmTC_bca01.vcxproj" (default targets) -- FAILED.
+        C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-maulrm\\src.cxx(1,10): error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-maulrm\\cmTC_77b4a.vcxproj]
+        Done Building Project "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-maulrm\\cmTC_77b4a.vcxproj" (default targets) -- FAILED.
         
         Build FAILED.
         
-        "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kvw5yu\\cmTC_bca01.vcxproj" (default target) (1) ->
+        "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-maulrm\\cmTC_77b4a.vcxproj" (default target) (1) ->
         (ClCompile target) -> 
-          C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kvw5yu\\src.cxx(1,10): error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-kvw5yu\\cmTC_bca01.vcxproj]
+          C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-maulrm\\src.cxx(1,10): error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-maulrm\\cmTC_77b4a.vcxproj]
         
             0 Warning(s)
             1 Error(s)
         
-        Time Elapsed 00:00:00.23
+        Time Elapsed 00:00:00.27
         
       exitCode: 1
   -
@@ -1184,12 +1184,12 @@ events:
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:36 (find_dependency)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/Qt6Dependencies.cmake:35 (_qt_internal_find_third_party_dependencies)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/Qt6Config.cmake:168 (include)"
-      - "CMakeLists.txt:18 (find_package)"
+      - "code/application/CMakeLists.txt:12 (find_package)"
     checks:
       - "Looking for pthread_create in pthreads"
     directories:
-      source: "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-h1irho"
-      binary: "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-h1irho"
+      source: "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-rmj5q3"
+      binary: "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-rmj5q3"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -1199,42 +1199,42 @@ events:
       variable: "CMAKE_HAVE_PTHREADS_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-h1irho'
+        Change Dir: 'C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-rmj5q3'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_01cf2.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_b366a.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.14.10+8b8e13593 for .NET Framework
-        Build started 04/07/2025 19:10:38.
+        Build started 04/07/2025 19:54:54.
         
-        Project "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-h1irho\\cmTC_01cf2.vcxproj" on node 1 (default targets).
+        Project "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rmj5q3\\cmTC_b366a.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_01cf2.dir\\Debug\\".
+          Creating directory "cmTC_b366a.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-h1irho\\Debug\\".
-          Creating directory "cmTC_01cf2.dir\\Debug\\cmTC_01cf2.tlog\\".
+          Creating directory "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rmj5q3\\Debug\\".
+          Creating directory "cmTC_b366a.dir\\Debug\\cmTC_b366a.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_01cf2.dir\\Debug\\cmTC_01cf2.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_01cf2.dir\\Debug\\cmTC_01cf2.tlog\\unsuccessfulbuild".
+          Creating "cmTC_b366a.dir\\Debug\\cmTC_b366a.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_b366a.dir\\Debug\\cmTC_b366a.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_01cf2.dir\\Debug\\\\" /Fd"cmTC_01cf2.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-h1irho\\CheckFunctionExists.cxx"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_b366a.dir\\Debug\\\\" /Fd"cmTC_b366a.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rmj5q3\\CheckFunctionExists.cxx"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35209 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_01cf2.dir\\Debug\\\\" /Fd"cmTC_01cf2.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-h1irho\\CheckFunctionExists.cxx"
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_b366a.dir\\Debug\\\\" /Fd"cmTC_b366a.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rmj5q3\\CheckFunctionExists.cxx"
           CheckFunctionExists.cxx
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-h1irho\\Debug\\cmTC_01cf2.exe" /INCREMENTAL /ILK:"cmTC_01cf2.dir\\Debug\\cmTC_01cf2.ilk" /NOLOGO pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-h1irho/Debug/cmTC_01cf2.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-h1irho/Debug/cmTC_01cf2.lib" /MACHINE:X64  /machine:x64 cmTC_01cf2.dir\\Debug\\CheckFunctionExists.obj
-        LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-h1irho\\cmTC_01cf2.vcxproj]
-        Done Building Project "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-h1irho\\cmTC_01cf2.vcxproj" (default targets) -- FAILED.
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rmj5q3\\Debug\\cmTC_b366a.exe" /INCREMENTAL /ILK:"cmTC_b366a.dir\\Debug\\cmTC_b366a.ilk" /NOLOGO pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-rmj5q3/Debug/cmTC_b366a.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-rmj5q3/Debug/cmTC_b366a.lib" /MACHINE:X64  /machine:x64 cmTC_b366a.dir\\Debug\\CheckFunctionExists.obj
+        LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rmj5q3\\cmTC_b366a.vcxproj]
+        Done Building Project "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rmj5q3\\cmTC_b366a.vcxproj" (default targets) -- FAILED.
         
         Build FAILED.
         
-        "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-h1irho\\cmTC_01cf2.vcxproj" (default target) (1) ->
+        "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rmj5q3\\cmTC_b366a.vcxproj" (default target) (1) ->
         (Link target) -> 
-          LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-h1irho\\cmTC_01cf2.vcxproj]
+          LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rmj5q3\\cmTC_b366a.vcxproj]
         
             0 Warning(s)
             1 Error(s)
         
-        Time Elapsed 00:00:00.26
+        Time Elapsed 00:00:00.28
         
       exitCode: 1
   -
@@ -1247,12 +1247,12 @@ events:
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/QtPublicDependencyHelpers.cmake:36 (find_dependency)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/Qt6Dependencies.cmake:35 (_qt_internal_find_third_party_dependencies)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/Qt6Config.cmake:168 (include)"
-      - "CMakeLists.txt:18 (find_package)"
+      - "code/application/CMakeLists.txt:12 (find_package)"
     checks:
       - "Looking for pthread_create in pthread"
     directories:
-      source: "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-6hb6x5"
-      binary: "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-6hb6x5"
+      source: "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-rofl9w"
+      binary: "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-rofl9w"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -1262,42 +1262,42 @@ events:
       variable: "CMAKE_HAVE_PTHREAD_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-6hb6x5'
+        Change Dir: 'C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-rofl9w'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_bf18c.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_54929.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.14.10+8b8e13593 for .NET Framework
-        Build started 04/07/2025 19:10:38.
+        Build started 04/07/2025 19:54:55.
         
-        Project "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6hb6x5\\cmTC_bf18c.vcxproj" on node 1 (default targets).
+        Project "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rofl9w\\cmTC_54929.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_bf18c.dir\\Debug\\".
+          Creating directory "cmTC_54929.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6hb6x5\\Debug\\".
-          Creating directory "cmTC_bf18c.dir\\Debug\\cmTC_bf18c.tlog\\".
+          Creating directory "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rofl9w\\Debug\\".
+          Creating directory "cmTC_54929.dir\\Debug\\cmTC_54929.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_bf18c.dir\\Debug\\cmTC_bf18c.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_bf18c.dir\\Debug\\cmTC_bf18c.tlog\\unsuccessfulbuild".
+          Creating "cmTC_54929.dir\\Debug\\cmTC_54929.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_54929.dir\\Debug\\cmTC_54929.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_bf18c.dir\\Debug\\\\" /Fd"cmTC_bf18c.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6hb6x5\\CheckFunctionExists.cxx"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_54929.dir\\Debug\\\\" /Fd"cmTC_54929.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rofl9w\\CheckFunctionExists.cxx"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35209 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_bf18c.dir\\Debug\\\\" /Fd"cmTC_bf18c.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6hb6x5\\CheckFunctionExists.cxx"
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_54929.dir\\Debug\\\\" /Fd"cmTC_54929.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rofl9w\\CheckFunctionExists.cxx"
           CheckFunctionExists.cxx
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6hb6x5\\Debug\\cmTC_bf18c.exe" /INCREMENTAL /ILK:"cmTC_bf18c.dir\\Debug\\cmTC_bf18c.ilk" /NOLOGO pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-6hb6x5/Debug/cmTC_bf18c.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-6hb6x5/Debug/cmTC_bf18c.lib" /MACHINE:X64  /machine:x64 cmTC_bf18c.dir\\Debug\\CheckFunctionExists.obj
-        LINK : fatal error LNK1104: cannot open file 'pthread.lib' [C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6hb6x5\\cmTC_bf18c.vcxproj]
-        Done Building Project "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6hb6x5\\cmTC_bf18c.vcxproj" (default targets) -- FAILED.
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rofl9w\\Debug\\cmTC_54929.exe" /INCREMENTAL /ILK:"cmTC_54929.dir\\Debug\\cmTC_54929.ilk" /NOLOGO pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-rofl9w/Debug/cmTC_54929.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-rofl9w/Debug/cmTC_54929.lib" /MACHINE:X64  /machine:x64 cmTC_54929.dir\\Debug\\CheckFunctionExists.obj
+        LINK : fatal error LNK1104: cannot open file 'pthread.lib' [C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rofl9w\\cmTC_54929.vcxproj]
+        Done Building Project "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rofl9w\\cmTC_54929.vcxproj" (default targets) -- FAILED.
         
         Build FAILED.
         
-        "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6hb6x5\\cmTC_bf18c.vcxproj" (default target) (1) ->
+        "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rofl9w\\cmTC_54929.vcxproj" (default target) (1) ->
         (Link target) -> 
-          LINK : fatal error LNK1104: cannot open file 'pthread.lib' [C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6hb6x5\\cmTC_bf18c.vcxproj]
+          LINK : fatal error LNK1104: cannot open file 'pthread.lib' [C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-rofl9w\\cmTC_54929.vcxproj]
         
             0 Warning(s)
             1 Error(s)
         
-        Time Elapsed 00:00:00.27
+        Time Elapsed 00:00:00.28
         
       exitCode: 1
   -
@@ -1311,12 +1311,12 @@ events:
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Core/Qt6CoreDependencies.cmake:35 (_qt_internal_find_third_party_dependencies)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Core/Qt6CoreConfig.cmake:45 (include)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/Qt6Config.cmake:218 (find_package)"
-      - "CMakeLists.txt:18 (find_package)"
+      - "code/application/CMakeLists.txt:12 (find_package)"
     checks:
       - "Performing Test HAVE_STDATOMIC"
     directories:
-      source: "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-1nasc6"
-      binary: "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-1nasc6"
+      source: "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-np6qqi"
+      binary: "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-np6qqi"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
@@ -1326,40 +1326,40 @@ events:
       variable: "HAVE_STDATOMIC"
       cached: true
       stdout: |
-        Change Dir: 'C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-1nasc6'
+        Change Dir: 'C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-np6qqi'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_d1498.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_2c124.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.14.10+8b8e13593 for .NET Framework
-        Build started 04/07/2025 19:10:39.
+        Build started 04/07/2025 19:54:55.
         
-        Project "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1nasc6\\cmTC_d1498.vcxproj" on node 1 (default targets).
+        Project "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-np6qqi\\cmTC_2c124.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_d1498.dir\\Debug\\".
+          Creating directory "cmTC_2c124.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1nasc6\\Debug\\".
-          Creating directory "cmTC_d1498.dir\\Debug\\cmTC_d1498.tlog\\".
+          Creating directory "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-np6qqi\\Debug\\".
+          Creating directory "cmTC_2c124.dir\\Debug\\cmTC_2c124.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_d1498.dir\\Debug\\cmTC_d1498.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_d1498.dir\\Debug\\cmTC_d1498.tlog\\unsuccessfulbuild".
+          Creating "cmTC_2c124.dir\\Debug\\cmTC_2c124.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_2c124.dir\\Debug\\cmTC_2c124.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D HAVE_STDATOMIC /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_d1498.dir\\Debug\\\\" /Fd"cmTC_d1498.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1nasc6\\src.cxx"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D HAVE_STDATOMIC /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_2c124.dir\\Debug\\\\" /Fd"cmTC_2c124.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-np6qqi\\src.cxx"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35209 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D HAVE_STDATOMIC /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_d1498.dir\\Debug\\\\" /Fd"cmTC_d1498.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1nasc6\\src.cxx"
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D HAVE_STDATOMIC /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_2c124.dir\\Debug\\\\" /Fd"cmTC_2c124.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-np6qqi\\src.cxx"
           src.cxx
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1nasc6\\Debug\\cmTC_d1498.exe" /INCREMENTAL /ILK:"cmTC_d1498.dir\\Debug\\cmTC_d1498.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-1nasc6/Debug/cmTC_d1498.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-1nasc6/Debug/cmTC_d1498.lib" /MACHINE:X64  /machine:x64 cmTC_d1498.dir\\Debug\\src.obj
-          cmTC_d1498.vcxproj -> C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1nasc6\\Debug\\cmTC_d1498.exe
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-np6qqi\\Debug\\cmTC_2c124.exe" /INCREMENTAL /ILK:"cmTC_2c124.dir\\Debug\\cmTC_2c124.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-np6qqi/Debug/cmTC_2c124.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/CMakeScratch/TryCompile-np6qqi/Debug/cmTC_2c124.lib" /MACHINE:X64  /machine:x64 cmTC_2c124.dir\\Debug\\src.obj
+          cmTC_2c124.vcxproj -> C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-np6qqi\\Debug\\cmTC_2c124.exe
         FinalizeBuildStatus:
-          Deleting file "cmTC_d1498.dir\\Debug\\cmTC_d1498.tlog\\unsuccessfulbuild".
-          Touching "cmTC_d1498.dir\\Debug\\cmTC_d1498.tlog\\cmTC_d1498.lastbuildstate".
-        Done Building Project "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-1nasc6\\cmTC_d1498.vcxproj" (default targets).
+          Deleting file "cmTC_2c124.dir\\Debug\\cmTC_2c124.tlog\\unsuccessfulbuild".
+          Touching "cmTC_2c124.dir\\Debug\\cmTC_2c124.tlog\\cmTC_2c124.lastbuildstate".
+        Done Building Project "C:\\MINE\\PROJECTS\\Numerical-Approximator-Qt\\root\\out\\build\\CMakeFiles\\CMakeScratch\\TryCompile-np6qqi\\cmTC_2c124.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:00.37
+        Time Elapsed 00:00:00.36
         
       exitCode: 0
   -
@@ -1369,7 +1369,7 @@ events:
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Core/Qt6CoreDependencies.cmake:40 (_qt_internal_find_tool_dependencies)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Core/Qt6CoreConfig.cmake:45 (include)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/Qt6Config.cmake:218 (find_package)"
-      - "CMakeLists.txt:18 (find_package)"
+      - "code/application/CMakeLists.txt:12 (find_package)"
     name: "Qt6CoreTools"
     configs:
       -
@@ -1469,12 +1469,12 @@ events:
         - "C:\\Users\\shiza\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\butler-windows-amd64\\butler.exe"
         - "C:\\jdk-24.0.1\\bin"
-      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NumAprx"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/application"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
         - "C:/Program Files (x86)"
         - "C:/Program Files/CMake"
-        - "C:/Program Files (x86)/NumAprx"
+        - "C:/Program Files (x86)/application"
   -
     kind: "find_package-v1"
     backtrace:
@@ -1483,7 +1483,7 @@ events:
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Core/Qt6CoreDependencies.cmake:46 (_qt_internal_find_qt_dependencies)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Core/Qt6CoreConfig.cmake:45 (include)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/Qt6Config.cmake:218 (find_package)"
-      - "CMakeLists.txt:18 (find_package)"
+      - "code/application/CMakeLists.txt:12 (find_package)"
     name: "Qt6ZlibPrivate"
     configs:
       -
@@ -1583,12 +1583,12 @@ events:
         - "C:\\Users\\shiza\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\butler-windows-amd64\\butler.exe"
         - "C:\\jdk-24.0.1\\bin"
-      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NumAprx"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/application"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
         - "C:/Program Files (x86)"
         - "C:/Program Files/CMake"
-        - "C:/Program Files (x86)/NumAprx"
+        - "C:/Program Files (x86)/application"
   -
     kind: "find_package-v1"
     backtrace:
@@ -1597,7 +1597,7 @@ events:
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Core/Qt6CoreDependencies.cmake:46 (_qt_internal_find_qt_dependencies)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Core/Qt6CoreConfig.cmake:45 (include)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/Qt6Config.cmake:218 (find_package)"
-      - "CMakeLists.txt:18 (find_package)"
+      - "code/application/CMakeLists.txt:12 (find_package)"
     name: "Qt6EntryPointPrivate"
     configs:
       -
@@ -1697,18 +1697,18 @@ events:
         - "C:\\Users\\shiza\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\butler-windows-amd64\\butler.exe"
         - "C:\\jdk-24.0.1\\bin"
-      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NumAprx"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/application"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
         - "C:/Program Files (x86)"
         - "C:/Program Files/CMake"
-        - "C:/Program Files (x86)/NumAprx"
+        - "C:/Program Files (x86)/application"
   -
     kind: "find_package-v1"
     backtrace:
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Core/Qt6CoreConfig.cmake:87 (find_package)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/Qt6Config.cmake:218 (find_package)"
-      - "CMakeLists.txt:18 (find_package)"
+      - "code/application/CMakeLists.txt:12 (find_package)"
     name: "Qt6CorePrivate"
     configs:
       -
@@ -1808,12 +1808,12 @@ events:
         - "C:\\Users\\shiza\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\butler-windows-amd64\\butler.exe"
         - "C:\\jdk-24.0.1\\bin"
-      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NumAprx"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/application"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
         - "C:/Program Files (x86)"
         - "C:/Program Files/CMake"
-        - "C:/Program Files (x86)/NumAprx"
+        - "C:/Program Files (x86)/application"
   -
     kind: "find-v1"
     backtrace:
@@ -1821,7 +1821,7 @@ events:
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Core/Qt6CoreConfigExtras.cmake:28 (_qt_internal_setup_deploy_support)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Core/Qt6CoreConfig.cmake:199 (include)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/Qt6Config.cmake:218 (find_package)"
-      - "CMakeLists.txt:18 (find_package)"
+      - "code/application/CMakeLists.txt:12 (find_package)"
     mode: "program"
     variable: "WINDEPLOYQT_EXECUTABLE"
     description: "Path to a program."
@@ -1877,9 +1877,9 @@ events:
       - "C:/Program Files/CMake/bin/"
       - "C:/Program Files/CMake/sbin/"
       - "C:/Program Files/CMake/"
-      - "C:/Program Files (x86)/NumAprx/bin/"
-      - "C:/Program Files (x86)/NumAprx/sbin/"
-      - "C:/Program Files (x86)/NumAprx/"
+      - "C:/Program Files (x86)/application/bin/"
+      - "C:/Program Files (x86)/application/sbin/"
+      - "C:/Program Files (x86)/application/"
     searched_directories:
       - "C:/Qt/6.9.1/msvc2022_64/bin/windeployqt.com"
     found: "C:/Qt/6.9.1/msvc2022_64/bin/windeployqt.exe"
@@ -1926,17 +1926,17 @@ events:
         - "C:\\Users\\shiza\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\butler-windows-amd64\\butler.exe"
         - "C:\\jdk-24.0.1\\bin"
-      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NumAprx"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/application"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
         - "C:/Program Files (x86)"
         - "C:/Program Files/CMake"
-        - "C:/Program Files (x86)/NumAprx"
+        - "C:/Program Files (x86)/application"
   -
     kind: "find_package-v1"
     backtrace:
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/Qt6Config.cmake:218 (find_package)"
-      - "CMakeLists.txt:18 (find_package)"
+      - "code/application/CMakeLists.txt:12 (find_package)"
     name: "Qt6Core"
     configs:
       -
@@ -2033,12 +2033,12 @@ events:
         - "C:\\Users\\shiza\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\butler-windows-amd64\\butler.exe"
         - "C:\\jdk-24.0.1\\bin"
-      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NumAprx"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/application"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
         - "C:/Program Files (x86)"
         - "C:/Program Files/CMake"
-        - "C:/Program Files (x86)/NumAprx"
+        - "C:/Program Files (x86)/application"
   -
     kind: "find_package-v1"
     backtrace:
@@ -2049,7 +2049,7 @@ events:
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake:39 (_qt_internal_find_tool_dependencies)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake:43 (include)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/Qt6Config.cmake:218 (find_package)"
-      - "CMakeLists.txt:18 (find_package)"
+      - "code/application/CMakeLists.txt:12 (find_package)"
     name: "Qt6GuiTools"
     configs:
       -
@@ -2149,12 +2149,12 @@ events:
         - "C:\\Users\\shiza\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\butler-windows-amd64\\butler.exe"
         - "C:\\jdk-24.0.1\\bin"
-      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NumAprx"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/application"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
         - "C:/Program Files (x86)"
         - "C:/Program Files/CMake"
-        - "C:/Program Files (x86)/NumAprx"
+        - "C:/Program Files (x86)/application"
   -
     kind: "find_package-v1"
     backtrace:
@@ -2162,7 +2162,7 @@ events:
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake:39 (_qt_internal_find_tool_dependencies)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake:43 (include)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/Qt6Config.cmake:218 (find_package)"
-      - "CMakeLists.txt:18 (find_package)"
+      - "code/application/CMakeLists.txt:12 (find_package)"
     name: "Qt6WidgetsTools"
     configs:
       -
@@ -2262,12 +2262,12 @@ events:
         - "C:\\Users\\shiza\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\butler-windows-amd64\\butler.exe"
         - "C:\\jdk-24.0.1\\bin"
-      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NumAprx"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/application"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
         - "C:/Program Files (x86)"
         - "C:/Program Files/CMake"
-        - "C:/Program Files (x86)/NumAprx"
+        - "C:/Program Files (x86)/application"
   -
     kind: "find-v1"
     backtrace:
@@ -2281,7 +2281,7 @@ events:
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake:45 (_qt_internal_find_qt_dependencies)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake:43 (include)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/Qt6Config.cmake:218 (find_package)"
-      - "CMakeLists.txt:18 (find_package)"
+      - "code/application/CMakeLists.txt:12 (find_package)"
     mode: "path"
     variable: "Vulkan_INCLUDE_DIR"
     description: "Path to a file."
@@ -2333,8 +2333,8 @@ events:
       - "C:/Program Files (x86)/"
       - "C:/Program Files/CMake/include/"
       - "C:/Program Files/CMake/"
-      - "C:/Program Files (x86)/NumAprx/include/"
-      - "C:/Program Files (x86)/NumAprx/"
+      - "C:/Program Files (x86)/application/include/"
+      - "C:/Program Files (x86)/application/"
     searched_directories:
       - "C:/Qt/6.9.1/msvc2022_64/include/vulkan/vulkan.h"
       - "C:/Qt/6.9.1/msvc2022_64/vulkan/vulkan.h"
@@ -2373,8 +2373,8 @@ events:
       - "C:/Program Files (x86)/vulkan/vulkan.h"
       - "C:/Program Files/CMake/include/vulkan/vulkan.h"
       - "C:/Program Files/CMake/vulkan/vulkan.h"
-      - "C:/Program Files (x86)/NumAprx/include/vulkan/vulkan.h"
-      - "C:/Program Files (x86)/NumAprx/vulkan/vulkan.h"
+      - "C:/Program Files (x86)/application/include/vulkan/vulkan.h"
+      - "C:/Program Files (x86)/application/vulkan/vulkan.h"
     found: false
     search_context:
       ENV{CMAKE_PREFIX_PATH}:
@@ -2419,12 +2419,12 @@ events:
         - "C:\\Users\\shiza\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\butler-windows-amd64\\butler.exe"
         - "C:\\jdk-24.0.1\\bin"
-      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NumAprx"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/application"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
         - "C:/Program Files (x86)"
         - "C:/Program Files/CMake"
-        - "C:/Program Files (x86)/NumAprx"
+        - "C:/Program Files (x86)/application"
   -
     kind: "find-v1"
     backtrace:
@@ -2438,7 +2438,7 @@ events:
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake:45 (_qt_internal_find_qt_dependencies)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake:43 (include)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/Qt6Config.cmake:218 (find_package)"
-      - "CMakeLists.txt:18 (find_package)"
+      - "code/application/CMakeLists.txt:12 (find_package)"
     mode: "library"
     variable: "Vulkan_LIBRARY"
     description: "Path to a library."
@@ -2491,9 +2491,9 @@ events:
       - "C:/Program Files (x86)/"
       - "C:/Program Files/CMake/lib/"
       - "C:/Program Files/CMake/"
-      - "C:/Program Files (x86)/NumAprx/lib/"
-      - "C:/Program Files (x86)/NumAprx/"
-      - "C:/Program Files (x86)/NumAprx/bin/"
+      - "C:/Program Files (x86)/application/lib/"
+      - "C:/Program Files (x86)/application/"
+      - "C:/Program Files (x86)/application/bin/"
     searched_directories:
       - "C:/Qt/6.9.1/msvc2022_64/lib/"
       - "C:/Qt/6.9.1/msvc2022_64/"
@@ -2533,9 +2533,9 @@ events:
       - "C:/Program Files (x86)/"
       - "C:/Program Files/CMake/lib/"
       - "C:/Program Files/CMake/"
-      - "C:/Program Files (x86)/NumAprx/lib/"
-      - "C:/Program Files (x86)/NumAprx/"
-      - "C:/Program Files (x86)/NumAprx/bin/"
+      - "C:/Program Files (x86)/application/lib/"
+      - "C:/Program Files (x86)/application/"
+      - "C:/Program Files (x86)/application/bin/"
     found: false
     search_context:
       ENV{CMAKE_PREFIX_PATH}:
@@ -2580,14 +2580,14 @@ events:
         - "C:\\Users\\shiza\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\butler-windows-amd64\\butler.exe"
         - "C:\\jdk-24.0.1\\bin"
-      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NumAprx"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/application"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
         - "C:/Program Files (x86)"
         - "C:/Program Files/CMake"
-        - "C:/Program Files (x86)/NumAprx"
+        - "C:/Program Files (x86)/application"
       CMAKE_SYSTEM_LIBRARY_PATH:
-        - "C:/Program Files (x86)/NumAprx/bin"
+        - "C:/Program Files (x86)/application/bin"
         - "C:/Program Files/CMake/bin"
         - "/bin"
   -
@@ -2603,7 +2603,7 @@ events:
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake:45 (_qt_internal_find_qt_dependencies)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake:43 (include)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/Qt6Config.cmake:218 (find_package)"
-      - "CMakeLists.txt:18 (find_package)"
+      - "code/application/CMakeLists.txt:12 (find_package)"
     mode: "program"
     variable: "Vulkan_GLSLC_EXECUTABLE"
     description: "Path to a program."
@@ -2659,9 +2659,9 @@ events:
       - "C:/Program Files/CMake/bin/"
       - "C:/Program Files/CMake/sbin/"
       - "C:/Program Files/CMake/"
-      - "C:/Program Files (x86)/NumAprx/bin/"
-      - "C:/Program Files (x86)/NumAprx/sbin/"
-      - "C:/Program Files (x86)/NumAprx/"
+      - "C:/Program Files (x86)/application/bin/"
+      - "C:/Program Files (x86)/application/sbin/"
+      - "C:/Program Files (x86)/application/"
     searched_directories:
       - "C:/Qt/6.9.1/msvc2022_64/bin/glslc.com"
       - "C:/Qt/6.9.1/msvc2022_64/bin/glslc.exe"
@@ -2786,15 +2786,15 @@ events:
       - "C:/Program Files/CMake/glslc.com"
       - "C:/Program Files/CMake/glslc.exe"
       - "C:/Program Files/CMake/glslc"
-      - "C:/Program Files (x86)/NumAprx/bin/glslc.com"
-      - "C:/Program Files (x86)/NumAprx/bin/glslc.exe"
-      - "C:/Program Files (x86)/NumAprx/bin/glslc"
-      - "C:/Program Files (x86)/NumAprx/sbin/glslc.com"
-      - "C:/Program Files (x86)/NumAprx/sbin/glslc.exe"
-      - "C:/Program Files (x86)/NumAprx/sbin/glslc"
-      - "C:/Program Files (x86)/NumAprx/glslc.com"
-      - "C:/Program Files (x86)/NumAprx/glslc.exe"
-      - "C:/Program Files (x86)/NumAprx/glslc"
+      - "C:/Program Files (x86)/application/bin/glslc.com"
+      - "C:/Program Files (x86)/application/bin/glslc.exe"
+      - "C:/Program Files (x86)/application/bin/glslc"
+      - "C:/Program Files (x86)/application/sbin/glslc.com"
+      - "C:/Program Files (x86)/application/sbin/glslc.exe"
+      - "C:/Program Files (x86)/application/sbin/glslc"
+      - "C:/Program Files (x86)/application/glslc.com"
+      - "C:/Program Files (x86)/application/glslc.exe"
+      - "C:/Program Files (x86)/application/glslc"
     found: false
     search_context:
       ENV{CMAKE_PREFIX_PATH}:
@@ -2839,12 +2839,12 @@ events:
         - "C:\\Users\\shiza\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\butler-windows-amd64\\butler.exe"
         - "C:\\jdk-24.0.1\\bin"
-      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NumAprx"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/application"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
         - "C:/Program Files (x86)"
         - "C:/Program Files/CMake"
-        - "C:/Program Files (x86)/NumAprx"
+        - "C:/Program Files (x86)/application"
   -
     kind: "find-v1"
     backtrace:
@@ -2858,7 +2858,7 @@ events:
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake:45 (_qt_internal_find_qt_dependencies)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake:43 (include)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/Qt6Config.cmake:218 (find_package)"
-      - "CMakeLists.txt:18 (find_package)"
+      - "code/application/CMakeLists.txt:12 (find_package)"
     mode: "program"
     variable: "Vulkan_GLSLANG_VALIDATOR_EXECUTABLE"
     description: "Path to a program."
@@ -2914,9 +2914,9 @@ events:
       - "C:/Program Files/CMake/bin/"
       - "C:/Program Files/CMake/sbin/"
       - "C:/Program Files/CMake/"
-      - "C:/Program Files (x86)/NumAprx/bin/"
-      - "C:/Program Files (x86)/NumAprx/sbin/"
-      - "C:/Program Files (x86)/NumAprx/"
+      - "C:/Program Files (x86)/application/bin/"
+      - "C:/Program Files (x86)/application/sbin/"
+      - "C:/Program Files (x86)/application/"
     searched_directories:
       - "C:/Qt/6.9.1/msvc2022_64/bin/glslangValidator.com"
       - "C:/Qt/6.9.1/msvc2022_64/bin/glslangValidator.exe"
@@ -3041,15 +3041,15 @@ events:
       - "C:/Program Files/CMake/glslangValidator.com"
       - "C:/Program Files/CMake/glslangValidator.exe"
       - "C:/Program Files/CMake/glslangValidator"
-      - "C:/Program Files (x86)/NumAprx/bin/glslangValidator.com"
-      - "C:/Program Files (x86)/NumAprx/bin/glslangValidator.exe"
-      - "C:/Program Files (x86)/NumAprx/bin/glslangValidator"
-      - "C:/Program Files (x86)/NumAprx/sbin/glslangValidator.com"
-      - "C:/Program Files (x86)/NumAprx/sbin/glslangValidator.exe"
-      - "C:/Program Files (x86)/NumAprx/sbin/glslangValidator"
-      - "C:/Program Files (x86)/NumAprx/glslangValidator.com"
-      - "C:/Program Files (x86)/NumAprx/glslangValidator.exe"
-      - "C:/Program Files (x86)/NumAprx/glslangValidator"
+      - "C:/Program Files (x86)/application/bin/glslangValidator.com"
+      - "C:/Program Files (x86)/application/bin/glslangValidator.exe"
+      - "C:/Program Files (x86)/application/bin/glslangValidator"
+      - "C:/Program Files (x86)/application/sbin/glslangValidator.com"
+      - "C:/Program Files (x86)/application/sbin/glslangValidator.exe"
+      - "C:/Program Files (x86)/application/sbin/glslangValidator"
+      - "C:/Program Files (x86)/application/glslangValidator.com"
+      - "C:/Program Files (x86)/application/glslangValidator.exe"
+      - "C:/Program Files (x86)/application/glslangValidator"
     found: false
     search_context:
       ENV{CMAKE_PREFIX_PATH}:
@@ -3094,12 +3094,12 @@ events:
         - "C:\\Users\\shiza\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\butler-windows-amd64\\butler.exe"
         - "C:\\jdk-24.0.1\\bin"
-      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NumAprx"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/application"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
         - "C:/Program Files (x86)"
         - "C:/Program Files/CMake"
-        - "C:/Program Files (x86)/NumAprx"
+        - "C:/Program Files (x86)/application"
   -
     kind: "find_package-v1"
     backtrace:
@@ -3109,7 +3109,7 @@ events:
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake:45 (_qt_internal_find_qt_dependencies)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake:43 (include)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/Qt6Config.cmake:218 (find_package)"
-      - "CMakeLists.txt:18 (find_package)"
+      - "code/application/CMakeLists.txt:12 (find_package)"
     name: "Qt6GuiPrivate"
     configs:
       -
@@ -3209,12 +3209,12 @@ events:
         - "C:\\Users\\shiza\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\butler-windows-amd64\\butler.exe"
         - "C:\\jdk-24.0.1\\bin"
-      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NumAprx"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/application"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
         - "C:/Program Files (x86)"
         - "C:/Program Files/CMake"
-        - "C:/Program Files (x86)/NumAprx"
+        - "C:/Program Files (x86)/application"
   -
     kind: "find_package-v1"
     backtrace:
@@ -3223,7 +3223,7 @@ events:
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsDependencies.cmake:45 (_qt_internal_find_qt_dependencies)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake:43 (include)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/Qt6Config.cmake:218 (find_package)"
-      - "CMakeLists.txt:18 (find_package)"
+      - "code/application/CMakeLists.txt:12 (find_package)"
     name: "Qt6Gui"
     configs:
       -
@@ -3323,18 +3323,18 @@ events:
         - "C:\\Users\\shiza\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\butler-windows-amd64\\butler.exe"
         - "C:\\jdk-24.0.1\\bin"
-      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NumAprx"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/application"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
         - "C:/Program Files (x86)"
         - "C:/Program Files/CMake"
-        - "C:/Program Files (x86)/NumAprx"
+        - "C:/Program Files (x86)/application"
   -
     kind: "find_package-v1"
     backtrace:
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsConfig.cmake:85 (find_package)"
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/Qt6Config.cmake:218 (find_package)"
-      - "CMakeLists.txt:18 (find_package)"
+      - "code/application/CMakeLists.txt:12 (find_package)"
     name: "Qt6WidgetsPrivate"
     configs:
       -
@@ -3434,17 +3434,17 @@ events:
         - "C:\\Users\\shiza\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\butler-windows-amd64\\butler.exe"
         - "C:\\jdk-24.0.1\\bin"
-      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NumAprx"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/application"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
         - "C:/Program Files (x86)"
         - "C:/Program Files/CMake"
-        - "C:/Program Files (x86)/NumAprx"
+        - "C:/Program Files (x86)/application"
   -
     kind: "find_package-v1"
     backtrace:
       - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/Qt6Config.cmake:218 (find_package)"
-      - "CMakeLists.txt:18 (find_package)"
+      - "code/application/CMakeLists.txt:12 (find_package)"
     name: "Qt6Widgets"
     configs:
       -
@@ -3541,16 +3541,16 @@ events:
         - "C:\\Users\\shiza\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\butler-windows-amd64\\butler.exe"
         - "C:\\jdk-24.0.1\\bin"
-      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NumAprx"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/application"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
         - "C:/Program Files (x86)"
         - "C:/Program Files/CMake"
-        - "C:/Program Files (x86)/NumAprx"
+        - "C:/Program Files (x86)/application"
   -
     kind: "find_package-v1"
     backtrace:
-      - "CMakeLists.txt:18 (find_package)"
+      - "code/application/CMakeLists.txt:12 (find_package)"
     name: "Qt6"
     components:
       -
@@ -3654,12 +3654,12 @@ events:
         - "C:\\Users\\shiza\\AppData\\Local\\Programs\\Microsoft VS Code\\bin"
         - "C:\\butler-windows-amd64\\butler.exe"
         - "C:\\jdk-24.0.1\\bin"
-      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/NumAprx"
+      CMAKE_INSTALL_PREFIX: "C:/Program Files (x86)/application"
       CMAKE_SYSTEM_PREFIX_PATH:
         - "C:/Program Files"
         - "C:/Program Files (x86)"
         - "C:/Program Files/CMake"
-        - "C:/Program Files (x86)/NumAprx"
+        - "C:/Program Files (x86)/application"
       CMAKE_MODULE_PATH:
         - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6"
         - "C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6/3rdparty/extra-cmake-modules/find-modules"

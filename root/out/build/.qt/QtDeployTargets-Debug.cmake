@@ -1,3 +1,5 @@
-set(__QT_DEPLOY_TARGET_NumAprx_FILE C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/Debug/NumAprx.exe)
-set(__QT_DEPLOY_TARGET_NumAprx_TYPE EXECUTABLE)
-set(__QT_DEPLOY_TARGET_NumAprx_RUNTIME_DLLS C:/Qt/6.9.1/msvc2022_64/bin/Qt6Widgetsd.dll;C:/Qt/6.9.1/msvc2022_64/bin/Qt6Guid.dll;C:/Qt/6.9.1/msvc2022_64/bin/Qt6Cored.dll)
+set(__QT_DEPLOY_TARGET_approximator_FILE C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/code/modules/approximator/Debug/approximator.lib)
+set(__QT_DEPLOY_TARGET_approximator_TYPE STATIC_LIBRARY)
+set(__QT_DEPLOY_TARGET_application_FILE C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/code/application/Debug/application.exe)
+set(__QT_DEPLOY_TARGET_application_TYPE EXECUTABLE)
+set(__QT_DEPLOY_TARGET_application_RUNTIME_DLLS C:/Qt/6.9.1/msvc2022_64/bin/Qt6Widgetsd.dll;C:/Qt/6.9.1/msvc2022_64/bin/Qt6Guid.dll;C:/Qt/6.9.1/msvc2022_64/bin/Qt6Cored.dll)

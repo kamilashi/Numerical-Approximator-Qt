@@ -1,7 +1,9 @@
 {
 	"InstallScripts" : 
 	[
-		"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/cmake_install.cmake"
+		"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/cmake_install.cmake",
+		"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/code/modules/approximator/cmake_install.cmake",
+		"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/code/application/cmake_install.cmake"
 	],
 	"Parallel" : false
 }

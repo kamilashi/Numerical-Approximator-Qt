@@ -95,7 +95,7 @@ CMAKE_INSTALL_MANDIR:PATH=
 CMAKE_INSTALL_OLDINCLUDEDIR:PATH=/usr/include
 
 //Install path prefix, prepended onto install directories.
-CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/NumAprx
+CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/application
 
 //Run-time variable data (LOCALSTATEDIR/run)
 CMAKE_INSTALL_RUNSTATEDIR:PATH=
@@ -145,7 +145,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=NumAprx
+CMAKE_PROJECT_NAME:STATIC=application
 
 //Value Computed by CMake
 CMAKE_PROJECT_VERSION:STATIC=1.0
@@ -233,15 +233,6 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
-//Value Computed by CMake
-NumAprx_BINARY_DIR:STATIC=C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build
-
-//Value Computed by CMake
-NumAprx_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-NumAprx_SOURCE_DIR:STATIC=C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/src
-
 //Additional directories where find(Qt6 ...) host Qt components
 // are searched
 QT_ADDITIONAL_HOST_PACKAGES_PREFIX_PATH:STRING=
@@ -299,6 +290,15 @@ Vulkan_LIBRARY:FILEPATH=Vulkan_LIBRARY-NOTFOUND
 
 //Path to a program.
 WINDEPLOYQT_EXECUTABLE:FILEPATH=C:/Qt/6.9.1/msvc2022_64/bin/windeployqt.exe
+
+//Value Computed by CMake
+application_BINARY_DIR:STATIC=C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build
+
+//Value Computed by CMake
+application_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+application_SOURCE_DIR:STATIC=C:/MINE/PROJECTS/Numerical-Approximator-Qt/root
 
 
 ########################
@@ -363,7 +363,7 @@ CMAKE_HAVE_PTHREADS_CREATE:INTERNAL=
 CMAKE_HAVE_PTHREAD_CREATE:INTERNAL=
 //Source directory with the top level CMakeLists.txt file for this
 // project
-CMAKE_HOME_DIRECTORY:INTERNAL=C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/src
+CMAKE_HOME_DIRECTORY:INTERNAL=C:/MINE/PROJECTS/Numerical-Approximator-Qt/root
 //ADVANCED property for variable: CMAKE_INSTALL_BINDIR
 CMAKE_INSTALL_BINDIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_INSTALL_DATADIR
@@ -413,7 +413,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_MT
 CMAKE_MT-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=1
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=3
 //Platform information initialized
 CMAKE_PLATFORM_INFO_INITIALIZED:INTERNAL=1
 //noop for ranlib
@@ -1258,5 +1258,5 @@ Vulkan_INCLUDE_DIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: Vulkan_LIBRARY
 Vulkan_LIBRARY-ADVANCED:INTERNAL=1
 //CMAKE_INSTALL_PREFIX during last run
-_GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=C:/Program Files (x86)/NumAprx
+_GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=C:/Program Files (x86)/application
 

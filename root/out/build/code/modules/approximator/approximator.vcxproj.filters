@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\src\approximator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\include\approximator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{38EB343E-B445-33B1-B784-888F8501E9DF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{29A79559-ADD3-3A6B-AB72-4B3E51961B48}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

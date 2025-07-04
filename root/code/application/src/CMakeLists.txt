@@ -1,18 +1,14 @@
 # TODO 1: Set the minimum required version of CMake to be 3.10
 
-cmake_minimum_required(VERSION 3.10)
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-project(NumAprx VERSION 1.0 LANGUAGES CXX)
-
-include_directories(../include)
-
-file(GLOB HPP_HEADERS CONFIGURE_DEPENDS "../include/*.hpp")
+file(GLOB HPP_HEADERS CONFIGURE_DEPENDS "include/*.hpp")
 message(STATUS "HPP files found: ${HPP_HEADERS}")
 
-file(GLOB H_HEADERS CONFIGURE_DEPENDS "../include/*.h")
+file(GLOB H_HEADERS CONFIGURE_DEPENDS "include/*.h")
 message(STATUS "H files found: ${H_HEADERS}")
 
-file(GLOB_RECURSE CPP_SOURCES CONFIGURE_DEPENDS "*.cpp")
+file(GLOB_RECURSE CPP_SOURCES CONFIGURE_DEPENDS "source/*.cpp")
 message(STATUS "CPP files found: ${CPP_SOURCES}")
 
 find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
@@ -29,6 +25,7 @@ target_link_libraries(${PROJECT_NAME}
     PRIVATE 
         Qt6::Core
         Qt6::Widgets
+        approximator
 )
 
 set_target_properties(${PROJECT_NAME}

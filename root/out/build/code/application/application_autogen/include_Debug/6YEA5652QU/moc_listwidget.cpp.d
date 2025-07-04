@@ -1,5 +1,4 @@
-C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/NumAprx_autogen/include_Debug/T265VEGSCG/moc_mainwindow.cpp: C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/include/mainwindow.h \
-  C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/include/listwidget.h \
+C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/code/application/application_autogen/include_Debug/6YEA5652QU/moc_listwidget.cpp: C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/include/listwidget.h \
   C:/Qt/6.9.1/msvc2022_64/include/QtCore/q17memory.h \
   C:/Qt/6.9.1/msvc2022_64/include/QtCore/q20functional.h \
   C:/Qt/6.9.1/msvc2022_64/include/QtCore/q20iterator.h \
@@ -157,7 +156,6 @@ C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/NumAprx_autogen/includ
   C:/Qt/6.9.1/msvc2022_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.9.1/msvc2022_64/include/QtGui/qwindowdefs_win.h \
   C:/Qt/6.9.1/msvc2022_64/include/QtWidgets/QListWidget \
-  C:/Qt/6.9.1/msvc2022_64/include/QtWidgets/QMainWindow \
   C:/Qt/6.9.1/msvc2022_64/include/QtWidgets/qabstractitemdelegate.h \
   C:/Qt/6.9.1/msvc2022_64/include/QtWidgets/qabstractitemview.h \
   C:/Qt/6.9.1/msvc2022_64/include/QtWidgets/qabstractscrollarea.h \
@@ -166,7 +164,6 @@ C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/NumAprx_autogen/includ
   C:/Qt/6.9.1/msvc2022_64/include/QtWidgets/qframe.h \
   C:/Qt/6.9.1/msvc2022_64/include/QtWidgets/qlistview.h \
   C:/Qt/6.9.1/msvc2022_64/include/QtWidgets/qlistwidget.h \
-  C:/Qt/6.9.1/msvc2022_64/include/QtWidgets/qmainwindow.h \
   C:/Qt/6.9.1/msvc2022_64/include/QtWidgets/qrubberband.h \
   C:/Qt/6.9.1/msvc2022_64/include/QtWidgets/qsizepolicy.h \
   C:/Qt/6.9.1/msvc2022_64/include/QtWidgets/qslider.h \

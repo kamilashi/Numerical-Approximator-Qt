@@ -1,3 +1,4 @@
-C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/NumAprx.dir
 C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/ALL_BUILD.dir
 C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/ZERO_CHECK.dir
+C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/code/modules/approximator/CMakeFiles/approximator.dir
+C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/code/application/CMakeFiles/application.dir
