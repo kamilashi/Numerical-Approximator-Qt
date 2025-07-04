@@ -19,17 +19,10 @@ struct Dimensions
 
 static const Dimensions dim;
 
-// should be back end
-static const int programCount = 5;
-ProgramItem programItems[programCount] = { ProgramItem("Determinant"),
-							ProgramItem("Other"),
-							ProgramItem("Other"),
-							ProgramItem("Other"),
-							ProgramItem("Other") };
-
-MainWindow::MainWindow(QWidget* parent)
-	: QMainWindow(parent)
+MainWindow::MainWindow(Approximator* pAppr, QWidget* parent) : QMainWindow(parent)
 {
+	pApproximator = pAppr;
+
 	resize(dim.mainWindowWidth, dim.mainWindowHeight);
 	setWindowTitle("Numerical Approximator Qt");
 
@@ -62,9 +55,9 @@ MainWindow::MainWindow(QWidget* parent)
 	pHeaderMenu->setResizeMode(QListView::Adjust);
 	pHeaderMenu->setSpacing(dim.topMenuSpacing);
 
-	for (int i = 0; i< programCount; i++)
+	for (int i = 0; i< pApproximator->programCount; i++)
 	{
-		AppMenuItem* menu = new AppMenuItem(programItems[i].pName, programItems[i].index);
+		AppMenuItem* menu = new AppMenuItem(pApproximator->programItems[i].pName, pApproximator->programItems[i].index);
 		pHeaderMenu->addItem(menu);
 	}
 
@@ -83,7 +76,7 @@ void MainWindow::onItemClicked(QListWidgetItem* item)
 
 	AppMenuItem* pAppMenuItem = static_cast<AppMenuItem*>(item);
 
-	pSelectedMenuEntry = &programItems[pAppMenuItem->index]; 
+	pSelectedProgram = &pApproximator->programItems[pAppMenuItem->index];
 
 	// Create menu
 	QMenu* menu = new QMenu(pHeaderMenu);
@@ -100,12 +93,12 @@ void MainWindow::onItemClicked(QListWidgetItem* item)
 
 void MainWindow::showCode()
 {
-	qDebug() << "Show Code" << pSelectedMenuEntry;
+	qDebug() << "Show Code" << pSelectedProgram;
 	// Add logic depending on selectedItemText
 }
 
 void MainWindow::runProgram()
 {
-	qDebug() << "Run Program" << pSelectedMenuEntry;
+	qDebug() << "Run Program" << pSelectedProgram;
 	// Add logic depending on selectedItemText
 }

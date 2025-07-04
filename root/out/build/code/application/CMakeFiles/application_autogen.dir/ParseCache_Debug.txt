@@ -4,6 +4,7 @@ C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/include/mainwin
  mmc:Q_OBJECT
  mdp:C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/include/listwidget.h
  mdp:C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/include/mainwindow.h
+ mdp:C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/include/approximator.h
  mdp:C:/Qt/6.9.1/msvc2022_64/include/QtCore/q17memory.h
  mdp:C:/Qt/6.9.1/msvc2022_64/include/QtCore/q20functional.h
  mdp:C:/Qt/6.9.1/msvc2022_64/include/QtCore/q20iterator.h
