@@ -240,7 +240,7 @@ NumAprx_BINARY_DIR:STATIC=C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/bu
 NumAprx_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
-NumAprx_SOURCE_DIR:STATIC=C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/src
+NumAprx_SOURCE_DIR:STATIC=C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/src
 
 //Additional directories where find(Qt6 ...) host Qt components
 // are searched
@@ -363,7 +363,7 @@ CMAKE_HAVE_PTHREADS_CREATE:INTERNAL=
 CMAKE_HAVE_PTHREAD_CREATE:INTERNAL=
 //Source directory with the top level CMakeLists.txt file for this
 // project
-CMAKE_HOME_DIRECTORY:INTERNAL=C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/src
+CMAKE_HOME_DIRECTORY:INTERNAL=C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/src
 //ADVANCED property for variable: CMAKE_INSTALL_BINDIR
 CMAKE_INSTALL_BINDIR-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_INSTALL_DATADIR

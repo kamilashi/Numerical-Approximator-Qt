@@ -1,4 +1,4 @@
-# Install script for directory: C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/src
+# Install script for directory: C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

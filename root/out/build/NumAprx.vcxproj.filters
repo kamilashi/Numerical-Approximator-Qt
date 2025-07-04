@@ -4,16 +4,16 @@
     <ClCompile Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\out\build\NumAprx_autogen\mocs_compilation_Debug.cpp">
       <Filter>Source Files\Generated</Filter>
     </ClCompile>
-    <ClCompile Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\src\appmenuitem.cpp">
+    <ClCompile Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\application\src\appmenuitem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\src\listwidget.cpp">
+    <ClCompile Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\application\src\listwidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\src\main.cpp">
+    <ClCompile Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\application\src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\src\mainwindow.cpp">
+    <ClCompile Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\application\src\mainwindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\out\build\NumAprx_autogen\mocs_compilation_Release.cpp">
@@ -27,18 +27,18 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\include\appmenuitem.h">
+    <ClInclude Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\application\include\appmenuitem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\include\listwidget.h">
+    <ClInclude Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\application\include\listwidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\include\mainwindow.h">
+    <ClInclude Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\application\include\mainwindow.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\src\CMakeLists.txt" />
+    <CustomBuild Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\application\src\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">

@@ -3,11 +3,11 @@
 	"BUILD_DIR" : "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/NumAprx_autogen",
 	"CMAKE_BINARY_DIR" : "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build",
 	"CMAKE_CURRENT_BINARY_DIR" : "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build",
-	"CMAKE_CURRENT_SOURCE_DIR" : "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/src",
+	"CMAKE_CURRENT_SOURCE_DIR" : "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/src",
 	"CMAKE_EXECUTABLE" : "C:/Program Files/CMake/bin/cmake.exe",
 	"CMAKE_LIST_FILES" : 
 	[
-		"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/src/CMakeLists.txt",
+		"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/src/CMakeLists.txt",
 		"C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeDetermineSystem.cmake",
 		"C:/Program Files/CMake/share/cmake-4.1/Modules/CMakeSystem.cmake.in",
 		"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/4.1.0-rc1/CMakeSystem.cmake",
@@ -375,28 +375,28 @@
 		"C:/Qt/6.9.1/msvc2022_64/lib/cmake/Qt6Widgets/Qt6WidgetsVersionlessAliasTargets.cmake",
 		"C:/Program Files/CMake/share/cmake-4.1/Modules/GNUInstallDirs.cmake"
 	],
-	"CMAKE_SOURCE_DIR" : "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/src",
+	"CMAKE_SOURCE_DIR" : "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/src",
 	"CROSS_CONFIG" : false,
 	"DEP_FILE" : "",
 	"DEP_FILE_RULE_NAME" : "",
 	"HEADERS" : 
 	[
 		[
-			"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/include/appmenuitem.h",
+			"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/include/appmenuitem.h",
 			"MU",
-			"HPYJWSBKJR/moc_appmenuitem.cpp",
+			"T265VEGSCG/moc_appmenuitem.cpp",
 			null
 		],
 		[
-			"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/include/listwidget.h",
+			"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/include/listwidget.h",
 			"MU",
-			"HPYJWSBKJR/moc_listwidget.cpp",
+			"T265VEGSCG/moc_listwidget.cpp",
 			null
 		],
 		[
-			"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/include/mainwindow.h",
+			"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/include/mainwindow.h",
 			"MU",
-			"HPYJWSBKJR/moc_mainwindow.cpp",
+			"T265VEGSCG/moc_mainwindow.cpp",
 			null
 		]
 	],
@@ -473,7 +473,7 @@
 	"MOC_INCLUDES" : [],
 	"MOC_INCLUDES_Debug" : 
 	[
-		"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/include",
+		"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/include",
 		"C:/Qt/6.9.1/msvc2022_64/include/QtCore",
 		"C:/Qt/6.9.1/msvc2022_64/include",
 		"C:/Qt/6.9.1/msvc2022_64/mkspecs/win32-msvc",
@@ -482,7 +482,7 @@
 	],
 	"MOC_INCLUDES_MinSizeRel" : 
 	[
-		"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/include",
+		"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/include",
 		"C:/Qt/6.9.1/msvc2022_64/include/QtCore",
 		"C:/Qt/6.9.1/msvc2022_64/include",
 		"C:/Qt/6.9.1/msvc2022_64/mkspecs/win32-msvc",
@@ -491,7 +491,7 @@
 	],
 	"MOC_INCLUDES_RelWithDebInfo" : 
 	[
-		"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/include",
+		"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/include",
 		"C:/Qt/6.9.1/msvc2022_64/include/QtCore",
 		"C:/Qt/6.9.1/msvc2022_64/include",
 		"C:/Qt/6.9.1/msvc2022_64/mkspecs/win32-msvc",
@@ -500,7 +500,7 @@
 	],
 	"MOC_INCLUDES_Release" : 
 	[
-		"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/include",
+		"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/include",
 		"C:/Qt/6.9.1/msvc2022_64/include/QtCore",
 		"C:/Qt/6.9.1/msvc2022_64/include",
 		"C:/Qt/6.9.1/msvc2022_64/mkspecs/win32-msvc",
@@ -549,22 +549,22 @@
 	"SOURCES" : 
 	[
 		[
-			"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/src/appmenuitem.cpp",
+			"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/src/appmenuitem.cpp",
 			"MU",
 			null
 		],
 		[
-			"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/src/listwidget.cpp",
+			"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/src/listwidget.cpp",
 			"MU",
 			null
 		],
 		[
-			"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/src/main.cpp",
+			"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/src/main.cpp",
 			"MU",
 			null
 		],
 		[
-			"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/src/mainwindow.cpp",
+			"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/src/mainwindow.cpp",
 			"MU",
 			null
 		]
