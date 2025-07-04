@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <Qlabel>
+#include <QlineEdit>
+
 #include "listwidget.h"
 #include "approximator.h"
 
@@ -14,11 +17,19 @@ public:
 
 private slots:
 	void onItemClicked(QListWidgetItem* item);
+	void onInputSubmitted();
 
 private:
 	QListWidget* pHeaderMenu = nullptr;
+	QLineEdit* pInput = nullptr;
+	QLabel* pOutput = nullptr;
+
+	QString savedOutput;
+
 	ProgramItem* pSelectedProgram = nullptr;
 	Approximator* pApproximator = nullptr;
+
+	InputType requestedInputType = InputType::TypesCount;
 
 	void showCode();
 	void runProgram();

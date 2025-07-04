@@ -8,12 +8,14 @@
 #include <QVBoxLayout>
 #include <QWidget>
 #include <QMenu>
+#include <QScrollArea>
 
 struct Dimensions
 {
 	int mainWindowWidth = 800;
 	int mainWindowHeight = 600;
 	int topMenuSpacing = 10;
+	int windowPartsSpacing = 0;
 	int headerHeight = 50;
 };
 
@@ -24,13 +26,14 @@ MainWindow::MainWindow(Approximator* pAppr, QWidget* parent) : QMainWindow(paren
 	pApproximator = pAppr;
 
 	resize(dim.mainWindowWidth, dim.mainWindowHeight);
+
 	setWindowTitle("Numerical Approximator Qt");
 
-	// Central widget
 	QWidget* central = new QWidget(this);
 	setCentralWidget(central);
 
 	QVBoxLayout* centralLayout = new QVBoxLayout;
+	centralLayout->setSpacing(dim.windowPartsSpacing);
 	central->setLayout(centralLayout);
 
 	QWidget* header = new QWidget();
@@ -44,9 +47,9 @@ MainWindow::MainWindow(Approximator* pAppr, QWidget* parent) : QMainWindow(paren
 	centralLayout->addWidget(body);
 	centralLayout->addWidget(footer);
 
-	QHBoxLayout* horizontalLayout = new QHBoxLayout;
-	horizontalLayout->setAlignment(Qt::AlignVCenter);
-	header->setLayout(horizontalLayout);
+	QHBoxLayout* headerLayout = new QHBoxLayout;
+	headerLayout->setAlignment(Qt::AlignVCenter);
+	header->setLayout(headerLayout);
 
 	pHeaderMenu = new QListWidget();
 
@@ -61,10 +64,33 @@ MainWindow::MainWindow(Approximator* pAppr, QWidget* parent) : QMainWindow(paren
 		pHeaderMenu->addItem(menu);
 	}
 
-	horizontalLayout->addWidget(pHeaderMenu);
+	headerLayout->addWidget(pHeaderMenu);
+
+	QVBoxLayout* bodyLayout = new QVBoxLayout;
+	bodyLayout->setAlignment(Qt::AlignTop);
+	body->setLayout(bodyLayout);
+
+	pOutput = new QLabel("output");
+
+	QScrollArea* scrollArea = new QScrollArea;
+	scrollArea->setAlignment(Qt::AlignTop);
+	scrollArea->setWidget(pOutput);
+	scrollArea->setWidgetResizable(true);
+
+	bodyLayout->addWidget(scrollArea);
+
+	QHBoxLayout* footerLayout = new QHBoxLayout;
+	footerLayout->setAlignment(Qt::AlignVCenter);
+	footer->setLayout(footerLayout);
+
+	pInput = new QLineEdit();
+
+	footerLayout->addWidget(pInput);
 
 	// Connect signal to slot
 	connect(pHeaderMenu, &QListWidget::itemClicked, this, &MainWindow::onItemClicked);
+
+	connect(pInput, &QLineEdit::returnPressed, this, &MainWindow::onInputSubmitted);
 
 }
 
@@ -91,14 +117,53 @@ void MainWindow::onItemClicked(QListWidgetItem* item)
 	menu->exec(globalPos);
 }
 
+void MainWindow::onInputSubmitted()
+{
+	bool isInputValid = false;
+	QString input;
+	QString error;
+
+	switch (requestedInputType)
+	{
+		case InputType::TypesCount:
+		{
+			error = "choose a program first!";
+			break;
+		}
+		case InputType::Int:
+		{
+			int digit = pInput->text().toInt(&isInputValid);
+			input = QString::number(digit);
+			error = "please enter an integer number";
+		} 
+		break;
+		case InputType::Float:
+		{
+			float digit = pInput->text().toFloat(&isInputValid);
+			input = QString::number(digit);
+			error = "please enter a floating point number";
+		}
+		break;
+	}
+	
+	if (isInputValid)
+	{
+		pOutput->setText("You entered: " + input);
+	}
+	else
+	{
+		pOutput->setText("Invalid input - " + error);
+	}
+}
+
 void MainWindow::showCode()
 {
-	qDebug() << "Show Code" << pSelectedProgram;
-	// Add logic depending on selectedItemText
+	qDebug() << "Show Code - requestedInput Int" << pSelectedProgram;
+	requestedInputType = InputType::Int;
 }
 
 void MainWindow::runProgram()
 {
-	qDebug() << "Run Program" << pSelectedProgram;
-	// Add logic depending on selectedItemText
+	qDebug() << "Run Program - requestedInput Float" << pSelectedProgram;
+	requestedInputType = InputType::Float;
 }

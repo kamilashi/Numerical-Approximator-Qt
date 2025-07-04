@@ -19,6 +19,14 @@ struct ProgramItem
 	~ProgramItem() {}
 };
 
+enum class InputType
+{
+	Int,
+	Float,
+
+	TypesCount
+};
+
 class Approximator{
 
 public:
