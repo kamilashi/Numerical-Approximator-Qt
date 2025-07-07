@@ -3,16 +3,17 @@
 #include <cstring>
 #include <cmath>
 
-#include "determinant.h"
+#include "matrixdeterminant.h"
+#include "helpers.h"
 
-Determinant::Determinant() : Program()
+MatrixDeterminant::MatrixDeterminant() : Program()
 {
 	stageCount = 3;
 	A = nullptr, L = nullptr;
 	reset();
 }
 
-Determinant::~Determinant() 
+MatrixDeterminant::~MatrixDeterminant() 
 { 
 	reset(); 
 }
@@ -44,66 +45,7 @@ void pivot(int startrow, int n, int m, float* A)
 	}
 }
 
-void runGaussMethod(int n, int m, float* A, float* L, char* pBuffer, int bufferSize)
-{
-	float* B = new float[n * m];
-
-	for (int d = 0; d < n; d++)
-	{
-		pivot(d, n, m, A);
-
-		float pivotVal = A[d * m + d];
-		if (fabs(pivotVal) < 1e-6f)
-		{
-			size_t len = strlen(pBuffer);
-			snprintf(pBuffer + len, bufferSize - len, "Zero or near-zero pivot at row %d \n", d);
-			return; 
-		}
-
-		for (int i = d + 1; i < n; i++)
-		{
-			float factor = A[i * m + d] / pivotVal;
-			for (int j = d; j < m; j++)
-			{
-				A[i * m + j] -= factor * A[d * m + j];
-			}
-		}
-	}
-
-	delete[] B;
-}
-
-double getDeterminant(int n, int m, float* A)
-{
-    double det = 1.0;
-
-    for (int i = 0, j = 0; i < n && j < m; i++, j++)
-    {
-        det *= A[i * m + j];
-    }
-
-    return det;
-}
-
-void printMatrix(int n, int m, float* A, char* pBuffer, int bufferSize)
-{
-	size_t len;
-
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < m; j++)
-		{
-			len = strlen(pBuffer);
-			snprintf(pBuffer + len, bufferSize - len, "%.2f	", A[i * m + j]);
-		}
-
-		len = strlen(pBuffer);
-		snprintf(pBuffer + len, bufferSize - len, "\n");
-	}
-}
-
-
-void Determinant::scanAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
+void MatrixDeterminant::scanAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	A[scannedElementsCount] = input.inputFloat;
 
@@ -123,17 +65,17 @@ void Determinant::scanAndPrint(ProgramOutput* pProgramOutput, const ProgramInput
 	pProgramOutput->pOutput = outputBuffer;
 }
 
-void Determinant::calculateAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
+void MatrixDeterminant::calculateAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	size_t len = strlen(outputBuffer);
 
-	runGaussMethod(n, m, A, L, outputBuffer, sizeof(outputBuffer));
+	runGaussianElimination(n, m, A, L, outputBuffer, sizeof(outputBuffer));
 
 	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nMatrix after Gaussian elimination:\n");
 	
 	printMatrix(n, m, A, outputBuffer, sizeof(outputBuffer));
 
-	double det = getDeterminant(n, m, A);
+	double det = getMatrixDeterminant(n, m, A);
 	len = strlen(outputBuffer);
 	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nDeterminant: %.2f \n", det);
 
@@ -142,7 +84,7 @@ void Determinant::calculateAndPrint(ProgramOutput* pProgramOutput, const Program
 	pProgramOutput->outputIsError = false;
 }
 
-void Determinant::reset()
+void MatrixDeterminant::reset()
 {
 	currentStage = 0;
 	scannedElementsCount = 0;
@@ -161,7 +103,7 @@ void Determinant::reset()
 	}
 }
 
-void Determinant::runStage1(ProgramOutput* pProgramOutput)
+void MatrixDeterminant::runStage1(ProgramOutput* pProgramOutput)
 {
 	snprintf(outputBuffer, sizeof(outputBuffer), "Welcome to the matrix determinant calculator via Gaussian elimination with pivoting!\n\n");
 	size_t len = strlen(outputBuffer);
@@ -172,7 +114,7 @@ void Determinant::runStage1(ProgramOutput* pProgramOutput)
 	currentStage = 2;
 }
 
-void Determinant::runStage2(ProgramOutput* pProgramOutput, const ProgramInput& input)
+void MatrixDeterminant::runStage2(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	memset(outputBuffer, 0, sizeof(outputBuffer));
 	m = input.inputInt;
@@ -193,9 +135,8 @@ void Determinant::runStage2(ProgramOutput* pProgramOutput, const ProgramInput& i
 	currentStage = 3;
 }
 
-void Determinant::runStage3(ProgramOutput* pProgramOutput, const ProgramInput& input)
+void MatrixDeterminant::runStage3(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
-
 	scanAndPrint(pProgramOutput, input);
 
 	if(scannedElementsCount == n * m)
@@ -205,7 +146,7 @@ void Determinant::runStage3(ProgramOutput* pProgramOutput, const ProgramInput& i
 	}
 }
 
-void Determinant::start(ProgramOutput* pProgramOutput)
+void MatrixDeterminant::start(ProgramOutput* pProgramOutput)
 {
 	reset();
 	memset(outputBuffer, 0, sizeof(outputBuffer));
@@ -216,7 +157,7 @@ void Determinant::start(ProgramOutput* pProgramOutput)
 	currentStage = 2;
 }
 
-void Determinant::proceed(ProgramOutput* pProgramOutput, const ProgramInput& input)
+void MatrixDeterminant::proceed(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	if (currentStage == 0)
 	{

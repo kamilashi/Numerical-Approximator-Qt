@@ -1,15 +1,18 @@
 #include "approximator.h"
-#include "determinant.h"
+#include "matrixdeterminant.h"
+#include "matrixinverse.h"
 
 Approximator::Approximator()
 {
-	Determinant* pDeterminant = new Determinant();
+	MatrixDeterminant* pDeterminant = new MatrixDeterminant();
+	MatrixInverse* pInverse = new MatrixInverse();
 	programs[0] = pDeterminant;
+	programs[1] = pInverse;
 }
 
 Approximator::~Approximator() 
 {
-	delete programs[0];
+	delete[] programs;
 }
 
 void Approximator::startProgram(int programIdx, ProgramOutput* pProgramOutput)

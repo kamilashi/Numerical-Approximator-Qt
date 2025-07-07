@@ -15,9 +15,9 @@ public:
 
 	static const int programCount = 5;
 	ProgramInterface programInterfaces[programCount] =
-	{ ProgramInterface("Determinant"),
+	{ ProgramInterface("Matrix Determinant"),
 		ProgramInterface("Matrix Inverse"),
-		ProgramInterface("Muller"),
+		ProgramInterface("Muller Method"),
 		ProgramInterface("Bracketing Methods"),
 		ProgramInterface("Open Methods") };
 

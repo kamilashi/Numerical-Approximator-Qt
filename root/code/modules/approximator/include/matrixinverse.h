@@ -1,13 +1,13 @@
-#ifndef DETERMINANT_H
-#define DETERMINANT_H
+#ifndef MATRIXINVERSE_H
+#define MATRIXINVERSE_H
 
 #include "program.h"
 
-class Determinant : public Program 
+class MatrixInverse : public Program 
 {
 public:
-	Determinant();
-	~Determinant() override;
+	MatrixInverse();
+	~MatrixInverse() override;
 
 	void start(ProgramOutput* pProgramOutput) override;
 	void proceed(ProgramOutput* pProgramOutput, const ProgramInput& input) override;

@@ -291,12 +291,6 @@
 			null
 		],
 		[
-			"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/include/listwidget.h",
-			"MU",
-			"6YEA5652QU/moc_listwidget.cpp",
-			null
-		],
-		[
 			"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/include/mainwindow.h",
 			"MU",
 			"6YEA5652QU/moc_mainwindow.cpp",
@@ -457,11 +451,6 @@
 	[
 		[
 			"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/src/appmenuitem.cpp",
-			"MU",
-			null
-		],
-		[
-			"C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/src/listwidget.cpp",
 			"MU",
 			null
 		],

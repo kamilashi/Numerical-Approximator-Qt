@@ -1,8 +1,6 @@
 #include "mainwindow.h"
-#include "listwidget.h"
 #include "appmenuitem.h"
 
-#include <stdio.h>
 #include <QMessageBox>
 #include <QVBoxLayout>
 #include <QWidget>
