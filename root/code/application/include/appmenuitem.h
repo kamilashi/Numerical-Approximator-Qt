@@ -1,12 +1,12 @@
 #ifndef APPMENUITEM_H
 #define APPMENUITEM_H
 
-#include <QListWidgetItem>
+#include <QAction>
 
-class AppMenuItem : public QListWidgetItem {
-
+class AppMenuItem : public QAction {
+	Q_OBJECT
 public:
-	AppMenuItem(const QString& text, int idx, QListWidget* listview = nullptr);
+	AppMenuItem(int idx, const QString& title, QObject* parent = nullptr);
 	~AppMenuItem();
 
 	int index;

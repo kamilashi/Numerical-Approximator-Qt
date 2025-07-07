@@ -5,8 +5,8 @@
 #include <Qlabel>
 #include <QlineEdit>
 
-#include "listwidget.h"
 #include "approximator.h"
+#include "appmenuitem.h"
 
 class MainWindow : public QMainWindow {
 	Q_OBJECT
@@ -16,11 +16,10 @@ public:
 	~MainWindow();
 
 private slots:
-	void onItemClicked(QListWidgetItem* item);
 	void onInputSubmitted();
 
 private:
-	QListWidget* pHeaderMenu = nullptr;
+	QMenuBar* pHeaderMenu = nullptr;
 	QLineEdit* pInput = nullptr;
 	QLabel* pOutput = nullptr;
 
@@ -31,11 +30,13 @@ private:
 
 	ProgramOutput programOutput;
 
-	void showCode();
-	void runProgram();
-
-	void advanceSelectedProgram(ProgramOutput* pProgramOutput, const ProgramInput& input);
+	void createMenuActions(QMenu* item, int connectedProgramIndex);
+	void cacheSelectedProgram(QAction* triggeredAction);
 	void startSelectedProgram(ProgramOutput* pProgramOutput);
+
+	void showCodeAct();
+	void runProgram();
+	void advanceSelectedProgram(ProgramOutput* pProgramOutput, const ProgramInput& input);
 };
 
 #endif

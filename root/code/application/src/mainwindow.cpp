@@ -3,13 +3,12 @@
 #include "appmenuitem.h"
 
 #include <stdio.h>
-#include <QListWidgetItem>
 #include <QMessageBox>
 #include <QVBoxLayout>
 #include <QWidget>
-#include <QMenu>
 #include <QScrollArea>
 #include <QApplication>
+#include <QMenuBar>
 
 struct Dimensions
 {
@@ -28,6 +27,8 @@ MainWindow::MainWindow(Approximator* pAppr, QWidget* parent) : QMainWindow(paren
 {
 	pApproximator = pAppr;
 	programOutput = ProgramOutput();
+	pSelectedProgram = nullptr;
+	savedOutput = "";
 
 	resize(dim.mainWindowWidth, dim.mainWindowHeight);
 
@@ -50,9 +51,6 @@ MainWindow::MainWindow(Approximator* pAppr, QWidget* parent) : QMainWindow(paren
 	pHeader->setFixedHeight(dim.headerHeight);
 	pFooter->setFixedHeight(dim.headerHeight);
 
-	//pHeader->setStyleSheet("background-color: red;");
-	//pFooter->setStyleSheet("background-color: green;");
-
 	pCentralLayout->addWidget(pHeader);
 	pCentralLayout->addWidget(pBody);
 	pCentralLayout->addWidget(pFooter);
@@ -61,19 +59,13 @@ MainWindow::MainWindow(Approximator* pAppr, QWidget* parent) : QMainWindow(paren
 	pHeaderLayout->setAlignment(Qt::AlignVCenter);
 	pHeader->setLayout(pHeaderLayout);
 
-	pHeaderMenu = new QListWidget();
-	//pHeaderMenu->setStyleSheet("background-color: blue;");
-
-	pHeaderMenu->setFlow(QListView::LeftToRight);
-	pHeaderMenu->setWrapping(false);
-	pHeaderMenu->setSpacing(dim.topMenuHorizontalSpacing); 
-	pHeaderMenu->setItemAlignment(Qt::AlignVCenter);
+	pHeaderMenu = new QMenuBar();
 
 	for (int i = 0; i< pApproximator->programCount; i++)
 	{
-		AppMenuItem* pMenu = new AppMenuItem(pApproximator->programInterfaces[i].pName, pApproximator->programInterfaces[i].index);
-		pMenu->setTextAlignment(Qt::AlignVCenter);
-		pHeaderMenu->addItem(pMenu);
+		QMenu* pMenu = new QMenu(QString(pApproximator->programInterfaces[i].pName));
+		createMenuActions(pMenu, pApproximator->programInterfaces[i].index);
+		pHeaderMenu->addMenu(pMenu);
 	}
 
 	pHeaderLayout->addWidget(pHeaderMenu);
@@ -104,39 +96,10 @@ MainWindow::MainWindow(Approximator* pAppr, QWidget* parent) : QMainWindow(paren
 
 	pFooterLayout->addWidget(pInput);
 
-	// Connect signal to slot
-	connect(pHeaderMenu, &QListWidget::itemClicked, this, &MainWindow::onItemClicked);
-
 	connect(pInput, &QLineEdit::returnPressed, this, &MainWindow::onInputSubmitted);
-
 }
 
 MainWindow::~MainWindow() {}
-
-void MainWindow::onItemClicked(QListWidgetItem* item) 
-{
-	QString itemText = item->text();
-
-	AppMenuItem* pAppMenuItem = static_cast<AppMenuItem*>(item);
-
-	if (pSelectedProgram != nullptr)
-	{
-		pApproximator->resetProgram(pSelectedProgram->index);
-	}
-	pSelectedProgram = &pApproximator->programInterfaces[pAppMenuItem->index];
-
-	// Create menu
-	QMenu* menu = new QMenu(pHeaderMenu);
-	QAction* actionA = menu->addAction("Show Code");
-	QAction* actionB = menu->addAction("Run Program");
-
-	connect(actionA, &QAction::triggered, this, &MainWindow::showCode);
-	connect(actionB, &QAction::triggered, this, &MainWindow::runProgram);
-
-	QRect itemRect = pHeaderMenu->visualItemRect(item);
-	QPoint globalPos = pHeaderMenu->viewport()->mapToGlobal(itemRect.bottomLeft());
-	menu->exec(globalPos);
-}
 
 void MainWindow::onInputSubmitted()
 {
@@ -146,27 +109,27 @@ void MainWindow::onInputSubmitted()
 
 	switch (programOutput.requestedInputType)
 	{
-		case InputType::TypesCount:
-		{
-			error = "Choose a program first!\n";
-			break;
-		}
-		case InputType::Int:
-		{
-			int digit = pInput->text().toInt(&isInputValid);
-			input.inputInt = digit;
-			error = "Please enter an integer number\n";
-		} 
-		break;
-		case InputType::Float:
-		{
-			float digit = pInput->text().toFloat(&isInputValid);
-			input.inputFloat = digit;
-			error = "Please enter a floating point number\n";
-		}
+	case InputType::TypesCount:
+	{
+		error = "Choose a program first!\n";
 		break;
 	}
-	
+	case InputType::Int:
+	{
+		int digit = pInput->text().toInt(&isInputValid);
+		input.inputInt = digit;
+		error = "Please enter an integer number\n";
+	}
+	break;
+	case InputType::Float:
+	{
+		float digit = pInput->text().toFloat(&isInputValid);
+		input.inputFloat = digit;
+		error = "Please enter a floating point number\n";
+	}
+	break;
+	}
+
 	if (isInputValid)
 	{
 		advanceSelectedProgram(&programOutput, input);
@@ -179,19 +142,33 @@ void MainWindow::onInputSubmitted()
 	pInput->clear();
 }
 
-void MainWindow::showCode()
+void MainWindow::createMenuActions(QMenu* pMenu, int connectedProgramIndex)
 {
-	pOutput->setText("Here Should Be Code");
+	AppMenuItem* showCodeAct = new AppMenuItem(connectedProgramIndex, "Show Code");
+	AppMenuItem* runProgramAct = new AppMenuItem(connectedProgramIndex, "Run Program");
+	pMenu->addAction(showCodeAct);
+	pMenu->addAction(runProgramAct);
+
+	connect(showCodeAct, &QAction::triggered, this, &MainWindow::showCodeAct);
+	connect(runProgramAct, &QAction::triggered, this, &MainWindow::runProgram);
 }
 
-void MainWindow::runProgram()
+void MainWindow::cacheSelectedProgram(QAction* triggeredAction)
 {
-	startSelectedProgram(&programOutput);
+	AppMenuItem* pAppMenuItem = static_cast<AppMenuItem*>(triggeredAction);
+	if (pSelectedProgram != nullptr)
+	{
+		pApproximator->resetProgram(pSelectedProgram->index);
+	}
+	pSelectedProgram = &pApproximator->programInterfaces[pAppMenuItem->index];
 }
 
-void MainWindow::advanceSelectedProgram(ProgramOutput* pProgramOutput, const ProgramInput& input)
+void MainWindow::startSelectedProgram(ProgramOutput* pProgramOutput)
 {
-	pApproximator->advanceProgram(pSelectedProgram->index, pProgramOutput, input);
+	pOutput->setText("");
+	savedOutput = "";
+
+	pApproximator->startProgram(pSelectedProgram->index, pProgramOutput);
 
 	pOutput->setText(savedOutput + "\n" + pProgramOutput->pOutput);
 
@@ -201,12 +178,29 @@ void MainWindow::advanceSelectedProgram(ProgramOutput* pProgramOutput, const Pro
 	}
 }
 
-void MainWindow::startSelectedProgram(ProgramOutput* pProgramOutput)
+void MainWindow::showCodeAct()
 {
-	pOutput->setText("");
-	savedOutput = "";
+	AppMenuItem* pAction = qobject_cast<AppMenuItem*>(sender());
+	if (pAction)
+	{
+		cacheSelectedProgram(pAction);
+		pOutput->setText("Here Should Be Code");
+	}
+}
 
-	pApproximator->startProgram(pSelectedProgram->index, pProgramOutput);
+void MainWindow::runProgram()
+{
+	AppMenuItem* pAction = qobject_cast<AppMenuItem*>(sender());
+	if (pAction)
+	{
+		cacheSelectedProgram(pAction);
+		startSelectedProgram(&programOutput);
+	}
+}
+
+void MainWindow::advanceSelectedProgram(ProgramOutput* pProgramOutput, const ProgramInput& input)
+{
+	pApproximator->advanceProgram(pSelectedProgram->index, pProgramOutput, input);
 
 	pOutput->setText(savedOutput + "\n" + pProgramOutput->pOutput);
 

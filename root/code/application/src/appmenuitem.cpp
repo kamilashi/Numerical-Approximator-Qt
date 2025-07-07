@@ -1,6 +1,6 @@
 #include "appmenuitem.h"
 
-AppMenuItem::AppMenuItem(const QString& text, int idx, QListWidget* listview) : QListWidgetItem(text, listview)
+AppMenuItem::AppMenuItem(int idx, const QString& title, QObject* parent) : QAction(title, parent)
 {
 	index = idx;
 }
