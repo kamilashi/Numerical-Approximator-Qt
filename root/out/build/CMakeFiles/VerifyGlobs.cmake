@@ -39,6 +39,8 @@ endif()
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./include/*.h")
 set(OLD_GLOB
   "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./include/approximator.h"
+  "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./include/determinant.h"
+  "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./include/program.h"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")

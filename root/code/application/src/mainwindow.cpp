@@ -32,7 +32,7 @@ MainWindow::MainWindow(Approximator* pAppr, QWidget* parent) : QMainWindow(paren
 	QWidget* central = new QWidget(this);
 	setCentralWidget(central);
 
-	QVBoxLayout* centralLayout = new QVBoxLayout;
+	QVBoxLayout* centralLayout = new QVBoxLayout();
 	centralLayout->setSpacing(dim.windowPartsSpacing);
 	central->setLayout(centralLayout);
 
@@ -47,7 +47,7 @@ MainWindow::MainWindow(Approximator* pAppr, QWidget* parent) : QMainWindow(paren
 	centralLayout->addWidget(body);
 	centralLayout->addWidget(footer);
 
-	QHBoxLayout* headerLayout = new QHBoxLayout;
+	QHBoxLayout* headerLayout = new QHBoxLayout();
 	headerLayout->setAlignment(Qt::AlignVCenter);
 	header->setLayout(headerLayout);
 
@@ -60,30 +60,32 @@ MainWindow::MainWindow(Approximator* pAppr, QWidget* parent) : QMainWindow(paren
 
 	for (int i = 0; i< pApproximator->programCount; i++)
 	{
-		AppMenuItem* menu = new AppMenuItem(pApproximator->programItems[i].pName, pApproximator->programItems[i].index);
+		AppMenuItem* menu = new AppMenuItem(pApproximator->programInterfaces[i].pName, pApproximator->programInterfaces[i].index);
 		pHeaderMenu->addItem(menu);
 	}
 
 	headerLayout->addWidget(pHeaderMenu);
 
-	QVBoxLayout* bodyLayout = new QVBoxLayout;
+	QVBoxLayout* bodyLayout = new QVBoxLayout();
 	bodyLayout->setAlignment(Qt::AlignTop);
 	body->setLayout(bodyLayout);
+	body->setStyleSheet("padding: 10px;");
 
-	pOutput = new QLabel("output");
+	pOutput = new QLabel();
 
-	QScrollArea* scrollArea = new QScrollArea;
+	QScrollArea* scrollArea = new QScrollArea();
 	scrollArea->setAlignment(Qt::AlignTop);
 	scrollArea->setWidget(pOutput);
 	scrollArea->setWidgetResizable(true);
 
 	bodyLayout->addWidget(scrollArea);
 
-	QHBoxLayout* footerLayout = new QHBoxLayout;
+	QHBoxLayout* footerLayout = new QHBoxLayout();
 	footerLayout->setAlignment(Qt::AlignVCenter);
 	footer->setLayout(footerLayout);
 
 	pInput = new QLineEdit();
+	pInput->clear();
 
 	footerLayout->addWidget(pInput);
 
@@ -102,7 +104,11 @@ void MainWindow::onItemClicked(QListWidgetItem* item)
 
 	AppMenuItem* pAppMenuItem = static_cast<AppMenuItem*>(item);
 
-	pSelectedProgram = &pApproximator->programItems[pAppMenuItem->index];
+	if (pSelectedProgram != nullptr)
+	{
+		pApproximator->resetProgram(pSelectedProgram->index);
+	}
+	pSelectedProgram = &pApproximator->programInterfaces[pAppMenuItem->index];
 
 	// Create menu
 	QMenu* menu = new QMenu(pHeaderMenu);
@@ -119,51 +125,78 @@ void MainWindow::onItemClicked(QListWidgetItem* item)
 
 void MainWindow::onInputSubmitted()
 {
+	ProgramInput input;
 	bool isInputValid = false;
-	QString input;
 	QString error;
 
-	switch (requestedInputType)
+	switch (programOutput.requestedInputType)
 	{
 		case InputType::TypesCount:
 		{
-			error = "choose a program first!";
+			error = "Choose a program first!\n";
 			break;
 		}
 		case InputType::Int:
 		{
 			int digit = pInput->text().toInt(&isInputValid);
-			input = QString::number(digit);
-			error = "please enter an integer number";
+			input.inputInt = digit;
+			error = "Please enter an integer number\n";
 		} 
 		break;
 		case InputType::Float:
 		{
 			float digit = pInput->text().toFloat(&isInputValid);
-			input = QString::number(digit);
-			error = "please enter a floating point number";
+			input.inputFloat = digit;
+			error = "Please enter a floating point number\n";
 		}
 		break;
 	}
 	
 	if (isInputValid)
 	{
-		pOutput->setText("You entered: " + input);
+		advanceSelectedProgram(&programOutput, input);
 	}
 	else
 	{
-		pOutput->setText("Invalid input - " + error);
+		pOutput->setText(savedOutput + "\n\n" + "Invalid input - " + error);
 	}
+
+	pInput->clear();
 }
 
 void MainWindow::showCode()
 {
-	qDebug() << "Show Code - requestedInput Int" << pSelectedProgram;
-	requestedInputType = InputType::Int;
+	pOutput->setText("Here Should Be Code");
 }
 
 void MainWindow::runProgram()
 {
-	qDebug() << "Run Program - requestedInput Float" << pSelectedProgram;
-	requestedInputType = InputType::Float;
+	startSelectedProgram(&programOutput);
+}
+
+void MainWindow::advanceSelectedProgram(ProgramOutput* pProgramOutput, const ProgramInput& input)
+{
+	pApproximator->advanceProgram(pSelectedProgram->index, pProgramOutput, input);
+
+	pOutput->setText(savedOutput + "\n" + pProgramOutput->pOutput);
+
+	if (!pProgramOutput->outputIsError)
+	{
+		savedOutput = savedOutput + "\n" + pProgramOutput->pOutput;
+	}
+}
+
+void MainWindow::startSelectedProgram(ProgramOutput* pProgramOutput)
+{
+	pOutput->setText("");
+	savedOutput = "";
+
+	pApproximator->startProgram(pSelectedProgram->index, pProgramOutput);
+
+	pOutput->setText(savedOutput + "\n" + pProgramOutput->pOutput);
+
+	if (!pProgramOutput->outputIsError)
+	{
+		savedOutput = savedOutput + "\n" + pProgramOutput->pOutput;
+	}
 }

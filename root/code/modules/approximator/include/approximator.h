@@ -1,31 +1,7 @@
 #ifndef APPROXIMATOR_H
 #define APPROXIMATOR_H
 
-struct ProgramItem
-{
-	int index;
-	const char* pName;
-
-	ProgramItem(const char* pNameString)
-	{
-		static int count = 0;
-
-		index = count;
-		pName = pNameString;
-
-		count++;
-	}
-
-	~ProgramItem() {}
-};
-
-enum class InputType
-{
-	Int,
-	Float,
-
-	TypesCount
-};
+#include "program.h"
 
 class Approximator{
 
@@ -33,14 +9,20 @@ public:
 	Approximator();
 	~Approximator();
 
-	static const int programCount = 5;
-	ProgramItem programItems[programCount] = 
-	{	ProgramItem("Determinant"),
-		ProgramItem("Matrix Inverse"),
-		ProgramItem("Muller"),
-		ProgramItem("Bracketing Methods"),
-		ProgramItem("Open Methods") };
+	void startProgram(int programIdx, ProgramOutput* pProgramOutput);
+	void advanceProgram(int programIdx, ProgramOutput* pProgramOutput, const ProgramInput& input);
+	void resetProgram(int programIdx);
 
+	static const int programCount = 5;
+	ProgramInterface programInterfaces[programCount] =
+	{ ProgramInterface("Determinant"),
+		ProgramInterface("Matrix Inverse"),
+		ProgramInterface("Muller"),
+		ProgramInterface("Bracketing Methods"),
+		ProgramInterface("Open Methods") };
+
+private:
+	Program* programs[programCount];
 };
 
 #endif

@@ -1,6 +1,7 @@
 C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/code/application/application_autogen/include_Debug/6YEA5652QU/moc_mainwindow.cpp: C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/include/mainwindow.h \
   C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/application/include/listwidget.h \
   C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/include/approximator.h \
+  C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/include/program.h \
   C:/Qt/6.9.1/msvc2022_64/include/QtCore/q17memory.h \
   C:/Qt/6.9.1/msvc2022_64/include/QtCore/q20functional.h \
   C:/Qt/6.9.1/msvc2022_64/include/QtCore/q20iterator.h \

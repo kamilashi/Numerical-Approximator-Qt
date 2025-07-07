@@ -295,6 +295,8 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\src\approximator.cpp" />
     <ClCompile Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\src\determinant.cpp" />
     <ClInclude Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\include\approximator.h" />
+    <ClInclude Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\include\determinant.h" />
+    <ClInclude Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\include\program.h" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

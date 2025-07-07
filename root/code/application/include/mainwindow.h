@@ -26,13 +26,17 @@ private:
 
 	QString savedOutput;
 
-	ProgramItem* pSelectedProgram = nullptr;
+	ProgramInterface* pSelectedProgram = nullptr;
 	Approximator* pApproximator = nullptr;
 
-	InputType requestedInputType = InputType::TypesCount;
+	//InputType requestedInputType = InputType::TypesCount;
+	ProgramOutput programOutput;
 
 	void showCode();
 	void runProgram();
+
+	void advanceSelectedProgram(ProgramOutput* pProgramOutput, const ProgramInput& input);
+	void startSelectedProgram(ProgramOutput* pProgramOutput);
 };
 
 #endif
