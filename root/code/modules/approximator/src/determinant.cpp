@@ -5,7 +5,7 @@
 
 #include "determinant.h"
 
-Determinant::Determinant()
+Determinant::Determinant() : Program()
 {
 	stageCount = 3;
 	A = nullptr, L = nullptr;

@@ -9,14 +9,17 @@
 #include <QWidget>
 #include <QMenu>
 #include <QScrollArea>
+#include <QApplication>
 
 struct Dimensions
 {
 	int mainWindowWidth = 800;
 	int mainWindowHeight = 600;
-	int topMenuSpacing = 10;
+	int topMenuHorizontalSpacing = 0;
 	int windowPartsSpacing = 0;
 	int headerHeight = 50;
+	QString bodySS = "padding: 10px;";
+	QString headerMenuSS = "left-padding: 10px; right-padding: 10px;";
 };
 
 static const Dimensions dim;
@@ -24,70 +27,82 @@ static const Dimensions dim;
 MainWindow::MainWindow(Approximator* pAppr, QWidget* parent) : QMainWindow(parent)
 {
 	pApproximator = pAppr;
+	programOutput = ProgramOutput();
 
 	resize(dim.mainWindowWidth, dim.mainWindowHeight);
 
 	setWindowTitle("Numerical Approximator Qt");
 
-	QWidget* central = new QWidget(this);
-	setCentralWidget(central);
+	QPalette palette = QApplication::palette();
+	QColor defaultColor = palette.color(QPalette::Base);
 
-	QVBoxLayout* centralLayout = new QVBoxLayout();
-	centralLayout->setSpacing(dim.windowPartsSpacing);
-	central->setLayout(centralLayout);
+	QWidget* pCentralWidget = new QWidget(this);
+	setCentralWidget(pCentralWidget);
 
-	QWidget* header = new QWidget();
-	QWidget* body = new QWidget();
-	QWidget* footer = new QWidget();
+	QVBoxLayout* pCentralLayout = new QVBoxLayout();
+	pCentralLayout->setSpacing(dim.windowPartsSpacing);
+	pCentralWidget->setLayout(pCentralLayout);
 
-	header->setMaximumHeight(dim.headerHeight);
-	footer->setMaximumHeight(dim.headerHeight);
+	QWidget* pHeader = new QWidget();
+	QWidget* pBody = new QWidget();
+	QWidget* pFooter = new QWidget();
 
-	centralLayout->addWidget(header);
-	centralLayout->addWidget(body);
-	centralLayout->addWidget(footer);
+	pHeader->setFixedHeight(dim.headerHeight);
+	pFooter->setFixedHeight(dim.headerHeight);
 
-	QHBoxLayout* headerLayout = new QHBoxLayout();
-	headerLayout->setAlignment(Qt::AlignVCenter);
-	header->setLayout(headerLayout);
+	//pHeader->setStyleSheet("background-color: red;");
+	//pFooter->setStyleSheet("background-color: green;");
+
+	pCentralLayout->addWidget(pHeader);
+	pCentralLayout->addWidget(pBody);
+	pCentralLayout->addWidget(pFooter);
+
+	QHBoxLayout* pHeaderLayout = new QHBoxLayout();
+	pHeaderLayout->setAlignment(Qt::AlignVCenter);
+	pHeader->setLayout(pHeaderLayout);
 
 	pHeaderMenu = new QListWidget();
+	//pHeaderMenu->setStyleSheet("background-color: blue;");
 
 	pHeaderMenu->setFlow(QListView::LeftToRight);
-	pHeaderMenu->setWrapping(true);
-	pHeaderMenu->setResizeMode(QListView::Adjust);
-	pHeaderMenu->setSpacing(dim.topMenuSpacing);
+	pHeaderMenu->setWrapping(false);
+	pHeaderMenu->setSpacing(dim.topMenuHorizontalSpacing); 
+	pHeaderMenu->setItemAlignment(Qt::AlignVCenter);
 
 	for (int i = 0; i< pApproximator->programCount; i++)
 	{
-		AppMenuItem* menu = new AppMenuItem(pApproximator->programInterfaces[i].pName, pApproximator->programInterfaces[i].index);
-		pHeaderMenu->addItem(menu);
+		AppMenuItem* pMenu = new AppMenuItem(pApproximator->programInterfaces[i].pName, pApproximator->programInterfaces[i].index);
+		pMenu->setTextAlignment(Qt::AlignVCenter);
+		pHeaderMenu->addItem(pMenu);
 	}
 
-	headerLayout->addWidget(pHeaderMenu);
+	pHeaderLayout->addWidget(pHeaderMenu);
 
-	QVBoxLayout* bodyLayout = new QVBoxLayout();
-	bodyLayout->setAlignment(Qt::AlignTop);
-	body->setLayout(bodyLayout);
-	body->setStyleSheet("padding: 10px;");
+	QVBoxLayout* pBodyLayout = new QVBoxLayout();
+	pBodyLayout->setAlignment(Qt::AlignTop);
+	pBody->setLayout(pBodyLayout);
+	pBody->setStyleSheet(dim.bodySS);
 
 	pOutput = new QLabel();
+	pOutput->setStyleSheet(QString("background-color: %1;").arg(defaultColor.name()));
+	pOutput->setAlignment(Qt::AlignTop);
 
-	QScrollArea* scrollArea = new QScrollArea();
-	scrollArea->setAlignment(Qt::AlignTop);
-	scrollArea->setWidget(pOutput);
-	scrollArea->setWidgetResizable(true);
+	QScrollArea* pScrollArea = new QScrollArea();
+	pScrollArea->setAlignment(Qt::AlignTop);
+	pScrollArea->setWidget(pOutput);
+	pScrollArea->setWidgetResizable(true);
 
-	bodyLayout->addWidget(scrollArea);
+	pBodyLayout->addWidget(pScrollArea);
 
-	QHBoxLayout* footerLayout = new QHBoxLayout();
-	footerLayout->setAlignment(Qt::AlignVCenter);
-	footer->setLayout(footerLayout);
+	QHBoxLayout* pFooterLayout = new QHBoxLayout();
+	pFooterLayout->setAlignment(Qt::AlignVCenter);
+	pFooter->setLayout(pFooterLayout);
 
 	pInput = new QLineEdit();
+	pInput->setAlignment(Qt::AlignTop);
 	pInput->clear();
 
-	footerLayout->addWidget(pInput);
+	pFooterLayout->addWidget(pInput);
 
 	// Connect signal to slot
 	connect(pHeaderMenu, &QListWidget::itemClicked, this, &MainWindow::onItemClicked);

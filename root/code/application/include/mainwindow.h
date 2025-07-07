@@ -29,7 +29,6 @@ private:
 	ProgramInterface* pSelectedProgram = nullptr;
 	Approximator* pApproximator = nullptr;
 
-	//InputType requestedInputType = InputType::TypesCount;
 	ProgramOutput programOutput;
 
 	void showCode();

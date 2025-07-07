@@ -1,6 +1,8 @@
 #ifndef PROGRAM_H
 #define PROGRAM_H
 
+#include <cstring>
+
 enum class InputType
 {
 	Int,
@@ -32,18 +34,36 @@ struct ProgramOutput
 	InputType requestedInputType;
 	bool outputIsError;
 	const char* pOutput;
+
+	ProgramOutput()
+	{
+		requestedInputType = InputType::TypesCount;
+		outputIsError = false;
+		pOutput = nullptr;
+	}
 };
 
 struct ProgramInput
 {
 	int inputInt;
 	float inputFloat;
+
+	ProgramInput()
+	{
+		inputInt = 0;
+		inputFloat = 0.0f;
+	}
 };
 
 class Program
 {
 public:
-	Program() {};
+	Program() 
+	{
+		currentStage = 0;
+		stageCount = -1;
+		memset(outputBuffer, 0, sizeof(outputBuffer));
+	};
 	virtual ~Program() {}
 
 	void virtual start(ProgramOutput* pProgramOutput) = 0;

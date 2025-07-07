@@ -22,8 +22,8 @@ private:
 
 	int scannedElementsCount;
 	int n, i, j, m;
-	float* A;
-	float* L;
+	float* A = nullptr;
+	float* L = nullptr;
 };
 
 #endif
