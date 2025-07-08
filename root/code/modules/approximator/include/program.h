@@ -72,7 +72,7 @@ public:
 protected:
 	int currentStage;
 	int stageCount;
-	char outputBuffer[1024];
+	char outputBuffer[2048];
 };
 
 #endif

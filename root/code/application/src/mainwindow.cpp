@@ -97,7 +97,9 @@ MainWindow::MainWindow(Approximator* pAppr, QWidget* parent) : QMainWindow(paren
 	connect(pInput, &QLineEdit::returnPressed, this, &MainWindow::onInputSubmitted);
 }
 
-MainWindow::~MainWindow() {}
+MainWindow::~MainWindow() 
+{
+}
 
 void MainWindow::onInputSubmitted()
 {

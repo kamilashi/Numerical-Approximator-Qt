@@ -12,7 +12,11 @@ Approximator::Approximator()
 
 Approximator::~Approximator() 
 {
-	delete[] programs;
+	for (int i = 0; i < programCount; ++i)
+	{
+		delete programs[i];  
+		programs[i] = nullptr;
+	}
 }
 
 void Approximator::startProgram(int programIdx, ProgramOutput* pProgramOutput)
