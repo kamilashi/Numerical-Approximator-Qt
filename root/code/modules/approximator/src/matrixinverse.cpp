@@ -234,6 +234,7 @@ void MatrixInverse::runStage1(ProgramOutput* pProgramOutput)
 
 	pProgramOutput->requestedInputType = InputType::Int;
 	pProgramOutput->pOutput = outputBuffer;
+	pProgramOutput->outputIsError = false;
 	currentStage = 2;
 }
 
@@ -274,9 +275,6 @@ void MatrixInverse::start(ProgramOutput* pProgramOutput)
 	memset(outputBuffer, 0, sizeof(outputBuffer));
 
 	runStage1(pProgramOutput);
-
-	pProgramOutput->outputIsError = false;
-	currentStage = 2;
 }
 
 void MatrixInverse::proceed(ProgramOutput* pProgramOutput, const ProgramInput& input)

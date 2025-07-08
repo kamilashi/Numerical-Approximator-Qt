@@ -128,6 +128,11 @@ void MainWindow::onInputSubmitted()
 		error = "Please enter a floating point number\n";
 	}
 	break;
+	case InputType::Any:
+	{
+		isInputValid = true;
+	}
+	break;
 	}
 
 	if (isInputValid)

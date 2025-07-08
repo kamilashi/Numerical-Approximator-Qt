@@ -7,6 +7,7 @@ enum class InputType
 {
 	Int,
 	Float,
+	Any,
 
 	TypesCount
 };
@@ -14,13 +15,15 @@ enum class InputType
 struct ProgramInterface
 {
 	int index;
+	int subProgramsCount;
 	const char* pName;
 
-	ProgramInterface(const char* pNameString)
+	ProgramInterface(const char* pNameString, int subPrCount = 0)
 	{
 		static int count = 0;
 
 		index = count;
+		subProgramsCount = subPrCount;
 		pName = pNameString;
 
 		count++;

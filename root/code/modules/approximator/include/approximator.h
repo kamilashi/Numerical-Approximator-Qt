@@ -13,15 +13,13 @@ public:
 	void advanceProgram(int programIdx, ProgramOutput* pProgramOutput, const ProgramInput& input);
 	void resetProgram(int programIdx);
 
-	static const int programCount = 2;
+	static const int programCount = 5;
 	ProgramInterface programInterfaces[programCount] =
 	{ ProgramInterface("Matrix Determinant"),
-		ProgramInterface("Matrix Inverse")
-/*
-		,
+		ProgramInterface("Matrix Inverse"),
 		ProgramInterface("Muller Method"),
 		ProgramInterface("Bracketing Methods"),
-		ProgramInterface("Open Methods") */
+		ProgramInterface("Open Methods")
 	};
 
 private:

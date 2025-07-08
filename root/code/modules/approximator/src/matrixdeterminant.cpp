@@ -111,6 +111,7 @@ void MatrixDeterminant::runStage1(ProgramOutput* pProgramOutput)
 
 	pProgramOutput->requestedInputType = InputType::Int;
 	pProgramOutput->pOutput = outputBuffer;
+	pProgramOutput->outputIsError = false;
 	currentStage = 2;
 }
 
@@ -152,9 +153,6 @@ void MatrixDeterminant::start(ProgramOutput* pProgramOutput)
 	memset(outputBuffer, 0, sizeof(outputBuffer));
 
 	runStage1(pProgramOutput);
-
-	pProgramOutput->outputIsError = false;
-	currentStage = 2;
 }
 
 void MatrixDeterminant::proceed(ProgramOutput* pProgramOutput, const ProgramInput& input)

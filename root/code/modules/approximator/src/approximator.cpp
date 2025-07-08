@@ -1,18 +1,21 @@
 #include "approximator.h"
 #include "matrixdeterminant.h"
 #include "matrixinverse.h"
+#include "mullers.h"
 
 Approximator::Approximator()
 {
 	MatrixDeterminant* pDeterminant = new MatrixDeterminant();
 	MatrixInverse* pInverse = new MatrixInverse();
+	MullersMethod* pMullers = new MullersMethod();
 	programs[0] = pDeterminant;
 	programs[1] = pInverse;
+	programs[2] = pMullers;
 }
 
 Approximator::~Approximator() 
 {
-	for (int i = 0; i < programCount; ++i)
+	for (int i = 0; i < 3; ++i)
 	{
 		delete programs[i];  
 		programs[i] = nullptr;

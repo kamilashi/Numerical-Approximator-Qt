@@ -40,6 +40,7 @@ set(OLD_GLOB
   "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./include/helpers.h"
   "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./include/matrixdeterminant.h"
   "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./include/matrixinverse.h"
+  "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./include/mullers.h"
   "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./include/program.h"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
@@ -62,6 +63,7 @@ set(OLD_GLOB
   "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./src/approximator.cpp"
   "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./src/matrixdeterminant.cpp"
   "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./src/matrixinverse.cpp"
+  "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./src/mullers.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
