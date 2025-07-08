@@ -142,7 +142,7 @@ void MatrixInverse::scanAndPrint(ProgramOutput* pProgramOutput, const ProgramInp
 	A[scannedElementsCount] = input.inputFloat;
 
 	size_t len = strlen(outputBuffer);
-	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "%.2f	", A[scannedElementsCount]);
+	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "%f	", A[scannedElementsCount]);
 
 	scannedElementsCount++;
 

@@ -14,7 +14,7 @@ inline void printMatrix(int n, int m, float* A, char* pBuffer, int bufferSize)
 		for (int j = 0; j < m; j++)
 		{
 			len = strlen(pBuffer);
-			snprintf(pBuffer + len, bufferSize - len, "%.2f	", A[i * n + j]);
+			snprintf(pBuffer + len, bufferSize - len, "%f	", A[i * n + j]);
 		}
 
 		len = strlen(pBuffer);
