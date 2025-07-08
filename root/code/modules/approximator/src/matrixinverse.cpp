@@ -9,7 +9,7 @@
 MatrixInverse::MatrixInverse() : Program()
 {
 	stageCount = 3;
-	A = nullptr, L = nullptr;
+	A = nullptr;
 	reset();
 }
 
@@ -24,9 +24,9 @@ void decompose(int n, int m, float* A, float* B, float* Diag)
 
 	for (i = 0; i < n; i++) {
 		for (j = 0; j < m; j++) {
-			B[i * n + j] = A[i * n + j];
+			B[i * m + j] = A[i * m + j];
 			if (j == i) {
-				Diag[z] = A[i * n + j];
+				Diag[z] = A[i * m + j];
 				z += 1;
 			}
 		}
@@ -34,14 +34,14 @@ void decompose(int n, int m, float* A, float* B, float* Diag)
 
 	z = 0;
 	for (d = 0; d < n; d++) {
-		for (j = 0; j < n; j++) {
+		for (j = 0; j < m; j++) {
 			for (i = d; i < n; i++) {
 				if (i >= j) {
 
-					B[i * n + j] = A[i * n + j] / Diag[j];
+					B[i * m + j] = A[i * m + j] / Diag[j];
 				}
 				else {
-					B[i * n + j] = 0;
+					B[i * m + j] = 0;
 				}
 			}
 		}
@@ -62,16 +62,16 @@ void substLowerT(int columnnumb, int n, float* A, float* Y, char* pBuffer, int b
 		{
 			if (j != n)
 			{
-				A_temp[i * n + j] = A[i * n + j];
+				A_temp[i * m + j] = A[i * n + j];
 			}
 			else 
 			{
 				if (i == columnnumb) 
 				{
-					A_temp[i * n + j] = 1;
+					A_temp[i * m + j] = 1;
 				}
 				else {
-					A_temp[i * n + j] = 0;
+					A_temp[i * m + j] = 0;
 				}
 			}
 		}
@@ -86,11 +86,13 @@ void substLowerT(int columnnumb, int n, float* A, float* Y, char* pBuffer, int b
 		S = 0.0f;
 		for (int j = 0; j < i; j++)  
 		{
-			S += A_temp[i * n + j] * Y[j];  
+			S += A_temp[i * m + j] * Y[j];  
 		}
 
-		Y[i] = (A_temp[i * n + n] - S) / A_temp[i * n + i];  
+		Y[i] = (A_temp[i * m + n] - S) / A_temp[i * m + i];  
 	}
+
+	delete[] A_temp;
 }
 
 
@@ -107,11 +109,11 @@ void substUpperT(int n, float* A, float* Y, float* X, char* pBuffer, int bufferS
 		{
 			if (j != n)
 			{
-				A_temp[i * n + j] = A[i * n + j];
+				A_temp[i * m + j] = A[i * n + j];
 			}
 			else 
 			{
-				A_temp[i * n + n] = Y[i];
+				A_temp[i * m + n] = Y[i];
 			}
 		}
 	}
@@ -123,16 +125,17 @@ void substUpperT(int n, float* A, float* Y, float* X, char* pBuffer, int bufferS
 
 	for (i = n - 1; i >= 0; i--) 
 	{
-		for (j = m - 2; j > i; j--) 
+		S = 0;
+		for (j = n - 1; j > i; j--) 
 		{
-			S += A_temp[i * n + j] * X[j];
+			S += A_temp[i * m + j] * X[j];
 		}
 
-		X[i] = (A_temp[i * n + (m - 1)] - S) / A_temp[i * n + i];
-		S = 0;
+		X[i] = (A_temp[i * m + n] - S) / A_temp[i * m + i];
 	}
-}
 
+	delete[] A_temp;
+}
 
 void MatrixInverse::scanAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
@@ -168,30 +171,36 @@ void MatrixInverse::calculateAndPrint(ProgramOutput* pProgramOutput, const Progr
 	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nMatrix after decomposing:\n");
 	printMatrix(n, m, A, outputBuffer, sizeof(outputBuffer));
 
-	runGaussianElimination(n, m, A, L, outputBuffer, sizeof(outputBuffer));
+	runGaussianElimination(n, m, A, outputBuffer, sizeof(outputBuffer));
 
 	len = strlen(outputBuffer);
 	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nMatrix after Gaussian elimination:\n");
 	
 	printMatrix(n, m, A, outputBuffer, sizeof(outputBuffer));
 
-	/*double det = getMatrixDeterminant(n, m, A);
+	double det = getMatrixDeterminant(n, m, A);
 	len = strlen(outputBuffer);
-	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nDeterminant: %.2f \n", det);*/
 
-	for (i = 0; i < n; i++) 
+	if (det != 0.0f)
 	{
-		substLowerT(i, n, L0, Y, outputBuffer, sizeof(outputBuffer));
-		substUpperT(n, A, Y, X, outputBuffer, sizeof(outputBuffer));
-
-		for (j = 0; j < m; j++) 
+		for (i = 0; i < n; i++)
 		{
-			Inv[j * n + i] = X[j];
-		}
-	}
+			substLowerT(i, n, L0, Y, outputBuffer, sizeof(outputBuffer));
+			substUpperT(n, A, Y, X, outputBuffer, sizeof(outputBuffer));
 
-	printf("\nInverse Matrix =\n");
-	printMatrix(n, m, Inv, outputBuffer, sizeof(outputBuffer));
+			for (j = 0; j < m; j++)
+			{
+				Inv[j * n + i] = X[j];
+			}
+		}
+
+		snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nInverse Matrix:\n");
+		printMatrix(n, m, Inv, outputBuffer, sizeof(outputBuffer));
+	}
+	else
+	{
+		snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nDeterminant is zero, the matrix has no inverse! \n");
+	}
 
 	delete[] L0;
 	delete[] X;
@@ -215,13 +224,6 @@ void MatrixInverse::reset()
 		delete[] A;
 		A = nullptr;
 	}
-
-	if (L != nullptr)
-	{
-		delete[] L;
-		L = nullptr;
-	}
-
 }
 
 void MatrixInverse::runStage1(ProgramOutput* pProgramOutput)
@@ -242,7 +244,6 @@ void MatrixInverse::runStage2(ProgramOutput* pProgramOutput, const ProgramInput&
 	n = input.inputInt;
 
 	A = new float[n * m];
-	L = new float[m];
 
 	snprintf(outputBuffer, sizeof(outputBuffer), "%d x %d matrix\n\n", n, m);
 

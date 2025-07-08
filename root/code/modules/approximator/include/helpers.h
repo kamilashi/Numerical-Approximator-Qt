@@ -49,15 +49,13 @@ inline void pivotMatrix(int startrow, int n, int m, float* A)
 	}
 }
 
-inline void runGaussianElimination(int n, int m, float* A, float* L, char* pBuffer, int bufferSize)
+inline void runGaussianElimination(int n, int m, float* A, char* pBuffer, int bufferSize)
 {
-	float* B = new float[n * m];
-
 	for (int d = 0; d < n; d++)
 	{
 		pivotMatrix(d, n, m, A);
 
-		float pivotVal = A[d * n + d];
+		float pivotVal = A[d * m + d];
 		if (fabs(pivotVal) < 1e-6f)
 		{
 			size_t len = strlen(pBuffer);
@@ -67,15 +65,13 @@ inline void runGaussianElimination(int n, int m, float* A, float* L, char* pBuff
 
 		for (int i = d + 1; i < n; i++)
 		{
-			float factor = A[i * n + d] / pivotVal;
+			float factor = A[i * m + d] / pivotVal;
 			for (int j = d; j < m; j++)
 			{
-				A[i * n + j] -= factor * A[d * n + j];
+				A[i * m + j] -= factor * A[d * m + j];
 			}
 		}
 	}
-
-	delete[] B;
 }
 
 inline double getMatrixDeterminant(int n, int m, float* A)
