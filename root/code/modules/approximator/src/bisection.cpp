@@ -20,12 +20,13 @@ BisectionMethod::~BisectionMethod()
 
 float runBisection(float xl, float xr, int iter,int maxIter, int termCount, float* F, char* pBuffer, int bufferSize)
 {
-	while (iter < maxIter)
+	float xm = (xl + xr) / 2.0f;
+
+	if (iter < maxIter)
 	{
 		size_t len = strlen(pBuffer);
-		snprintf(pBuffer + len, bufferSize - len, "\nxl = %f \nxr = %f \n",xl, xr);
+		snprintf(pBuffer + len, bufferSize - len, "\nIteration %d: xl = %f, xr = %f \n",iter, xl, xr);
 
-		float xm = (xl + xr) / 2.0f;
 		float ym = polynomial(xm, termCount, F);
 		float yl = polynomial(xl, termCount, F);
 		float yr = polynomial(xr, termCount, F);
@@ -40,9 +41,14 @@ float runBisection(float xl, float xr, int iter,int maxIter, int termCount, floa
 		{
 			return runBisection(xm, xr, iter,  maxIter, termCount,F, pBuffer, bufferSize);
 		}
-
-		return xm; 
 	}
+	else
+	{
+		size_t len = strlen(pBuffer);
+		snprintf(pBuffer + len, bufferSize - len, "\nIteration limit of %d reached, returning midpoint.\n", maxIter);
+	}
+
+	return xm;
 }
 
 void BisectionMethod::scanTermsAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)

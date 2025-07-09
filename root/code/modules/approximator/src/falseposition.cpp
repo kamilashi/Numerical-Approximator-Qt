@@ -20,10 +20,19 @@ FalsePositionMethod::~FalsePositionMethod()
 
 float runFalsePosition(float xl, float xr, int iter,int maxIter, int termCount, float* F, char* pBuffer, int bufferSize)
 {
-	while (iter < maxIter)
+	const float zeroError = 0.0001f;
+
+	if (iter < maxIter)
 	{
 		float yl = polynomial(xl, termCount, F);
 		float yr = polynomial(xr, termCount, F);
+
+		if (fabs(yl - yr) < zeroError)
+		{
+			size_t len = strlen(pBuffer);
+			snprintf(pBuffer + len, bufferSize - len, "\nDenominator too small at iteration %d, returning midpoint.\n", iter);
+			return (xl + xr) / 2.0f;
+		}
 
 		float xm = xr - (yr * (xl - xr)) / (yl - yr);
 		iter++;
@@ -31,7 +40,7 @@ float runFalsePosition(float xl, float xr, int iter,int maxIter, int termCount, 
 		float ym = polynomial(xm, termCount, F);
 
 		size_t len = strlen(pBuffer);
-		snprintf(pBuffer + len, bufferSize - len, "\nxm = %f \n", xm);
+		snprintf(pBuffer + len, bufferSize - len, "\nIteration %d: xm = %f \n", iter, xm);
 
 		if (yl * ym < 0)
 		{
@@ -45,6 +54,10 @@ float runFalsePosition(float xl, float xr, int iter,int maxIter, int termCount, 
 		
 		return xm;
 	}
+
+	size_t len = strlen(pBuffer);
+	snprintf(pBuffer + len, bufferSize - len, "\nIteration limit of %d reached, returning midpoint.\n", maxIter);
+	return (xl + xr) / 2.0f;
 }
 
 void FalsePositionMethod::scanTermsAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)

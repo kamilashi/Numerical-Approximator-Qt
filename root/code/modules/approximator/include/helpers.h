@@ -20,6 +20,17 @@ inline float polynomial(float x, int n, float* F)
 	return y;
 }
 
+inline float func(float x, int n, float* F)
+{
+	int i;
+	float R = 0;
+	for (i = n; i >= 0; i--)
+	{
+		R += pow(x, i) * F[n - i];
+	}
+	return R;
+}
+
 inline void printMatrix(int n, int m, float* A, char* pBuffer, int bufferSize)
 {
 	size_t len;
