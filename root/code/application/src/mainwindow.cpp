@@ -30,7 +30,7 @@ MainWindow::MainWindow(Approximator* pAppr, QWidget* parent) : QMainWindow(paren
 
 	resize(dim.mainWindowWidth, dim.mainWindowHeight);
 
-	setWindowTitle("Numerical Approximator Qt");
+	setWindowTitle("Numerical Approximator");
 
 	QPalette palette = QApplication::palette();
 	QColor defaultColor = palette.color(QPalette::Base);
@@ -63,7 +63,15 @@ MainWindow::MainWindow(Approximator* pAppr, QWidget* parent) : QMainWindow(paren
 	{
 		QMenu* pMenu = new QMenu(QString(pApproximator->programInterfaces[i].pName));
 		createMenuActions(pMenu, pApproximator->programInterfaces[i].index);
-		pHeaderMenu->addMenu(pMenu);
+
+		if (pApproximator->programInterfaces[i].pCategoryName == nullptr) 
+		{
+			pHeaderMenu->addMenu(pMenu);
+		}
+		else 
+		{
+			createOrUpdateCategory(pMenu, pApproximator->programInterfaces[i].pCategoryName);
+		}
 	}
 
 	pHeaderLayout->addWidget(pHeaderMenu);
@@ -154,8 +162,22 @@ void MainWindow::createMenuActions(QMenu* pMenu, int connectedProgramIndex)
 	pMenu->addAction(showCodeAct);
 	pMenu->addAction(runProgramAct);
 
-	connect(showCodeAct, &QAction::triggered, this, &MainWindow::showCodeAct);
+	connect(showCodeAct, &QAction::triggered, this, &MainWindow::showCode);
 	connect(runProgramAct, &QAction::triggered, this, &MainWindow::runProgram);
+}
+
+void MainWindow::createOrUpdateCategory(QMenu* pMenu, const char* pCategoryName)
+{
+	QString categoryName = QString(pCategoryName);
+
+	if (!categoryMenus.contains(categoryName))
+	{
+		QMenu* categoryMenu = new QMenu(categoryName);
+		pHeaderMenu->addMenu(categoryMenu);
+		categoryMenus.insert(categoryName, categoryMenu);
+	}
+
+	categoryMenus[categoryName]->addMenu(pMenu);
 }
 
 void MainWindow::cacheSelectedProgram(QAction* triggeredAction)
@@ -183,7 +205,7 @@ void MainWindow::startSelectedProgram(ProgramOutput* pProgramOutput)
 	}
 }
 
-void MainWindow::showCodeAct()
+void MainWindow::showCode()
 {
 	AppMenuItem* pAction = qobject_cast<AppMenuItem*>(sender());
 	if (pAction)

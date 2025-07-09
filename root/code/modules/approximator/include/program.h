@@ -15,16 +15,16 @@ enum class InputType
 struct ProgramInterface
 {
 	int index;
-	int subProgramsCount;
 	const char* pName;
+	const char* pCategoryName;
 
-	ProgramInterface(const char* pNameString, int subPrCount = 0)
+	ProgramInterface(const char* pNameString, const char* pCtgryName = nullptr)
 	{
 		static int count = 0;
 
 		index = count;
-		subProgramsCount = subPrCount;
 		pName = pNameString;
+		pCategoryName = pCtgryName;
 
 		count++;
 	}

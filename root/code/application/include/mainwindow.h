@@ -20,6 +20,7 @@ private slots:
 
 private:
 	QMenuBar* pHeaderMenu = nullptr;
+	QMap<QString, QMenu*> categoryMenus;
 	QLineEdit* pInput = nullptr;
 	QLabel* pOutput = nullptr;
 
@@ -31,10 +32,11 @@ private:
 	ProgramOutput programOutput;
 
 	void createMenuActions(QMenu* item, int connectedProgramIndex);
+	void createOrUpdateCategory(QMenu* pMenu, const char* pCategoryName);
 	void cacheSelectedProgram(QAction* triggeredAction);
 	void startSelectedProgram(ProgramOutput* pProgramOutput);
 
-	void showCodeAct();
+	void showCode();
 	void runProgram();
 	void advanceSelectedProgram(ProgramOutput* pProgramOutput, const ProgramInput& input);
 };

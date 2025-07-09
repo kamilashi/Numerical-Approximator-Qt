@@ -17,9 +17,9 @@ public:
 	ProgramInterface programInterfaces[programCount] =
 	{ ProgramInterface("Matrix Determinant"),
 		ProgramInterface("Matrix Inverse"),
-		ProgramInterface("Muller Method"),
-		ProgramInterface("Bracketing Methods"),
-		ProgramInterface("Open Methods")
+		ProgramInterface("Muller's Method"),
+		ProgramInterface("Bisection", "Bracketing Methods"),
+		ProgramInterface("False Position", "Bracketing Methods")
 	};
 
 private:
