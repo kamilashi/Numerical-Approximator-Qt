@@ -4,48 +4,50 @@
 #include <cmath>
 
 #include "helpers.h"
-#include "bisection.h"
+#include "falseposition.h"
 
-BisectionMethod::BisectionMethod() : Program()
+FalsePositionMethod::FalsePositionMethod() : Program()
 {
 	stageCount = 5;
 	F = nullptr;
 	reset();
 }
 
-BisectionMethod::~BisectionMethod()
+FalsePositionMethod::~FalsePositionMethod()
 { 
 	reset(); 
 }
 
-float runBisection(float xl, float xr, int iter,int maxIter, int termCount, float* F, char* pBuffer, int bufferSize)
+float runFalsePosition(float xl, float xr, int iter,int maxIter, int termCount, float* F, char* pBuffer, int bufferSize)
 {
 	while (iter < maxIter)
 	{
-		size_t len = strlen(pBuffer);
-		snprintf(pBuffer + len, bufferSize - len, "\nxl = %f \nxr = %f \n",xl, xr);
-
-		float xm = (xl + xr) / 2.0f;
-		float ym = polynomial(xm, termCount, F);
 		float yl = polynomial(xl, termCount, F);
 		float yr = polynomial(xr, termCount, F);
+
+		float xm = xr - (yr * (xl - xr)) / (yl - yr);
 		iter++;
+
+		float ym = polynomial(xm, termCount, F);
+
+		size_t len = strlen(pBuffer);
+		snprintf(pBuffer + len, bufferSize - len, "\nxm = %f \n", xm);
 
 		if (yl * ym < 0)
 		{
-			return runBisection(xl, xm, iter, maxIter, termCount, F, pBuffer, bufferSize);
+			return runFalsePosition(xl, xm, iter, maxIter, termCount, F, pBuffer, bufferSize);
 		}
 		
 		if (ym * yr < 0)
 		{
-			return runBisection(xm, xr, iter,  maxIter, termCount,F, pBuffer, bufferSize);
+			return runFalsePosition(xm, xr, iter, maxIter, termCount, F, pBuffer, bufferSize);
 		}
-
-		return xm; 
+		
+		return xm;
 	}
 }
 
-void BisectionMethod::scanTermsAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
+void FalsePositionMethod::scanTermsAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	F[scannedElementsCount] = input.inputFloat;
 
@@ -69,7 +71,7 @@ void BisectionMethod::scanTermsAndPrint(ProgramOutput* pProgramOutput, const Pro
 	pProgramOutput->pOutput = outputBuffer;
 }
 
-void BisectionMethod::scanRootGuessesAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
+void FalsePositionMethod::scanRootGuessesAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	G[scannedElementsCount] = input.inputFloat;
 
@@ -84,13 +86,13 @@ void BisectionMethod::scanRootGuessesAndPrint(ProgramOutput* pProgramOutput, con
 	pProgramOutput->pOutput = outputBuffer;
 }
 
-void BisectionMethod::calculateAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
+void FalsePositionMethod::calculateAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	size_t len = strlen(outputBuffer);
-	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\n\nSolving with the Bisection method:\n");
+	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\n\nSolving with the False Position method:\n");
 
 	int startIteration = 0;
-	float result = runBisection(G[0], G[1], startIteration, maxIterationCount, termCount, F, outputBuffer, sizeof(outputBuffer));
+	float result = runFalsePosition(G[0], G[1], startIteration, maxIterationCount, termCount, F, outputBuffer, sizeof(outputBuffer));
 
 	len = strlen(outputBuffer);
 	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nFinal guess: %f\n", result);
@@ -100,7 +102,7 @@ void BisectionMethod::calculateAndPrint(ProgramOutput* pProgramOutput, const Pro
 	pProgramOutput->outputIsError = false;
 }
 
-void BisectionMethod::reset()
+void FalsePositionMethod::reset()
 {
 	currentStage = 0;
 	scannedElementsCount = 0;
@@ -114,9 +116,9 @@ void BisectionMethod::reset()
 	}
 }
 
-void BisectionMethod::runStage1(ProgramOutput* pProgramOutput)
+void FalsePositionMethod::runStage1(ProgramOutput* pProgramOutput)
 {
-	snprintf(outputBuffer, sizeof(outputBuffer), "Welcome to the equation solver via the Bisection method!\n\n");
+	snprintf(outputBuffer, sizeof(outputBuffer), "Welcome to the equation solver via the False Position method!\n\n");
 	size_t len = strlen(outputBuffer);
 	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "Enter the degree of polynomial:	");
 
@@ -126,7 +128,7 @@ void BisectionMethod::runStage1(ProgramOutput* pProgramOutput)
 	currentStage = 2;
 }
 
-void BisectionMethod::runStage2(ProgramOutput* pProgramOutput, const ProgramInput& input)
+void FalsePositionMethod::runStage2(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	degree = input.inputInt;
 	termCount = degree + 1;
@@ -146,7 +148,7 @@ void BisectionMethod::runStage2(ProgramOutput* pProgramOutput, const ProgramInpu
 	currentStage = 3;
 }
 
-void BisectionMethod::runStage3(ProgramOutput* pProgramOutput, const ProgramInput& input)
+void FalsePositionMethod::runStage3(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	scanTermsAndPrint(pProgramOutput, input);
 
@@ -162,7 +164,7 @@ void BisectionMethod::runStage3(ProgramOutput* pProgramOutput, const ProgramInpu
 	}
 }
 
-void BisectionMethod::runStage4(ProgramOutput* pProgramOutput, const ProgramInput& input)
+void FalsePositionMethod::runStage4(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	memset(outputBuffer, 0, sizeof(outputBuffer));
 
@@ -173,7 +175,7 @@ void BisectionMethod::runStage4(ProgramOutput* pProgramOutput, const ProgramInpu
 	pProgramOutput->requestedInputType = InputType::Float;
 }
 
-void BisectionMethod::runStage5(ProgramOutput* pProgramOutput, const ProgramInput& input)
+void FalsePositionMethod::runStage5(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	scanRootGuessesAndPrint(pProgramOutput, input);
 
@@ -184,7 +186,7 @@ void BisectionMethod::runStage5(ProgramOutput* pProgramOutput, const ProgramInpu
 	}
 }
 
-void BisectionMethod::start(ProgramOutput* pProgramOutput)
+void FalsePositionMethod::start(ProgramOutput* pProgramOutput)
 {
 	reset();
 	memset(outputBuffer, 0, sizeof(outputBuffer));
@@ -192,7 +194,7 @@ void BisectionMethod::start(ProgramOutput* pProgramOutput)
 	runStage1(pProgramOutput);
 }
 
-void BisectionMethod::proceed(ProgramOutput* pProgramOutput, const ProgramInput& input)
+void FalsePositionMethod::proceed(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	if (currentStage == 0)
 	{

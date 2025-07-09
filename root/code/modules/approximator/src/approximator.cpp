@@ -3,6 +3,7 @@
 #include "matrixinverse.h"
 #include "mullers.h"
 #include "bisection.h"
+#include "falseposition.h"
 
 Approximator::Approximator()
 {
@@ -10,10 +11,12 @@ Approximator::Approximator()
 	MatrixInverse* pInverse = new MatrixInverse();
 	MullersMethod* pMullers = new MullersMethod();
 	BisectionMethod* pBisection = new BisectionMethod();
+	FalsePositionMethod* pFalsePosition = new FalsePositionMethod();
 	programs[0] = pDeterminant;
 	programs[1] = pInverse;
 	programs[2] = pMullers;
 	programs[3] = pBisection;
+	programs[4] = pFalsePosition;
 }
 
 Approximator::~Approximator() 

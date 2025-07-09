@@ -6,7 +6,7 @@
 #include <cmath>
 
 
-inline float func(float x, int n, float* F)
+inline float polynomial(float x, int n, float* F)
 {
 	float y = 0;
 	int i, power;

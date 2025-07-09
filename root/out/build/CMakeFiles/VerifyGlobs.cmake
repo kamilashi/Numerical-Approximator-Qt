@@ -38,6 +38,7 @@ file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "C:/MINE/PROJECTS/Numerical-Ap
 set(OLD_GLOB
   "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./include/approximator.h"
   "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./include/bisection.h"
+  "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./include/falseposition.h"
   "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./include/helpers.h"
   "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./include/matrixdeterminant.h"
   "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./include/matrixinverse.h"
@@ -63,6 +64,7 @@ file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "C:/MINE/PROJECTS/Numerical-Ap
 set(OLD_GLOB
   "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./src/approximator.cpp"
   "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./src/bisection.cpp"
+  "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./src/falseposition.cpp"
   "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./src/matrixdeterminant.cpp"
   "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./src/matrixinverse.cpp"
   "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/./src/mullers.cpp"

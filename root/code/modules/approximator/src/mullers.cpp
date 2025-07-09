@@ -30,11 +30,11 @@ float runMullersMethod(float g0, float g1, float g2, int n, float* F, char* pBuf
 
 	h0 = g1 - g0;
 	h1 = g2 - g1;
-	d0 = (func(g1, n, F) - func(g0, n, F)) / (g1 - g0);
-	d1 = (func(g2, n, F) - func(g1, n, F)) / (g2 - g1);
+	d0 = (polynomial(g1, n, F) - polynomial(g0, n, F)) / (g1 - g0);
+	d1 = (polynomial(g2, n, F) - polynomial(g1, n, F)) / (g2 - g1);
 	a = (d1 - d0) / (h1 + h0);
 	b = a * h1 + d1;
-	c = func(g2, n, F);
+	c = polynomial(g2, n, F);
 
 	size_t len = strlen(pBuffer);
 	snprintf(pBuffer + len, bufferSize - len, "a = %f  b = %f  c = %f  \n\n", a, b, c);
