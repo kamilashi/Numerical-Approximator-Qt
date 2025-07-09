@@ -5,6 +5,21 @@
 #include <cstring>
 #include <cmath>
 
+
+inline float func(float x, int n, float* F)
+{
+	float y = 0;
+	int i, power;
+
+	for (i = 0; i < n; i++)
+	{
+		power = (n - 1) - i;
+		y = y + F[i] * (pow(x, power));
+	}
+
+	return y;
+}
+
 inline void printMatrix(int n, int m, float* A, char* pBuffer, int bufferSize)
 {
 	size_t len;

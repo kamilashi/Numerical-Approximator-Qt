@@ -2,20 +2,23 @@
 #include "matrixdeterminant.h"
 #include "matrixinverse.h"
 #include "mullers.h"
+#include "bisection.h"
 
 Approximator::Approximator()
 {
 	MatrixDeterminant* pDeterminant = new MatrixDeterminant();
 	MatrixInverse* pInverse = new MatrixInverse();
 	MullersMethod* pMullers = new MullersMethod();
+	BisectionMethod* pBisection = new BisectionMethod();
 	programs[0] = pDeterminant;
 	programs[1] = pInverse;
 	programs[2] = pMullers;
+	programs[3] = pBisection;
 }
 
 Approximator::~Approximator() 
 {
-	for (int i = 0; i < 3; ++i)
+	for (int i = 0; i < 4; ++i)
 	{
 		delete programs[i];  
 		programs[i] = nullptr;

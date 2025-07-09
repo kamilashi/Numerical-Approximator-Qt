@@ -4,77 +4,45 @@
 #include <cmath>
 
 #include "helpers.h"
-#include "mullers.h"
+#include "bisection.h"
 
-MullersMethod::MullersMethod() : Program()
+BisectionMethod::BisectionMethod() : Program()
 {
 	stageCount = 5;
 	F = nullptr;
 	reset();
 }
 
-MullersMethod::~MullersMethod()
+BisectionMethod::~BisectionMethod()
 { 
 	reset(); 
 }
 
-float runMullersMethod(float g0, float g1, float g2, int n, float* F, char* pBuffer, int bufferSize)
+float bisect(float xl, float xr, int iter,int maxIter, int termCount, float* F, char* pBuffer, int bufferSize)
 {
-	float h0, h1;
-	float d0, d1;
-	float a, b, c;
-	float g3;
-	float discriminant;
-	float error;
-	const float errorMargin = 0.001f;
-
-	h0 = g1 - g0;
-	h1 = g2 - g1;
-	d0 = (func(g1, n, F) - func(g0, n, F)) / (g1 - g0);
-	d1 = (func(g2, n, F) - func(g1, n, F)) / (g2 - g1);
-	a = (d1 - d0) / (h1 + h0);
-	b = a * h1 + d1;
-	c = func(g2, n, F);
-
-	size_t len = strlen(pBuffer);
-	snprintf(pBuffer + len, bufferSize - len, "a = %f  b = %f  c = %f  \n\n", a, b, c);
-
-	float discArg = b * b - 4 * a * c;
-
-	len = strlen(pBuffer);
-	if (discArg < 0)
+	while (iter < maxIter)
 	{
-		snprintf(pBuffer + len, bufferSize - len, "The equation has no real roots!\n\n");
+		size_t len = strlen(pBuffer);
+		snprintf(pBuffer + len, bufferSize - len, "\nxl = %f \nxr = %f \n",xl, xr);
+
+		float xm = (xl + xr) / 2.0f;
+		iter++;
+
+		if (func(xl, termCount, F) * func(xm, termCount, F) < 0)
+		{
+			return bisect(xl, xm, iter, maxIter, termCount, F, pBuffer, bufferSize);
+		}
+		
+		if (func(xm, termCount, F) * func(xr, termCount, F) < 0)
+		{
+			return bisect(xm, xr, iter,  maxIter, termCount,F, pBuffer, bufferSize);
+		}
+
+		return xm; 
 	}
-	else
-	{
-		discriminant = sqrt(b * b - 4 * a * c);
-		snprintf(pBuffer + len, bufferSize - len, "Discriminant = %f\n\n", discriminant);
-
-		if (fabs(b + discriminant) < fabs(b - discriminant))
-		{
-			g3 = g2 + ((-2) * c) / (b - discriminant);
-		}
-		else
-		{
-			g3 = g2 + ((-2) * c) / (b + discriminant);
-		}
-
-		error = fabs((g3 - g2) / g3);
-		if (error > errorMargin)
-		{
-			len = strlen(pBuffer);
-			snprintf(pBuffer + len, bufferSize - len, "Temp. guess 3 = %f\n\n", g3);
-			return runMullersMethod(g1, g2, g3, n, F, pBuffer, bufferSize);
-		}
-
-		return g3;
-	}
-
-	return 0;
 }
 
-void MullersMethod::scanTermsAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
+void BisectionMethod::scanTermsAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	F[scannedElementsCount] = input.inputFloat;
 
@@ -98,7 +66,7 @@ void MullersMethod::scanTermsAndPrint(ProgramOutput* pProgramOutput, const Progr
 	pProgramOutput->pOutput = outputBuffer;
 }
 
-void MullersMethod::scanRootGuessesAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
+void BisectionMethod::scanRootGuessesAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	G[scannedElementsCount] = input.inputFloat;
 
@@ -113,12 +81,13 @@ void MullersMethod::scanRootGuessesAndPrint(ProgramOutput* pProgramOutput, const
 	pProgramOutput->pOutput = outputBuffer;
 }
 
-void MullersMethod::calculateAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
+void BisectionMethod::calculateAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	size_t len = strlen(outputBuffer);
-	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\n\nSolving with Muller's method:\n");
+	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\n\nSolving with the Bisection method:\n");
 
-	float result = runMullersMethod(G[0], G[1], G[2], termCount, F, outputBuffer, sizeof(outputBuffer));
+	int startIteration = 0;
+	float result = bisect(G[0], G[1], startIteration, maxIterationCount, termCount, F, outputBuffer, sizeof(outputBuffer));
 
 	len = strlen(outputBuffer);
 	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nFinal guess: %f\n", result);
@@ -128,7 +97,7 @@ void MullersMethod::calculateAndPrint(ProgramOutput* pProgramOutput, const Progr
 	pProgramOutput->outputIsError = false;
 }
 
-void MullersMethod::reset()
+void BisectionMethod::reset()
 {
 	currentStage = 0;
 	scannedElementsCount = 0;
@@ -142,9 +111,9 @@ void MullersMethod::reset()
 	}
 }
 
-void MullersMethod::runStage1(ProgramOutput* pProgramOutput)
+void BisectionMethod::runStage1(ProgramOutput* pProgramOutput)
 {
-	snprintf(outputBuffer, sizeof(outputBuffer), "Welcome to the equation solver via Muller's method!\n\n");
+	snprintf(outputBuffer, sizeof(outputBuffer), "Welcome to the equation solver via the Bisection method!\n\n");
 	size_t len = strlen(outputBuffer);
 	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "Enter the degree of polynomial:	");
 
@@ -154,7 +123,7 @@ void MullersMethod::runStage1(ProgramOutput* pProgramOutput)
 	currentStage = 2;
 }
 
-void MullersMethod::runStage2(ProgramOutput* pProgramOutput, const ProgramInput& input)
+void BisectionMethod::runStage2(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	degree = input.inputInt;
 	termCount = degree + 1;
@@ -174,7 +143,7 @@ void MullersMethod::runStage2(ProgramOutput* pProgramOutput, const ProgramInput&
 	currentStage = 3;
 }
 
-void MullersMethod::runStage3(ProgramOutput* pProgramOutput, const ProgramInput& input)
+void BisectionMethod::runStage3(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	scanTermsAndPrint(pProgramOutput, input);
 
@@ -190,18 +159,18 @@ void MullersMethod::runStage3(ProgramOutput* pProgramOutput, const ProgramInput&
 	}
 }
 
-void MullersMethod::runStage4(ProgramOutput* pProgramOutput, const ProgramInput& input)
+void BisectionMethod::runStage4(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	memset(outputBuffer, 0, sizeof(outputBuffer));
 
-	snprintf(outputBuffer, sizeof(outputBuffer), "Enter the 3 guesses one by one, separated by Enter: \n");
+	snprintf(outputBuffer, sizeof(outputBuffer), "Enter the xl and xr, separated by Enter: \n");
 
 	currentStage = 5;
 	pProgramOutput->outputIsError = true;
 	pProgramOutput->requestedInputType = InputType::Float;
 }
 
-void MullersMethod::runStage5(ProgramOutput* pProgramOutput, const ProgramInput& input)
+void BisectionMethod::runStage5(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	scanRootGuessesAndPrint(pProgramOutput, input);
 
@@ -212,7 +181,7 @@ void MullersMethod::runStage5(ProgramOutput* pProgramOutput, const ProgramInput&
 	}
 }
 
-void MullersMethod::start(ProgramOutput* pProgramOutput)
+void BisectionMethod::start(ProgramOutput* pProgramOutput)
 {
 	reset();
 	memset(outputBuffer, 0, sizeof(outputBuffer));
@@ -220,7 +189,7 @@ void MullersMethod::start(ProgramOutput* pProgramOutput)
 	runStage1(pProgramOutput);
 }
 
-void MullersMethod::proceed(ProgramOutput* pProgramOutput, const ProgramInput& input)
+void BisectionMethod::proceed(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	if (currentStage == 0)
 	{
