@@ -109,6 +109,7 @@ void MatrixInverse::calculateAndPrint(ProgramOutput* pProgramOutput, const Progr
 
 	double det = getMatrixDeterminant(n, m, A);
 	len = strlen(outputBuffer);
+	const bool isDegreeEven = n % 2 == 0;
 
 	if (det != 0.0f)
 	{
@@ -122,8 +123,8 @@ void MatrixInverse::calculateAndPrint(ProgramOutput* pProgramOutput, const Progr
 
 			for (j = 0; j < n; j++)
 			{
-				//int colNum = (n - 1 - i);
-				Inv[j * n + i] = X[j];
+				int colNum = isDegreeEven ?  (n - 1 - i) : i;
+				Inv[j * n + colNum] = X[j];
 			}
 		}
 
