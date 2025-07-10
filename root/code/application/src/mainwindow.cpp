@@ -27,6 +27,7 @@ MainWindow::MainWindow(Approximator* pAppr, QWidget* parent) : QMainWindow(paren
 	programOutput = ProgramOutput();
 	pSelectedProgram = nullptr;
 	savedOutput = "";
+	QString welcomeText = QString("Choose a program to inspect or run from the menu bar above. \n\nUse the edit line at the bottom to send input to the program.");
 
 	resize(dim.mainWindowWidth, dim.mainWindowHeight);
 
@@ -81,7 +82,7 @@ MainWindow::MainWindow(Approximator* pAppr, QWidget* parent) : QMainWindow(paren
 	pBody->setLayout(pBodyLayout);
 	pBody->setStyleSheet(dim.bodySS);
 
-	pOutput = new QLabel();
+	pOutput = new QLabel(welcomeText);
 	pOutput->setStyleSheet(QString("background-color: %1;").arg(defaultColor.name()));
 	pOutput->setAlignment(Qt::AlignTop);
 
