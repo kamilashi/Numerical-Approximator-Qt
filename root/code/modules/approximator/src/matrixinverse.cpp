@@ -48,93 +48,18 @@ void decompose(int n, int m, float* A, float* B, float* Diag)
 	}
 }
 
-void substLowerT(int columnnumb, int n, float* A, float* Y, char* pBuffer, int bufferSize)
+void substLowerT(int n, float* L, float* b, float* y, char* buf, int bufsize)
 {
-	float S = 0;
-	int m = n + 1;
-	float* A_temp = new float[n * m];
-
-	int i; int j;
-
-	for (i = 0; i < n; i++) 
-	{
-		for (j = 0; j < m; j++) 
-		{
-			if (j != n)
-			{
-				A_temp[i * m + j] = A[i * n + j];
-			}
-			else 
-			{
-				if (i == columnnumb) 
-				{
-					A_temp[i * m + j] = 1;
-				}
-				else {
-					A_temp[i * m + j] = 0;
-				}
-			}
-		}
-	}
-
-	size_t len = strlen(pBuffer);
-	snprintf(pBuffer + len, bufferSize - len, "Substitution into L: \n");
-	printMatrix(n, m, A_temp, pBuffer, bufferSize);
-
 	for (int i = 0; i < n; i++)
 	{
-		S = 0.0f;
-		for (int j = 0; j < i; j++)  
+		float S = 0.0f;
+		for (int j = 0; j < i; j++)
 		{
-			S += A_temp[i * m + j] * Y[j];  
+			S += L[i * n + j] * y[j];
 		}
 
-		Y[i] = (A_temp[i * m + n] - S) / A_temp[i * m + i];  
+		y[i] = (b[i] - S) / L[i * n + i];
 	}
-
-	delete[] A_temp;
-}
-
-
-void substUpperT(int n, float* A, float* Y, float* X, char* pBuffer, int bufferSize)
-{
-	float S = 0;
-	int m = n + 1;
-	float* A_temp = new float[n * m];
-	int i, j;
-
-	for (i = 0; i < n; i++) 
-	{
-		for (j = 0; j < m; j++) 
-		{
-			if (j != n)
-			{
-				A_temp[i * m + j] = A[i * n + j];
-			}
-			else 
-			{
-				A_temp[i * m + n] = Y[i];
-			}
-		}
-	}
-
-	size_t len = strlen(pBuffer);
-	snprintf(pBuffer + len, bufferSize - len, "Substitution into U: \n");
-
-	printMatrix(n, m, A_temp, pBuffer, bufferSize);
-
-	for (i = n - 1; i >= 0; i--) 
-	{
-		S = 0;
-		for (j = n - 1; j > i; j--) 
-		{
-			S += A_temp[i * m + j] * X[j];
-		}
-
-		X[i] = (A_temp[i * m + n] - S) / A_temp[i * m + i];
-	}
-
-	delete[] A_temp;
 }
 
 void MatrixInverse::scanAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
@@ -159,22 +84,26 @@ void MatrixInverse::scanAndPrint(ProgramOutput* pProgramOutput, const ProgramInp
 
 void MatrixInverse::calculateAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
-	float* L0 = new float[n * m];
+	float* L0 = new float[n * n];
+	float* Original = new float[n * n];
 	float* Inv = new float[n * n];
 	float* X = new float[n];
-	float* Y = new float[n];
 	float* Diag = new float[n];
+	float* unitV = new float[n];
+	float* Y = new float[n];
+
+	copyMatrix(n, m, Original, A);
 
 	decompose(n, m, A, L0, Diag);
 
 	size_t len = strlen(outputBuffer);
-	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nMatrix after decomposing:\n");
-	printMatrix(n, m, A, outputBuffer, sizeof(outputBuffer));
+	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nLower Triangular:\n");
+	printMatrix(n, m, L0, outputBuffer, sizeof(outputBuffer));
 
-	runGaussianElimination(n, m, A, outputBuffer, sizeof(outputBuffer));
+	runGaussianEliminationWithPivoting(n, m, A, outputBuffer, sizeof(outputBuffer));
 
 	len = strlen(outputBuffer);
-	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nMatrix after Gaussian elimination:\n");
+	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nUpper Triangular via Gaussian Elimination:\n");
 	
 	printMatrix(n, m, A, outputBuffer, sizeof(outputBuffer));
 
@@ -185,17 +114,27 @@ void MatrixInverse::calculateAndPrint(ProgramOutput* pProgramOutput, const Progr
 	{
 		for (i = 0; i < n; i++)
 		{
-			substLowerT(i, n, L0, Y, outputBuffer, sizeof(outputBuffer));
+			memset(unitV, 0, sizeof(float)*n);
+			unitV[i] = 1.0f;
+
+			substLowerT(n, L0, unitV,Y, outputBuffer, sizeof(outputBuffer));
 			substUpperT(n, A, Y, X, outputBuffer, sizeof(outputBuffer));
 
-			for (j = 0; j < m; j++)
+			for (j = 0; j < n; j++)
 			{
+				//int colNum = (n - 1 - i);
 				Inv[j * n + i] = X[j];
 			}
 		}
 
 		snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nInverse Matrix:\n");
 		printMatrix(n, m, Inv, outputBuffer, sizeof(outputBuffer));
+
+		len = strlen(outputBuffer);
+		snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nChecking by multiplying Original * Inv:\n");
+
+		mulMatrix(n, n, n, A, Original, Inv);
+		printMatrix(n, m, A, outputBuffer, sizeof(outputBuffer));
 	}
 	else
 	{
@@ -204,9 +143,10 @@ void MatrixInverse::calculateAndPrint(ProgramOutput* pProgramOutput, const Progr
 
 	delete[] L0;
 	delete[] X;
-	delete[] Y;
 	delete[] Diag;
 	delete[] Inv;
+	delete[] Original;
+	delete[] Y;
 
 	pProgramOutput->requestedInputType = InputType::TypesCount;
 	pProgramOutput->pOutput = outputBuffer;

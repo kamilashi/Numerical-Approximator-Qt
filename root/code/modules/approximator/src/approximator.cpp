@@ -4,6 +4,7 @@
 #include "mullers.h"
 #include "bisection.h"
 #include "falseposition.h"
+#include "gausslinear.h"
 
 Approximator::Approximator()
 {
@@ -12,11 +13,13 @@ Approximator::Approximator()
 	MullersMethod* pMullers = new MullersMethod();
 	BisectionMethod* pBisection = new BisectionMethod();
 	FalsePositionMethod* pFalsePosition = new FalsePositionMethod();
+	GaussLinear* pGaussLinear = new GaussLinear();
 	programs[0] = pDeterminant;
 	programs[1] = pInverse;
 	programs[2] = pMullers;
 	programs[3] = pBisection;
 	programs[4] = pFalsePosition;
+	programs[5] = pGaussLinear;
 }
 
 Approximator::~Approximator() 

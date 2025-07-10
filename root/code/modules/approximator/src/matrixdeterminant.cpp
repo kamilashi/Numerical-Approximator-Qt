@@ -69,7 +69,7 @@ void MatrixDeterminant::calculateAndPrint(ProgramOutput* pProgramOutput, const P
 {
 	size_t len = strlen(outputBuffer);
 
-	runGaussianElimination(n, m, A, outputBuffer, sizeof(outputBuffer));
+	runGaussianEliminationWithPivoting(n, m, A, outputBuffer, sizeof(outputBuffer));
 
 	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nMatrix after Gaussian elimination:\n");
 	

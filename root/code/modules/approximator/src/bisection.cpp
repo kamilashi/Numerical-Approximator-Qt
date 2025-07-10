@@ -57,7 +57,7 @@ void BisectionMethod::scanTermsAndPrint(ProgramOutput* pProgramOutput, const Pro
 
 	size_t len = strlen(outputBuffer);
 
-	char* signStr = scannedElementsCount == 0 ? "" : F[scannedElementsCount] < 0 ? "-" : "+";
+	char* signStr = scannedElementsCount == 0 && (F[scannedElementsCount] > 0) ? "" : F[scannedElementsCount] < 0 ? "-" : "+";
 
 	if (scannedElementsCount != degree)
 	{

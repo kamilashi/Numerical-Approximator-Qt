@@ -20,17 +20,6 @@ inline float polynomial(float x, int n, float* F)
 	return y;
 }
 
-inline float func(float x, int n, float* F)
-{
-	int i;
-	float R = 0;
-	for (i = n; i >= 0; i--)
-	{
-		R += pow(x, i) * F[n - i];
-	}
-	return R;
-}
-
 inline void printMatrix(int n, int m, float* A, char* pBuffer, int bufferSize)
 {
 	size_t len;
@@ -40,7 +29,7 @@ inline void printMatrix(int n, int m, float* A, char* pBuffer, int bufferSize)
 		for (int j = 0; j < m; j++)
 		{
 			len = strlen(pBuffer);
-			snprintf(pBuffer + len, bufferSize - len, "%f	", A[i * n + j]);
+			snprintf(pBuffer + len, bufferSize - len, "%f	", A[i * m + j]);
 		}
 
 		len = strlen(pBuffer);
@@ -57,9 +46,9 @@ inline void pivotMatrix(int startrow, int n, int m, float* A)
 
 	for (h = k; h < n; h++)
 	{
-		if (fabs(A[h * n + k]) >= fabs(max))
+		if (fabs(A[h * m + k]) >= fabs(max))
 		{
-			max = A[h * n + k];
+			max = A[h * m + k];
 			maxInd = h;
 		}
 	}
@@ -75,7 +64,7 @@ inline void pivotMatrix(int startrow, int n, int m, float* A)
 	}
 }
 
-inline void runGaussianElimination(int n, int m, float* A, char* pBuffer, int bufferSize)
+inline void runGaussianEliminationWithPivoting(int n, int m, float* A, char* pBuffer, int bufferSize)
 {
 	for (int d = 0; d < n; d++)
 	{
@@ -100,6 +89,47 @@ inline void runGaussianElimination(int n, int m, float* A, char* pBuffer, int bu
 	}
 }
 
+inline void substUpperTAugmentedA(int n, int m, float* A, float* X, char* pBuffer, int bufferSize)
+{
+	//size_t len = strlen(pBuffer);
+	//snprintf(pBuffer + len, bufferSize - len, "\nSubstitution into U: \n\n");
+	//printMatrix(n, m, A, pBuffer, bufferSize);
+
+	float S = 0;
+
+	for (int i = n - 1; i >= 0; i--)
+	{
+		S = 0;
+		for (int j = n - 1; j > i; j--)
+		{
+			S += A[i * m + j] * X[j];
+		}
+
+		float result = (A[i * m + n] - S) / A[i * m + i];
+		X[i] = result;
+	}
+}
+
+inline void substUpperT(int n, float* A, float* Y, float* X, char* pBuffer, int bufferSize)
+{
+	int m = n + 1;
+	float* A_temp = new float[n * m];
+
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			A_temp[i * m + j] = A[i * n + j];
+		}
+
+		A_temp[i * m + n] = Y[i];
+	}
+
+	substUpperTAugmentedA(n, m, A_temp, X, pBuffer, bufferSize);
+
+	delete[] A_temp;
+}
+
 inline double getMatrixDeterminant(int n, int m, float* A)
 {
 	double det = 1.0;
@@ -110,6 +140,54 @@ inline double getMatrixDeterminant(int n, int m, float* A)
 	}
 
 	return det;
+}
+
+inline void getUnitMatrix(int n, float* A)
+{
+	for (int i = 0; i < n ; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			if (i == j)
+			{
+				A[i * n + j] = 1.0f;
+			}
+			else
+			{
+				A[i * n + j] = 0.0f;
+			}
+		}
+	}
+
+}
+
+inline void copyMatrix(int n,int m, float* Ato, float* Afrom)
+{
+	double det = 1.0;
+
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			Ato[i * m + j] = Afrom[i * m + j];
+		}
+	}
+}
+
+inline void mulMatrix(int n, int p, int m, float* Ato, float* Afirst, float* Asecond)
+{
+	for (int i = 0; i < n; ++i) 
+	{
+		for (int j = 0; j < m; ++j) 
+		{
+			Ato[i * m + j] = 0.0f;
+
+			for (int k = 0; k < p; ++k) 
+			{
+				Ato[i * m + j] += Afirst[i * p + k] * Asecond[k * m + j];
+			}
+		}
+	}
 }
 
 #endif
