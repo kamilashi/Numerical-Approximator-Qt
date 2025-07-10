@@ -5,26 +5,30 @@
 #include "bisection.h"
 #include "falseposition.h"
 #include "gausslinear.h"
+#include "maclaurincosine.h"
 
 Approximator::Approximator()
 {
+	MaclaurinCosine* pCosine = new MaclaurinCosine();
 	MatrixDeterminant* pDeterminant = new MatrixDeterminant();
 	MatrixInverse* pInverse = new MatrixInverse();
 	MullersMethod* pMullers = new MullersMethod();
 	BisectionMethod* pBisection = new BisectionMethod();
 	FalsePositionMethod* pFalsePosition = new FalsePositionMethod();
 	GaussLinear* pGaussLinear = new GaussLinear();
-	programs[0] = pDeterminant;
-	programs[1] = pInverse;
-	programs[2] = pMullers;
-	programs[3] = pBisection;
-	programs[4] = pFalsePosition;
-	programs[5] = pGaussLinear;
+
+	programs[0] = pCosine;
+	programs[1] = pDeterminant;
+	programs[2] = pInverse;
+	programs[3] = pMullers;
+	programs[4] = pBisection;
+	programs[5] = pFalsePosition;
+	programs[6] = pGaussLinear;
 }
 
 Approximator::~Approximator() 
 {
-	for (int i = 0; i < 4; ++i)
+	for (int i = 0; i < programCount; ++i)
 	{
 		delete programs[i];  
 		programs[i] = nullptr;

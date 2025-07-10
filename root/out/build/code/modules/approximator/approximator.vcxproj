@@ -296,6 +296,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClCompile Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\src\bisection.cpp" />
     <ClCompile Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\src\falseposition.cpp" />
     <ClCompile Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\src\gausslinear.cpp" />
+    <ClCompile Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\src\maclaurincosine.cpp" />
     <ClCompile Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\src\matrixdeterminant.cpp" />
     <ClCompile Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\src\matrixinverse.cpp" />
     <ClCompile Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\src\mullers.cpp" />
@@ -304,6 +305,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ClInclude Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\include\falseposition.h" />
     <ClInclude Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\include\gausslinear.h" />
     <ClInclude Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\include\helpers.h" />
+    <ClInclude Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\include\maclaurincosine.h" />
     <ClInclude Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\include\matrixdeterminant.h" />
     <ClInclude Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\include\matrixinverse.h" />
     <ClInclude Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\include\mullers.h" />

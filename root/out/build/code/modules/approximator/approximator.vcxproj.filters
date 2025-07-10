@@ -13,6 +13,9 @@
     <ClCompile Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\src\gausslinear.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\src\maclaurincosine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\src\matrixdeterminant.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -37,6 +40,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\include\helpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\include\maclaurincosine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\MINE\PROJECTS\Numerical-Approximator-Qt\root\code\modules\approximator\include\matrixdeterminant.h">

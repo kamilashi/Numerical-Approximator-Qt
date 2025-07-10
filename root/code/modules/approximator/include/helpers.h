@@ -1,6 +1,8 @@
 #ifndef HELPERFUNCTIONS_H
 #define HELPERFUNCTIONS_H
 
+#define PI 3.14159265358979323846 
+
 #include <cstdio>
 #include <cstring>
 #include <cmath>
@@ -91,10 +93,6 @@ inline void runGaussianEliminationWithPivoting(int n, int m, float* A, char* pBu
 
 inline void substUpperTAugmentedA(int n, int m, float* A, float* X, char* pBuffer, int bufferSize)
 {
-	//size_t len = strlen(pBuffer);
-	//snprintf(pBuffer + len, bufferSize - len, "\nSubstitution into U: \n\n");
-	//printMatrix(n, m, A, pBuffer, bufferSize);
-
 	float S = 0;
 
 	for (int i = n - 1; i >= 0; i--)
@@ -140,6 +138,12 @@ inline double getMatrixDeterminant(int n, int m, float* A)
 	}
 
 	return det;
+}
+
+inline float normalizeAngle(float radians)
+{
+	float normalized = fmod(radians, 2 * PI);
+	return normalized;
 }
 
 inline void getUnitMatrix(int n, float* A)
