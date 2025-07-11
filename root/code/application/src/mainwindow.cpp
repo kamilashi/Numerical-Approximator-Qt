@@ -164,7 +164,8 @@ void MainWindow::onInputSubmitted()
 	}
 	else
 	{
-		pOutput->setText(savedOutput + "\n\n" + "Invalid input - " + error);
+		QString outputPre = savedOutput.length() == 0 ? "" : savedOutput + "\n\n";
+		pOutput->setText(outputPre + "Invalid input - " + error);
 	}
 
 	pInput->clear();
@@ -251,10 +252,12 @@ void MainWindow::advanceSelectedProgram(ProgramOutput* pProgramOutput, const Pro
 {
 	pApproximator->advanceProgram(pSelectedProgram->index, pProgramOutput, input);
 
-	pOutput->setText(savedOutput + "\n" + pProgramOutput->pOutput);
+	QString outputString = savedOutput.length() == 0 ? pProgramOutput->pOutput : savedOutput + "\n" + pProgramOutput->pOutput;
+
+	pOutput->setText(outputString);
 
 	if (!pProgramOutput->outputIsError)
 	{
-		savedOutput = savedOutput + "\n" + pProgramOutput->pOutput;
+		savedOutput = outputString;
 	}
 }
