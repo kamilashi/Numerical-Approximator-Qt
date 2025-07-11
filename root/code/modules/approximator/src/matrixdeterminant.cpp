@@ -18,33 +18,6 @@ MatrixDeterminant::~MatrixDeterminant()
 	reset(); 
 }
 
-void pivot(int startrow, int n, int m, float* A)
-{
-	int k = startrow, h;
-	int maxInd = k;
-	float max = A[k * m + k];
-	float swap;
-
-	for (h = k; h < n; h++)
-	{
-		if (fabs(A[h * m + k]) >= fabs(max))
-		{
-			max = A[h * m + k];
-			maxInd = h;
-		}
-	}
-
-	if (maxInd != k)
-	{
-		for (h = 0; h < m; h++)
-		{
-			swap = A[k * m + h];
-			A[k * m + h] = A[maxInd * m + h];
-			A[maxInd * m + h] = swap;
-		}
-	}
-}
-
 void MatrixDeterminant::scanAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	A[scannedElementsCount] = input.inputFloat;
@@ -82,19 +55,6 @@ void MatrixDeterminant::calculateAndPrint(ProgramOutput* pProgramOutput, const P
 	pProgramOutput->requestedInputType = InputType::TypesCount;
 	pProgramOutput->pOutput = outputBuffer;
 	pProgramOutput->outputIsError = false;
-}
-
-void MatrixDeterminant::reset()
-{
-	currentStage = 0;
-	scannedElementsCount = 0;
-	n = 0, m = 0;
-
-	if (A != nullptr)
-	{
-		delete[] A;
-		A = nullptr;
-	}
 }
 
 void MatrixDeterminant::runStage1(ProgramOutput* pProgramOutput)
@@ -140,6 +100,19 @@ void MatrixDeterminant::runStage3(ProgramOutput* pProgramOutput, const ProgramIn
 	}
 }
 
+void MatrixDeterminant::reset()
+{
+	currentStage = 0;
+	scannedElementsCount = 0;
+	n = 0, m = 0;
+
+	if (A != nullptr)
+	{
+		delete[] A;
+		A = nullptr;
+	}
+}
+
 void MatrixDeterminant::start(ProgramOutput* pProgramOutput)
 {
 	reset();
@@ -166,4 +139,36 @@ void MatrixDeterminant::proceed(ProgramOutput* pProgramOutput, const ProgramInpu
 		runStage3(pProgramOutput, input);
 		break;
 	}
+}
+
+void MatrixDeterminant::getCode(ProgramOutput* pProgramOutput)
+{
+	reset();
+	memset(outputBuffer, 0, sizeof(outputBuffer));
+
+	snprintf(outputBuffer, sizeof(outputBuffer),
+		R"(inline double getMatrixDeterminant(int n, int m, float* A)
+{
+	double det = 1.0;
+
+	for (int i = 0, j = 0; i < n && j < m; i++, j++)
+	{
+		det *= A[i * n + j];
+	}
+
+	return det;
+}
+
+... in main: ...
+
+
+runGaussianEliminationWithPivoting(n, m, A, outputBuffer, sizeof(outputBuffer)); - see the code for Linear Equation System solver.
+
+double det = getMatrixDeterminant(n, m, A);
+
+)");
+
+	pProgramOutput->pOutput = outputBuffer;
+	pProgramOutput->outputIsError = true;
+	pProgramOutput->requestedInputType = InputType::TypesCount;
 }

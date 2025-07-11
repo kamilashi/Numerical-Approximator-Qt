@@ -9,9 +9,10 @@ public:
 	MatrixDeterminant();
 	~MatrixDeterminant() override;
 
+	void reset() override;
 	void start(ProgramOutput* pProgramOutput) override;
 	void proceed(ProgramOutput* pProgramOutput, const ProgramInput& input) override;
-	void reset() override;
+	void getCode(ProgramOutput* pProgramOutput) override;
 
 private:
 	void scanAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input);

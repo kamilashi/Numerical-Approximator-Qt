@@ -72,10 +72,11 @@ public:
 	void virtual start(ProgramOutput* pProgramOutput) = 0;
 	void virtual proceed(ProgramOutput* pProgramOutput, const ProgramInput& input) = 0;
 	void virtual reset() = 0;
+	void virtual getCode(ProgramOutput* pProgramOutput) = 0;
 protected:
 	int currentStage;
 	int stageCount;
-	char outputBuffer[2048];
+	char outputBuffer[4096];
 };
 
 #endif

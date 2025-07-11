@@ -106,20 +106,6 @@ void BisectionMethod::calculateAndPrint(ProgramOutput* pProgramOutput, const Pro
 	pProgramOutput->outputIsError = false;
 }
 
-void BisectionMethod::reset()
-{
-	currentStage = 0;
-	scannedElementsCount = 0;
-	degree = 0;
-	termCount = 0;
-
-	if (F != nullptr)
-	{
-		delete[] F;
-		F = nullptr;
-	}
-}
-
 void BisectionMethod::runStage1(ProgramOutput* pProgramOutput)
 {
 	snprintf(outputBuffer, sizeof(outputBuffer), "Welcome to the equation solver via the Bisection method!\n\n");
@@ -190,6 +176,20 @@ void BisectionMethod::runStage5(ProgramOutput* pProgramOutput, const ProgramInpu
 	}
 }
 
+void BisectionMethod::reset()
+{
+	currentStage = 0;
+	scannedElementsCount = 0;
+	degree = 0;
+	termCount = 0;
+
+	if (F != nullptr)
+	{
+		delete[] F;
+		F = nullptr;
+	}
+}
+
 void BisectionMethod::start(ProgramOutput* pProgramOutput)
 {
 	reset();
@@ -222,4 +222,48 @@ void BisectionMethod::proceed(ProgramOutput* pProgramOutput, const ProgramInput&
 		runStage5(pProgramOutput, input);
 		break;
 	}
+}
+
+void BisectionMethod::getCode(ProgramOutput* pProgramOutput)
+{
+	reset();
+	memset(outputBuffer, 0, sizeof(outputBuffer));
+
+	snprintf(outputBuffer, sizeof(outputBuffer),
+		R"(float runBisection(float xl, float xr, int iter,int maxIter, int termCount, float* F, char* pBuffer, int bufferSize)
+{
+	float xm = (xl + xr) / 2.0f;
+
+	if (iter < maxIter)
+	{
+		size_t len = strlen(pBuffer);
+		snprintf(pBuffer + len, bufferSize - len, "\nIteration %%d: xl = %%f, xr = %%f \n", iter, xl, xr);
+
+		float ym = polynomial(xm, termCount, F);
+		float yl = polynomial(xl, termCount, F);
+		float yr = polynomial(xr, termCount, F);
+		iter++;
+
+		if (yl * ym < 0)
+		{
+			return runBisection(xl, xm, iter, maxIter, termCount, F, pBuffer, bufferSize);
+		}
+
+		if (ym * yr < 0)
+		{
+			return runBisection(xm, xr, iter, maxIter, termCount, F, pBuffer, bufferSize);
+		}
+	}
+	else
+	{
+		size_t len = strlen(pBuffer);
+		snprintf(pBuffer + len, bufferSize - len, "\nIteration limit of %%d reached, returning midpoint.\n", maxIter);
+	}
+
+	return xm;
+})");
+
+	pProgramOutput->pOutput = outputBuffer;
+	pProgramOutput->outputIsError = true;
+	pProgramOutput->requestedInputType = InputType::TypesCount;
 }

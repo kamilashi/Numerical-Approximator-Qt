@@ -115,20 +115,6 @@ void FalsePositionMethod::calculateAndPrint(ProgramOutput* pProgramOutput, const
 	pProgramOutput->outputIsError = false;
 }
 
-void FalsePositionMethod::reset()
-{
-	currentStage = 0;
-	scannedElementsCount = 0;
-	degree = 0;
-	termCount = 0;
-
-	if (F != nullptr)
-	{
-		delete[] F;
-		F = nullptr;
-	}
-}
-
 void FalsePositionMethod::runStage1(ProgramOutput* pProgramOutput)
 {
 	snprintf(outputBuffer, sizeof(outputBuffer), "Welcome to the equation solver via the False Position method!\n\n");
@@ -199,6 +185,20 @@ void FalsePositionMethod::runStage5(ProgramOutput* pProgramOutput, const Program
 	}
 }
 
+void FalsePositionMethod::reset()
+{
+	currentStage = 0;
+	scannedElementsCount = 0;
+	degree = 0;
+	termCount = 0;
+
+	if (F != nullptr)
+	{
+		delete[] F;
+		F = nullptr;
+	}
+}
+
 void FalsePositionMethod::start(ProgramOutput* pProgramOutput)
 {
 	reset();
@@ -231,4 +231,57 @@ void FalsePositionMethod::proceed(ProgramOutput* pProgramOutput, const ProgramIn
 		runStage5(pProgramOutput, input);
 		break;
 	}
+}
+
+void FalsePositionMethod::getCode(ProgramOutput* pProgramOutput)
+{
+	reset();
+	memset(outputBuffer, 0, sizeof(outputBuffer));
+
+	snprintf(outputBuffer, sizeof(outputBuffer),
+		R"(float runFalsePosition(float xl, float xr, int iter,int maxIter, int termCount, float* F, char* pBuffer, int bufferSize)
+{
+	const float zeroError = 0.0001f;
+
+	if (iter < maxIter)
+	{
+		float yl = polynomial(xl, termCount, F);
+		float yr = polynomial(xr, termCount, F);
+
+		if (fabs(yl - yr) < zeroError)
+		{
+			size_t len = strlen(pBuffer);
+			snprintf(pBuffer + len, bufferSize - len, "\nDenominator too small at iteration %%d, returning midpoint.\n", iter);
+			return (xl + xr) / 2.0f;
+		}
+
+		float xm = xr - (yr * (xl - xr)) / (yl - yr);
+		iter++;
+
+		float ym = polynomial(xm, termCount, F);
+
+		size_t len = strlen(pBuffer);
+		snprintf(pBuffer + len, bufferSize - len, "\nIteration %%d: xm = %%f \n", iter, xm);
+
+		if (yl * ym < 0)
+		{
+			return runFalsePosition(xl, xm, iter, maxIter, termCount, F, pBuffer, bufferSize);
+		}
+		
+		if (ym * yr < 0)
+		{
+			return runFalsePosition(xm, xr, iter, maxIter, termCount, F, pBuffer, bufferSize);
+		}
+		
+		return xm;
+	}
+
+	size_t len = strlen(pBuffer);
+	snprintf(pBuffer + len, bufferSize - len, "\nIteration limit of %%d reached, returning midpoint.\n", maxIter);
+	return (xl + xr) / 2.0f;
+})");
+
+	pProgramOutput->pOutput = outputBuffer;
+	pProgramOutput->outputIsError = true;
+	pProgramOutput->requestedInputType = InputType::TypesCount;
 }

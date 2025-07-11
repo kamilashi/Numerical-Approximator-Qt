@@ -35,6 +35,11 @@ Approximator::~Approximator()
 	}
 }
 
+void Approximator::getProgramCode(int programIdx, ProgramOutput* pProgramOutput)
+{
+	programs[programIdx]->getCode(pProgramOutput);
+}
+
 void Approximator::startProgram(int programIdx, ProgramOutput* pProgramOutput)
 {
 	programs[programIdx]->start(pProgramOutput);

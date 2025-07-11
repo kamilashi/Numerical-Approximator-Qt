@@ -128,20 +128,6 @@ void MullersMethod::calculateAndPrint(ProgramOutput* pProgramOutput, const Progr
 	pProgramOutput->outputIsError = false;
 }
 
-void MullersMethod::reset()
-{
-	currentStage = 0;
-	scannedElementsCount = 0;
-	degree = 0;
-	termCount = 0;
-
-	if (F != nullptr)
-	{
-		delete[] F;
-		F = nullptr;
-	}
-}
-
 void MullersMethod::runStage1(ProgramOutput* pProgramOutput)
 {
 	snprintf(outputBuffer, sizeof(outputBuffer), "Welcome to the equation solver via Muller's method!\n\n");
@@ -212,6 +198,20 @@ void MullersMethod::runStage5(ProgramOutput* pProgramOutput, const ProgramInput&
 	}
 }
 
+void MullersMethod::reset()
+{
+	currentStage = 0;
+	scannedElementsCount = 0;
+	degree = 0;
+	termCount = 0;
+
+	if (F != nullptr)
+	{
+		delete[] F;
+		F = nullptr;
+	}
+}
+
 void MullersMethod::start(ProgramOutput* pProgramOutput)
 {
 	reset();
@@ -244,4 +244,71 @@ void MullersMethod::proceed(ProgramOutput* pProgramOutput, const ProgramInput& i
 		runStage5(pProgramOutput, input);
 		break;
 	}
+}
+
+void MullersMethod::getCode(ProgramOutput* pProgramOutput)
+{
+	reset();
+	memset(outputBuffer, 0, sizeof(outputBuffer));
+
+	snprintf(outputBuffer, sizeof(outputBuffer),
+		R"(float runMullersMethod(float g0, float g1, float g2, int n, float* F, char* pBuffer, int bufferSize)
+{
+	float h0, h1;
+	float d0, d1;
+	float a, b, c;
+	float g3;
+	float discriminant;
+	float error;
+	const float errorMargin = 0.001f;
+
+	h0 = g1 - g0;
+	h1 = g2 - g1;
+	d0 = (polynomial(g1, n, F) - polynomial(g0, n, F)) / (g1 - g0);
+	d1 = (polynomial(g2, n, F) - polynomial(g1, n, F)) / (g2 - g1);
+	a = (d1 - d0) / (h1 + h0);
+	b = a * h1 + d1;
+	c = polynomial(g2, n, F);
+
+	size_t len = strlen(pBuffer);
+	snprintf(pBuffer + len, bufferSize - len, "a = %%f  b = %%f  c = %%f  \n\n", a, b, c);
+
+	float discArg = b * b - 4 * a * c;
+
+	len = strlen(pBuffer);
+	if (discArg < 0)
+	{
+		snprintf(pBuffer + len, bufferSize - len, "The equation has no real roots!\n\n");
+	}
+	else
+	{
+		discriminant = sqrt(b * b - 4 * a * c);
+		snprintf(pBuffer + len, bufferSize - len, "Discriminant = %%f\n\n", discriminant);
+
+		if (fabs(b + discriminant) < fabs(b - discriminant))
+		{
+			g3 = g2 + ((-2) * c) / (b - discriminant);
+		}
+		else
+		{
+			g3 = g2 + ((-2) * c) / (b + discriminant);
+		}
+
+		error = fabs((g3 - g2) / g3);
+		if (error > errorMargin)
+		{
+			len = strlen(pBuffer);
+			snprintf(pBuffer + len, bufferSize - len, "Temp. guess 3 = %%f\n\n", g3);
+			return runMullersMethod(g1, g2, g3, n, F, pBuffer, bufferSize);
+		}
+
+		return g3;
+	}
+
+	return 0;
+})");
+
+	pProgramOutput->pOutput = outputBuffer;
+	pProgramOutput->outputIsError = true;
+	pProgramOutput->requestedInputType = InputType::TypesCount;
 }

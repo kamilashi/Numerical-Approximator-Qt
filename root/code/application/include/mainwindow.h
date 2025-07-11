@@ -36,7 +36,7 @@ private:
 	void cacheSelectedProgram(QAction* triggeredAction);
 	void startSelectedProgram(ProgramOutput* pProgramOutput);
 
-	void showCode();
+	void showProgramCode();
 	void runProgram();
 	void advanceSelectedProgram(ProgramOutput* pProgramOutput, const ProgramInput& input);
 };

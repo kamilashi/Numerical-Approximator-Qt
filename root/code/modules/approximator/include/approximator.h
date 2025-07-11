@@ -9,6 +9,7 @@ public:
 	Approximator();
 	~Approximator();
 
+	void getProgramCode(int programIdx, ProgramOutput* pProgramOutput);
 	void startProgram(int programIdx, ProgramOutput* pProgramOutput);
 	void advanceProgram(int programIdx, ProgramOutput* pProgramOutput, const ProgramInput& input);
 	void resetProgram(int programIdx);

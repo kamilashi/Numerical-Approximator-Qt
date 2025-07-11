@@ -75,7 +75,7 @@ bool runPLUDecomposition(float* A, float* L, float* U, int* P, int n)
 	return true;
 }
 
-void substLowerT(int n, float* L, float* b, float* y, char* buf, int bufsize)
+void substLowerT(int n, float* L, float* b, float* y)
 {
 	for (int i = 0; i < n; i++)
 	{
@@ -149,8 +149,8 @@ void MatrixInverse::calculateAndPrint(ProgramOutput* pProgramOutput, const Progr
 		memset(unitV, 0, sizeof(float) * n);
 		unitV[i] = 1.0f;
 
-		substLowerT(n, L0, unitV, Y, outputBuffer, sizeof(outputBuffer));
-		substUpperT(n, U0, Y, X, outputBuffer, sizeof(outputBuffer));
+		substLowerT(n, L0, unitV, Y);
+		substUpperT(n, U0, Y, X);
 
 		for (int j = 0; j < n; j++)
 		{
@@ -175,19 +175,6 @@ void MatrixInverse::calculateAndPrint(ProgramOutput* pProgramOutput, const Progr
 	delete[] Inv;
 	delete[] Original;
 	delete[] Y;
-}
-
-void MatrixInverse::reset()
-{
-	currentStage = 0;
-	scannedElementsCount = 0;
-	n = 0, m = 0;
-
-	if (A != nullptr)
-	{
-		delete[] A;
-		A = nullptr;
-	}
 }
 
 void MatrixInverse::runStage1(ProgramOutput* pProgramOutput)
@@ -233,6 +220,19 @@ void MatrixInverse::runStage3(ProgramOutput* pProgramOutput, const ProgramInput&
 	}
 }
 
+void MatrixInverse::reset()
+{
+	currentStage = 0;
+	scannedElementsCount = 0;
+	n = 0, m = 0;
+
+	if (A != nullptr)
+	{
+		delete[] A;
+		A = nullptr;
+	}
+}
+
 void MatrixInverse::start(ProgramOutput* pProgramOutput)
 {
 	reset();
@@ -259,4 +259,139 @@ void MatrixInverse::proceed(ProgramOutput* pProgramOutput, const ProgramInput& i
 		runStage3(pProgramOutput, input);
 		break;
 	}
+}
+
+void MatrixInverse::getCode(ProgramOutput* pProgramOutput)
+{
+	reset();
+	memset(outputBuffer, 0, sizeof(outputBuffer));
+
+	snprintf(outputBuffer, sizeof(outputBuffer),
+		R"(bool runPLUDecomposition(float* A, float* L, float* U, int* P, int n)
+{
+	copyMatrix(n, n, U, A);
+	memset(L, 0, n * n * sizeof(float));
+
+	for (int i = 0; i < n; ++i)
+	{
+		P[i] = i;
+	}
+
+	for (int k = 0; k < n; ++k)
+	{
+		float maxVal = 0.0f;
+		int pivotRow = k;
+		for (int i = k; i < n; ++i)
+		{
+			float val = fabs(U[i * n + k]);
+			if (val > maxVal)
+			{
+				maxVal = val;
+				pivotRow = i;
+			}
+		}
+
+		if (maxVal < 1e-8f) return false;
+
+		if (pivotRow != k) 
+		{
+			for (int j = 0; j < n; ++j)
+			{
+				swap(&U[k * n + j], &U[pivotRow * n + j]);
+			}
+
+			swap(&P[k], &P[pivotRow]);
+
+			for (int j = 0; j < k; ++j)
+			{
+				swap(&L[k * n + j], &L[pivotRow * n + j]);
+			}
+		}
+
+		for (int i = k + 1; i < n; ++i)
+		{
+			float factor = U[i * n + k] / U[k * n + k];
+			L[i * n + k] = factor;
+			for (int j = k; j < n; ++j)
+			{
+				U[i * n + j] -= factor * U[k * n + j];
+			}
+		}
+
+		L[k * n + k] = 1.0f;
+	}
+
+	return true;
+}
+
+void substLowerT(int n, float* L, float* b, float* y)
+{
+	for (int i = 0; i < n; i++)
+	{
+		float S = 0.0f;
+		for (int j = 0; j < i; j++)
+		{
+			S += L[i * n + j] * y[j];
+		}
+
+		y[i] = (b[i] - S) / L[i * n + i];
+	}
+}
+
+inline void substUpperT(int n, float* A, float* Y, float* X)
+{
+	int m = n + 1;
+	float* A_temp = new float[n * m];
+
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			A_temp[i * m + j] = A[i * n + j];
+		}
+
+		A_temp[i * m + n] = Y[i];
+	}
+
+	substUpperTAugmentedA(n, m, A_temp, X); - see the code for Linear Equation System solver.
+
+	delete[] A_temp;
+}
+
+... in main: ...
+
+float* L0 = lower triangular matrix of size n x n;
+float* U0 = upper triangular matrix of size n x n;
+float* A = original matrix of size n x n;
+float* Inv = inverse matrix of size n x n;
+int* P = pivot permutations of size n;
+float* X = output row of size n;
+float* unitV = identity row of size n;
+float* Y = right-hand-side row of size n;
+
+double det = getMatrixDeterminant(n, m, A); -- see the code for the matrix determinant
+if (det == 0.0f || !runPLUDecomposition(A, L0, U0, P, n))
+{
+	return;
+}
+	
+for (int i = 0; i < n; i++)
+{
+	memset(unitV, 0, sizeof(float) * n);
+	unitV[i] = 1.0f;
+
+	substLowerT(n, L0, unitV, Y);
+	substUpperT(n, U0, Y, X);
+
+	for (int j = 0; j < n; j++)
+	{
+		Inv[j * n + P[i]] = X[j];
+	}
+}
+
+)");
+
+	pProgramOutput->pOutput = outputBuffer;
+	pProgramOutput->outputIsError = true;
+	pProgramOutput->requestedInputType = InputType::TypesCount;
 }

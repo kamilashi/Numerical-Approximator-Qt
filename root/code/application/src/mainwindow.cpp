@@ -177,7 +177,7 @@ void MainWindow::createMenuActions(QMenu* pMenu, int connectedProgramIndex)
 	pMenu->addAction(showCodeAct);
 	pMenu->addAction(runProgramAct);
 
-	connect(showCodeAct, &QAction::triggered, this, &MainWindow::showCode);
+	connect(showCodeAct, &QAction::triggered, this, &MainWindow::showProgramCode);
 	connect(runProgramAct, &QAction::triggered, this, &MainWindow::runProgram);
 }
 
@@ -212,21 +212,28 @@ void MainWindow::startSelectedProgram(ProgramOutput* pProgramOutput)
 
 	pApproximator->startProgram(pSelectedProgram->index, pProgramOutput);
 
-	pOutput->setText(savedOutput + "\n" + pProgramOutput->pOutput);
+	QString outputString = savedOutput.length() == 0 ? pProgramOutput->pOutput : savedOutput + "\n" + pProgramOutput->pOutput;
+
+	pOutput->setText(outputString);
 
 	if (!pProgramOutput->outputIsError)
 	{
-		savedOutput = savedOutput + "\n" + pProgramOutput->pOutput;
+		savedOutput = outputString;
 	}
 }
 
-void MainWindow::showCode()
+void MainWindow::showProgramCode()
 {
+	pOutput->setText("Here will be program code.");
+
 	AppMenuItem* pAction = qobject_cast<AppMenuItem*>(sender());
 	if (pAction)
 	{
 		cacheSelectedProgram(pAction);
-		pOutput->setText("Here Should Be Code");
+
+		pApproximator->getProgramCode(pSelectedProgram->index, &programOutput);
+
+		pOutput->setText(programOutput.pOutput);
 	}
 }
 

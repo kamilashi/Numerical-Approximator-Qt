@@ -8,9 +8,17 @@
 #include <cmath>
 
 
+template<class T>
+inline void swap(T* left, T* right)
+{
+	T temp = *left;
+	*left = *right;
+	*right = temp;
+}
+
 inline float polynomial(float x, int n, float* F)
 {
-	float y = 0;
+	float y = 0.0f;
 	int i, power;
 
 	for (i = 0; i < n; i++)
@@ -44,7 +52,6 @@ inline void pivotMatrix(int startrow, int n, int m, float* A)
 	int k = startrow, h;
 	int maxInd = k;
 	float max = A[k * m + k];
-	float swap;
 
 	for (h = k; h < n; h++)
 	{
@@ -59,9 +66,7 @@ inline void pivotMatrix(int startrow, int n, int m, float* A)
 	{
 		for (h = 0; h < m; h++)
 		{
-			swap = A[k * m + h];
-			A[k * m + h] = A[maxInd * m + h];
-			A[maxInd * m + h] = swap;
+			swap(&A[k * m + h], &A[maxInd * m + h]);
 		}
 	}
 }
@@ -91,7 +96,7 @@ inline void runGaussianEliminationWithPivoting(int n, int m, float* A, char* pBu
 	}
 }
 
-inline void substUpperTAugmentedA(int n, int m, float* A, float* X, char* pBuffer, int bufferSize)
+inline void substUpperTAugmentedA(int n, int m, float* A, float* X)
 {
 	float S = 0;
 
@@ -108,7 +113,7 @@ inline void substUpperTAugmentedA(int n, int m, float* A, float* X, char* pBuffe
 	}
 }
 
-inline void substUpperT(int n, float* A, float* Y, float* X, char* pBuffer, int bufferSize)
+inline void substUpperT(int n, float* A, float* Y, float* X)
 {
 	int m = n + 1;
 	float* A_temp = new float[n * m];
@@ -123,7 +128,7 @@ inline void substUpperT(int n, float* A, float* Y, float* X, char* pBuffer, int 
 		A_temp[i * m + n] = Y[i];
 	}
 
-	substUpperTAugmentedA(n, m, A_temp, X, pBuffer, bufferSize);
+	substUpperTAugmentedA(n, m, A_temp, X);
 
 	delete[] A_temp;
 }
@@ -192,14 +197,6 @@ inline void mulMatrix(int n, int p, int m, float* Ato, float* Afirst, float* Ase
 			}
 		}
 	}
-}
-
-template<class T>
-inline void swap(T* left, T* right)
-{
-	T temp = *left;
-	*left = *right;
-	*right = temp;
 }
 
 #endif

@@ -56,7 +56,7 @@ void GaussLinear::calculateAndPrint(ProgramOutput* pProgramOutput, const Program
 
 	printMatrix(degree, termCount, A, outputBuffer, sizeof(outputBuffer));
 
-	substUpperTAugmentedA(degree, termCount, A, X, outputBuffer, sizeof(outputBuffer));
+	substUpperTAugmentedA(degree, termCount, A, X);
 
 	len = strlen(outputBuffer);
 	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nThe roots are: \n");
@@ -73,23 +73,9 @@ void GaussLinear::calculateAndPrint(ProgramOutput* pProgramOutput, const Program
 	delete[] X;
 }
 
-void GaussLinear::reset()
-{
-	currentStage = 0;
-	scannedElementsCount = 0;
-	degree = 0;
-	termCount = 0;
-
-	if (A != nullptr)
-	{
-		delete[] A;
-		A = nullptr;
-	}
-}
-
 void GaussLinear::runStage1(ProgramOutput* pProgramOutput)
 {
-	snprintf(outputBuffer, sizeof(outputBuffer), "Welcome to the linear equation system solver via the Gauss elimination with pivoting!\n\n");
+	snprintf(outputBuffer, sizeof(outputBuffer), "Welcome to the linear equation system solver via Gauss elimination with pivoting!\n\n");
 	size_t len = strlen(outputBuffer);
 	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "Enter the number of unknowns:	");
 
@@ -129,6 +115,20 @@ void GaussLinear::runStage3(ProgramOutput* pProgramOutput, const ProgramInput& i
 	}
 }
 
+void GaussLinear::reset()
+{
+	currentStage = 0;
+	scannedElementsCount = 0;
+	degree = 0;
+	termCount = 0;
+
+	if (A != nullptr)
+	{
+		delete[] A;
+		A = nullptr;
+	}
+}
+
 void GaussLinear::start(ProgramOutput* pProgramOutput)
 {
 	reset();
@@ -155,4 +155,91 @@ void GaussLinear::proceed(ProgramOutput* pProgramOutput, const ProgramInput& inp
 		runStage3(pProgramOutput, input);
 		break;
 	}
+}
+
+void GaussLinear::getCode(ProgramOutput* pProgramOutput)
+{
+	reset();
+	memset(outputBuffer, 0, sizeof(outputBuffer));
+
+	snprintf(outputBuffer, sizeof(outputBuffer),
+		R"(inline void pivotMatrix(int startrow, int n, int m, float* A)
+{
+	int k = startrow, h;
+	int maxInd = k;
+	float max = A[k * m + k];
+
+	for (h = k; h < n; h++)
+	{
+		if (fabs(A[h * m + k]) >= fabs(max))
+		{
+			max = A[h * m + k];
+			maxInd = h;
+		}
+	}
+
+	if (maxInd != k)
+	{
+		for (h = 0; h < m; h++)
+		{
+			swap(&A[k * m + h], &A[maxInd * m + h]);
+		}
+	}
+}
+
+inline void runGaussianEliminationWithPivoting(int n, int m, float* A, char* pBuffer, int bufferSize)
+{
+	for (int d = 0; d < n; d++)
+	{
+		pivotMatrix(d, n, m, A);
+
+		float pivotVal = A[d * m + d];
+		if (fabs(pivotVal) < 1e-6f)
+		{
+			size_t len = strlen(pBuffer);
+			snprintf(pBuffer + len, bufferSize - len, "\nZero or near-zero pivot at row %%d! \n", d);
+			return;
+		}
+
+		for (int i = d + 1; i < n; i++)
+		{
+			float factor = A[i * m + d] / pivotVal;
+			for (int j = d; j < m; j++)
+			{
+				A[i * m + j] -= factor * A[d * m + j];
+			}
+		}
+	}
+}
+
+inline void substUpperTAugmentedA(int n, int m, float* A, float* X)
+{
+	float S = 0;
+
+	for (int i = n - 1; i >= 0; i--)
+	{
+		S = 0;
+		for (int j = n - 1; j > i; j--)
+		{
+			S += A[i * m + j] * X[j];
+		}
+
+		float result = (A[i * m + n] - S) / A[i * m + i];
+		X[i] = result;
+	}
+}
+
+.... in main: ...
+
+A is the coefficients matrix augmented by the right-hand-side.
+X is the array of unknowns / roots.
+
+runGaussianEliminationWithPivoting(degree, termCount, A, outputBuffer, sizeof(outputBuffer));
+
+substUpperTAugmentedA(degree, termCount, A, Roots, outputBuffer, sizeof(outputBuffer));
+)");
+
+	pProgramOutput->pOutput = outputBuffer;
+	pProgramOutput->outputIsError = true;
+	pProgramOutput->requestedInputType = InputType::TypesCount;
 }

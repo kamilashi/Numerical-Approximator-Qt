@@ -90,12 +90,6 @@ void MaclaurinCosine::calculateAndPrint(ProgramOutput* pProgramOutput, const Pro
 	pProgramOutput->outputIsError = false;
 }
 
-void MaclaurinCosine::reset()
-{
-	currentStage = 0;
-	x = 0;
-}
-
 void MaclaurinCosine::runStage1(ProgramOutput* pProgramOutput)
 {
 	snprintf(outputBuffer, sizeof(outputBuffer), "Welcome to the cosine calculator using the Maclaurin series!\n\n");
@@ -130,6 +124,12 @@ void MaclaurinCosine::runStage3(ProgramOutput* pProgramOutput, const ProgramInpu
 	reset();
 }
 
+void MaclaurinCosine::reset()
+{
+	currentStage = 0;
+	x = 0;
+}
+
 void MaclaurinCosine::start(ProgramOutput* pProgramOutput)
 {
 	reset();
@@ -156,4 +156,60 @@ void MaclaurinCosine::proceed(ProgramOutput* pProgramOutput, const ProgramInput&
 		runStage3(pProgramOutput, input);
 		break;
 	}
+}
+
+void MaclaurinCosine::getCode(ProgramOutput* pProgramOutput)
+{
+	reset();
+	memset(outputBuffer, 0, sizeof(outputBuffer));
+
+	snprintf(outputBuffer, sizeof(outputBuffer),
+		R"(int factorial(int x) 
+{
+	if (x == 0)
+	{
+		return 1;
+	}
+
+	int ans = 1;
+
+	for (int i = 1; i <= x; i++) 
+	{
+		ans *= i;
+	}
+
+	return ans;
+}
+
+
+float getCosine(float x, int maxIterationCount)
+{
+	const float error = 0.01;
+	float cos = 0;
+	float term;
+
+	x = normalizeAngle(x);
+
+	for (int i = 0; i < maxIterationCount; i++)
+	{
+		int power = 2 * i;
+		float numerator = pow(x, power);
+		float denominator = factorial(power);
+
+		term = pow(-1, i) * (numerator / denominator);
+
+		cos += term;
+
+		if (fabs(term) < error)
+		{
+			break;
+		}
+	}
+
+	return cos;
+})");
+
+	pProgramOutput->pOutput = outputBuffer;
+	pProgramOutput->outputIsError = true;
+	pProgramOutput->requestedInputType = InputType::TypesCount;
 }

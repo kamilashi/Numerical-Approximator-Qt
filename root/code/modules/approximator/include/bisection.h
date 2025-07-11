@@ -9,9 +9,10 @@ public:
 	BisectionMethod();
 	~BisectionMethod() override;
 
+	void reset() override;
 	void start(ProgramOutput* pProgramOutput) override;
 	void proceed(ProgramOutput* pProgramOutput, const ProgramInput& input) override;
-	void reset() override;
+	void getCode(ProgramOutput* pProgramOutput) override;
 
 private:
 	void scanTermsAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input);
