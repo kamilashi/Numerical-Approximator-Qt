@@ -21,7 +21,7 @@ MatrixInverse::~MatrixInverse()
 bool runPLUDecomposition(float* A, float* L, float* U, int* P, int n)
 {
 	copyMatrix(n, n, U, A);
-	memset(L, 0, n * sizeof(float));
+	memset(L, 0, n * n * sizeof(float));
 
 	for (int i = 0; i < n; ++i)
 	{
