@@ -18,34 +18,61 @@ MatrixInverse::~MatrixInverse()
 	reset(); 
 }
 
-void decompose(int n, int m, float* A, float* B, float* Diag) 
+bool runPLUDecomposition(float* A, float* L, float* U, int* P, int n)
 {
-	int i, j, d, z = 0;
+	copyMatrix(n, n, U, A);
+	memset(L, 0, n * sizeof(float));
 
-	for (i = 0; i < n; i++) {
-		for (j = 0; j < m; j++) {
-			B[i * m + j] = A[i * m + j];
-			if (j == i) {
-				Diag[z] = A[i * m + j];
-				z += 1;
-			}
-		}
+	for (int i = 0; i < n; ++i)
+	{
+		P[i] = i;
 	}
 
-	z = 0;
-	for (d = 0; d < n; d++) {
-		for (j = 0; j < m; j++) {
-			for (i = d; i < n; i++) {
-				if (i >= j) {
-
-					B[i * m + j] = A[i * m + j] / Diag[j];
-				}
-				else {
-					B[i * m + j] = 0;
-				}
+	for (int k = 0; k < n; ++k)
+	{
+		float maxVal = 0.0f;
+		int pivotRow = k;
+		for (int i = k; i < n; ++i)
+		{
+			float val = fabs(U[i * n + k]);
+			if (val > maxVal)
+			{
+				maxVal = val;
+				pivotRow = i;
 			}
 		}
+
+		if (maxVal < 1e-8f) return false;
+
+		if (pivotRow != k) 
+		{
+			for (int j = 0; j < n; ++j)
+			{
+				swap(&U[k * n + j], &U[pivotRow * n + j]);
+			}
+
+			swap(&P[k], &P[pivotRow]);
+
+			for (int j = 0; j < k; ++j)
+			{
+				swap(&L[k * n + j], &L[pivotRow * n + j]);
+			}
+		}
+
+		for (int i = k + 1; i < n; ++i)
+		{
+			float factor = U[i * n + k] / U[k * n + k];
+			L[i * n + k] = factor;
+			for (int j = k; j < n; ++j)
+			{
+				U[i * n + j] -= factor * U[k * n + j];
+			}
+		}
+
+		L[k * n + k] = 1.0f;
 	}
+
+	return true;
 }
 
 void substLowerT(int n, float* L, float* b, float* y, char* buf, int bufsize)
@@ -84,74 +111,70 @@ void MatrixInverse::scanAndPrint(ProgramOutput* pProgramOutput, const ProgramInp
 
 void MatrixInverse::calculateAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
-	float* L0 = new float[n * n];
-	float* Original = new float[n * n];
-	float* Inv = new float[n * n];
-	float* X = new float[n];
-	float* Diag = new float[n];
-	float* unitV = new float[n];
-	float* Y = new float[n];
-
-	copyMatrix(n, m, Original, A);
-
-	decompose(n, m, A, L0, Diag);
-
-	size_t len = strlen(outputBuffer);
-	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nLower Triangular:\n");
-	printMatrix(n, m, L0, outputBuffer, sizeof(outputBuffer));
-
-	runGaussianEliminationWithPivoting(n, m, A, outputBuffer, sizeof(outputBuffer));
-
-	len = strlen(outputBuffer);
-	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nUpper Triangular via Gaussian Elimination:\n");
-	
-	printMatrix(n, m, A, outputBuffer, sizeof(outputBuffer));
-
-	double det = getMatrixDeterminant(n, m, A);
-	len = strlen(outputBuffer);
-	const bool isDegreeEven = n % 2 == 0;
-
-	if (det != 0.0f)
-	{
-		for (i = 0; i < n; i++)
-		{
-			memset(unitV, 0, sizeof(float)*n);
-			unitV[i] = 1.0f;
-
-			substLowerT(n, L0, unitV,Y, outputBuffer, sizeof(outputBuffer));
-			substUpperT(n, A, Y, X, outputBuffer, sizeof(outputBuffer));
-
-			for (j = 0; j < n; j++)
-			{
-				int colNum = isDegreeEven ?  (n - 1 - i) : i;
-				Inv[j * n + colNum] = X[j];
-			}
-		}
-
-		snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nInverse Matrix:\n");
-		printMatrix(n, m, Inv, outputBuffer, sizeof(outputBuffer));
-
-		len = strlen(outputBuffer);
-		snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nChecking by multiplying Original * Inv:\n");
-
-		mulMatrix(n, n, n, A, Original, Inv);
-		printMatrix(n, m, A, outputBuffer, sizeof(outputBuffer));
-	}
-	else
-	{
-		snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nDeterminant is zero, the matrix has no inverse! \n");
-	}
-
-	delete[] L0;
-	delete[] X;
-	delete[] Diag;
-	delete[] Inv;
-	delete[] Original;
-	delete[] Y;
-
 	pProgramOutput->requestedInputType = InputType::TypesCount;
 	pProgramOutput->pOutput = outputBuffer;
 	pProgramOutput->outputIsError = false;
+
+	float* L0 = new float[n * n];
+	float* U0 = new float[n * n];
+	float* Original = new float[n * n];
+	float* Inv = new float[n * n];
+	int* P = new int[n];
+	float* X = new float[n];
+	float* unitV = new float[n];
+	float* Y = new float[n];
+
+	size_t len = strlen(outputBuffer);
+
+	copyMatrix(n, m, Original, A);
+
+	double det = getMatrixDeterminant(n, m, A);
+	if (det == 0.0f || !runPLUDecomposition(A, L0, U0, P, n))
+	{
+		snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nMatrix cannot be inverted.\n");
+		return;
+	}
+
+	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nLower Triangular:\n");
+	printMatrix(n, m, L0, outputBuffer, sizeof(outputBuffer));
+
+	len = strlen(outputBuffer);
+	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nUpper Triangular:\n");
+	
+	printMatrix(n, m, U0, outputBuffer, sizeof(outputBuffer));
+
+	
+	for (i = 0; i < n; i++)
+	{
+		memset(unitV, 0, sizeof(float) * n);
+		unitV[i] = 1.0f;
+
+		substLowerT(n, L0, unitV, Y, outputBuffer, sizeof(outputBuffer));
+		substUpperT(n, U0, Y, X, outputBuffer, sizeof(outputBuffer));
+
+		for (j = 0; j < n; j++)
+		{
+			Inv[j * n + P[i]] = X[j];
+		}
+	}
+
+	len = strlen(outputBuffer);
+	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nInverse Matrix:\n");
+	printMatrix(n, m, Inv, outputBuffer, sizeof(outputBuffer));
+
+	len = strlen(outputBuffer);
+	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nChecking by multiplying Original * Inv:\n");
+
+	mulMatrix(n, n, n, A, Original, Inv);
+	printMatrix(n, m, A, outputBuffer, sizeof(outputBuffer));
+
+	delete[] L0;
+	delete[] U0;
+	delete[] P;
+	delete[] X;
+	delete[] Inv;
+	delete[] Original;
+	delete[] Y;
 }
 
 void MatrixInverse::reset()

@@ -194,4 +194,12 @@ inline void mulMatrix(int n, int p, int m, float* Ato, float* Afirst, float* Ase
 	}
 }
 
+template<class T>
+inline void swap(T* left, T* right)
+{
+	T temp = *left;
+	*left = *right;
+	*right = temp;
+}
+
 #endif
