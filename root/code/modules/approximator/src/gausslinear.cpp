@@ -36,7 +36,7 @@ void GaussLinear::scanTermsAndPrint(ProgramOutput* pProgramOutput, const Program
 	}
 	else
 	{
-		snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "  =   %f\n", fabs(A[index]));
+		snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "  =   %f\n", (A[index]));
 	}
 
 
