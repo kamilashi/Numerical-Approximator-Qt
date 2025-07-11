@@ -144,7 +144,7 @@ void MatrixInverse::calculateAndPrint(ProgramOutput* pProgramOutput, const Progr
 	printMatrix(n, m, U0, outputBuffer, sizeof(outputBuffer));
 
 	
-	for (i = 0; i < n; i++)
+	for (int i = 0; i < n; i++)
 	{
 		memset(unitV, 0, sizeof(float) * n);
 		unitV[i] = 1.0f;
@@ -152,7 +152,7 @@ void MatrixInverse::calculateAndPrint(ProgramOutput* pProgramOutput, const Progr
 		substLowerT(n, L0, unitV, Y, outputBuffer, sizeof(outputBuffer));
 		substUpperT(n, U0, Y, X, outputBuffer, sizeof(outputBuffer));
 
-		for (j = 0; j < n; j++)
+		for (int j = 0; j < n; j++)
 		{
 			Inv[j * n + P[i]] = X[j];
 		}
@@ -181,7 +181,7 @@ void MatrixInverse::reset()
 {
 	currentStage = 0;
 	scannedElementsCount = 0;
-	n = 0, i = 0, j = 0, m = 0;
+	n = 0, m = 0;
 
 	if (A != nullptr)
 	{

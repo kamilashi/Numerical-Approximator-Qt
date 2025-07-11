@@ -21,9 +21,8 @@ private:
 	void runStage3(ProgramOutput* pProgramOutput, const ProgramInput& input);
 
 	int scannedElementsCount;
-	int n, i, j, m;
+	int n, m;
 	float* A = nullptr;
-	float* L = nullptr;
 };
 
 #endif

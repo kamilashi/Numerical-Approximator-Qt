@@ -5,21 +5,24 @@
 #include <QVBoxLayout>
 #include <QWidget>
 #include <QScrollArea>
+#include <QScrollBar>
 #include <QApplication>
 #include <QMenuBar>
 
-struct Dimensions
+struct Parameters
 {
 	int mainWindowWidth = 800;
 	int mainWindowHeight = 600;
 	int topMenuHorizontalSpacing = 0;
-	int windowPartsSpacing = 0;
+	int containersSpacing = 0;
 	int headerHeight = 50;
-	QString bodySS = "padding: 10px;";
-	QString headerMenuSS = "left-padding: 10px; right-padding: 10px;";
+	QString containerSS = "padding: 0px;";
+	QString borderedChildSS = "#Bordered {border-radius: 10px; border: 1px solid palette(button); background-color: palette(base);}";
+	QString paddedChildSS = "#Padded {padding: 10px; border: none; }";
+	QString menuBarSS = "#MenuBar {padding: 0px; background-color: palette(dark);}";
 };
 
-static const Dimensions dim;
+static const Parameters params;
 
 MainWindow::MainWindow(Approximator* pAppr, QWidget* parent) : QMainWindow(parent)
 {
@@ -29,7 +32,7 @@ MainWindow::MainWindow(Approximator* pAppr, QWidget* parent) : QMainWindow(paren
 	savedOutput = "";
 	QString welcomeText = QString("Choose a program to inspect or run from the menu bar above. \n\nUse the edit line at the bottom to send input to the program.");
 
-	resize(dim.mainWindowWidth, dim.mainWindowHeight);
+	resize(params.mainWindowWidth, params.mainWindowHeight);
 
 	setWindowTitle("Numerical Approximator");
 
@@ -40,15 +43,15 @@ MainWindow::MainWindow(Approximator* pAppr, QWidget* parent) : QMainWindow(paren
 	setCentralWidget(pCentralWidget);
 
 	QVBoxLayout* pCentralLayout = new QVBoxLayout();
-	pCentralLayout->setSpacing(dim.windowPartsSpacing);
+	pCentralLayout->setSpacing(params.containersSpacing);
 	pCentralWidget->setLayout(pCentralLayout);
 
 	QWidget* pHeader = new QWidget();
 	QWidget* pBody = new QWidget();
 	QWidget* pFooter = new QWidget();
 
-	pHeader->setFixedHeight(dim.headerHeight);
-	pFooter->setFixedHeight(dim.headerHeight);
+	pHeader->setFixedHeight(params.headerHeight);
+	pFooter->setFixedHeight(params.headerHeight);
 
 	pCentralLayout->addWidget(pHeader);
 	pCentralLayout->addWidget(pBody);
@@ -57,8 +60,10 @@ MainWindow::MainWindow(Approximator* pAppr, QWidget* parent) : QMainWindow(paren
 	QHBoxLayout* pHeaderLayout = new QHBoxLayout();
 	pHeaderLayout->setAlignment(Qt::AlignVCenter);
 	pHeader->setLayout(pHeaderLayout);
+	pHeader->setStyleSheet(params.containerSS);
 
 	pHeaderMenu = new QMenuBar();
+	pHeaderMenu->setObjectName("MenuBar");
 
 	for (int i = 0; i< pApproximator->programCount; i++)
 	{
@@ -68,6 +73,7 @@ MainWindow::MainWindow(Approximator* pAppr, QWidget* parent) : QMainWindow(paren
 		if (pApproximator->programInterfaces[i].pCategoryName == nullptr) 
 		{
 			pHeaderMenu->addMenu(pMenu);
+			pHeaderMenu->setStyleSheet(params.menuBarSS);
 		}
 		else 
 		{
@@ -80,25 +86,33 @@ MainWindow::MainWindow(Approximator* pAppr, QWidget* parent) : QMainWindow(paren
 	QVBoxLayout* pBodyLayout = new QVBoxLayout();
 	pBodyLayout->setAlignment(Qt::AlignTop);
 	pBody->setLayout(pBodyLayout);
-	pBody->setStyleSheet(dim.bodySS);
+	pBody->setStyleSheet(params.containerSS);
 
 	pOutput = new QLabel(welcomeText);
-	pOutput->setStyleSheet(QString("background-color: %1;").arg(defaultColor.name()));
 	pOutput->setAlignment(Qt::AlignTop);
+	pOutput->setObjectName("Padded");
+	pOutput->setStyleSheet(params.paddedChildSS);
 
 	QScrollArea* pScrollArea = new QScrollArea();
+	pScrollArea->setObjectName("Bordered");
 	pScrollArea->setAlignment(Qt::AlignTop);
 	pScrollArea->setWidget(pOutput);
 	pScrollArea->setWidgetResizable(true);
+	pScrollArea->setStyleSheet(params.borderedChildSS);
+
+	pScrollArea->verticalScrollBar()->setStyleSheet(params.borderedChildSS);
 
 	pBodyLayout->addWidget(pScrollArea);
 
 	QHBoxLayout* pFooterLayout = new QHBoxLayout();
 	pFooterLayout->setAlignment(Qt::AlignVCenter);
 	pFooter->setLayout(pFooterLayout);
+	pFooter->setStyleSheet(params.containerSS);
 
 	pInput = new QLineEdit();
 	pInput->setAlignment(Qt::AlignTop);
+	pInput->setObjectName("Bordered");
+	pInput->setStyleSheet(params.borderedChildSS);
 	pInput->clear();
 
 	pFooterLayout->addWidget(pInput);

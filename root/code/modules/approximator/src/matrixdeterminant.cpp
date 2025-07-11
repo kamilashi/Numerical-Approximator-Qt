@@ -9,7 +9,7 @@
 MatrixDeterminant::MatrixDeterminant() : Program()
 {
 	stageCount = 3;
-	A = nullptr, L = nullptr;
+	A = nullptr;
 	reset();
 }
 
@@ -88,18 +88,12 @@ void MatrixDeterminant::reset()
 {
 	currentStage = 0;
 	scannedElementsCount = 0;
-	n = 0, i = 0, j = 0, m = 0;
+	n = 0, m = 0;
 
 	if (A != nullptr)
 	{
 		delete[] A;
 		A = nullptr;
-	}
-
-	if (L != nullptr)
-	{
-		delete[] L;
-		L = nullptr;
 	}
 }
 
@@ -122,7 +116,6 @@ void MatrixDeterminant::runStage2(ProgramOutput* pProgramOutput, const ProgramIn
 	n = input.inputInt;
 
 	A = new float[n * m];
-	L = new float[m];
 
 	snprintf(outputBuffer, sizeof(outputBuffer), "%d x %d matrix\n\n", n, m);
 
