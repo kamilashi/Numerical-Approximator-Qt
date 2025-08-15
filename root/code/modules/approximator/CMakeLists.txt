@@ -15,5 +15,4 @@ add_library(approximator
 	${AP_H_HEADERS}
 )
 
-# Make the headers visible to other targets
 target_include_directories(approximator PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
