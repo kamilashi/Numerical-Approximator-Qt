@@ -77,3 +77,12 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
   file(TOUCH_NOCREATE "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/cmake.verify_globs")
 endif()
+
+# AP_HPP_HEADERS at code/modules/approximator/CMakeLists.txt:1 (file)
+file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/code/modules/approximator/include/*.hpp")
+set(OLD_GLOB
+  )
+if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
+  message("-- GLOB mismatch!")
+  file(TOUCH_NOCREATE "C:/MINE/PROJECTS/Numerical-Approximator-Qt/root/out/build/CMakeFiles/cmake.verify_globs")
+endif()

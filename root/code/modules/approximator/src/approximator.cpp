@@ -17,40 +17,40 @@ Approximator::Approximator()
 	FalsePositionMethod* pFalsePosition = new FalsePositionMethod();
 	GaussLinear* pGaussLinear = new GaussLinear();
 
-	programs[0] = pCosine;
-	programs[1] = pDeterminant;
-	programs[2] = pInverse;
-	programs[3] = pMullers;
-	programs[4] = pBisection;
-	programs[5] = pFalsePosition;
-	programs[6] = pGaussLinear;
+	m_programs[0] = pCosine;
+	m_programs[1] = pDeterminant;
+	m_programs[2] = pInverse;
+	m_programs[3] = pMullers;
+	m_programs[4] = pBisection;
+	m_programs[5] = pFalsePosition;
+	m_programs[6] = pGaussLinear;
 }
 
 Approximator::~Approximator() 
 {
 	for (int i = 0; i < programCount; ++i)
 	{
-		delete programs[i];  
-		programs[i] = nullptr;
+		delete m_programs[i];  
+		m_programs[i] = nullptr;
 	}
 }
 
 void Approximator::getProgramCode(int programIdx, ProgramOutput* pProgramOutput)
 {
-	programs[programIdx]->getCode(pProgramOutput);
+	m_programs[programIdx]->getCode(pProgramOutput);
 }
 
 void Approximator::startProgram(int programIdx, ProgramOutput* pProgramOutput)
 {
-	programs[programIdx]->start(pProgramOutput);
+	m_programs[programIdx]->start(pProgramOutput);
 }
 
 void Approximator::advanceProgram(int programIdx, ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
-	programs[programIdx]->proceed(pProgramOutput, input);
+	m_programs[programIdx]->proceed(pProgramOutput, input);
 }
 
 void Approximator::resetProgram(int programIdx)
 {
-	programs[programIdx]->reset();
+	m_programs[programIdx]->reset();
 }

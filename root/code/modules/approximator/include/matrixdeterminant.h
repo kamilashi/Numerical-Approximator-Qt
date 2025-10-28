@@ -21,9 +21,9 @@ private:
 	void runStage2(ProgramOutput* pProgramOutput, const ProgramInput& input);
 	void runStage3(ProgramOutput* pProgramOutput, const ProgramInput& input);
 
-	int scannedElementsCount;
-	int n, m;
-	float* A = nullptr;
+	int m_scannedElementsCount;
+	int m_n, m_m;
+	float* m_matrixA = nullptr;
 };
 
 #endif

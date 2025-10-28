@@ -27,7 +27,7 @@ public:
 	};
 
 private:
-	Program* programs[programCount];
+	Program* m_programs[programCount];
 };
 
 #endif

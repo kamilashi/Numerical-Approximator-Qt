@@ -22,10 +22,10 @@ private:
 	void runStage2(ProgramOutput* pProgramOutput, const ProgramInput& input);
 	void runStage3(ProgramOutput* pProgramOutput, const ProgramInput& input);
 
-	float x;
-	int maxIterationCount;
-	float* A = nullptr;
-	float* L = nullptr;
+	float m_x;
+	int	m_maxIterationCount;
+	float* m_matrixA = nullptr;
+	float* m_matrixL = nullptr;
 };
 
 #endif

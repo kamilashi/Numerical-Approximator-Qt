@@ -24,13 +24,13 @@ private:
 	void runStage4(ProgramOutput* pProgramOutput, const ProgramInput& input);
 	void runStage5(ProgramOutput* pProgramOutput, const ProgramInput& input);
 
-	int scannedElementsCount = 0;
-	int degree = 0;
-	int termCount = 0;
-	float* F = nullptr;
+	int m_scannedElementsCount = 0;
+	int m_degree = 0;
+	int m_termCount = 0;
+	float* m_matrixF = nullptr;
 
-	static const int guessCount = 3;
-	float G[guessCount];
+	static const int m_sGuessCount = 3;
+	float m_matrixG[m_sGuessCount];
 };
 
 #endif

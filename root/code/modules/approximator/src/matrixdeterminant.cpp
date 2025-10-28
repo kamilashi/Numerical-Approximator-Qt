@@ -8,8 +8,8 @@
 
 MatrixDeterminant::MatrixDeterminant() : Program()
 {
-	stageCount = 3;
-	A = nullptr;
+	m_stageCount = 3;
+	m_matrixA = nullptr;
 	reset();
 }
 
@@ -20,80 +20,80 @@ MatrixDeterminant::~MatrixDeterminant()
 
 void MatrixDeterminant::scanAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
-	A[scannedElementsCount] = input.inputFloat;
+	m_matrixA[m_scannedElementsCount] = input.inputFloat;
 
-	size_t len = strlen(outputBuffer);
-	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "%.2f	", A[scannedElementsCount]);
+	size_t len = strlen(m_outputBuffer);
+	snprintf(m_outputBuffer + len, sizeof(m_outputBuffer) - len, "%.2f	", m_matrixA[m_scannedElementsCount]);
 
-	scannedElementsCount++;
+	m_scannedElementsCount++;
 
-	if (scannedElementsCount % n == 0)
+	if (m_scannedElementsCount % m_n == 0)
 	{
-		len = strlen(outputBuffer);
-		snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\n");
+		len = strlen(m_outputBuffer);
+		snprintf(m_outputBuffer + len, sizeof(m_outputBuffer) - len, "\n");
 	}
 
 	pProgramOutput->outputIsError = true;
 	pProgramOutput->requestedInputType = InputType::Float;
-	pProgramOutput->pOutput = outputBuffer;
+	pProgramOutput->pOutput = m_outputBuffer;
 }
 
 void MatrixDeterminant::calculateAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
-	size_t len = strlen(outputBuffer);
+	size_t len = strlen(m_outputBuffer);
 
-	runGaussianEliminationWithPivoting(n, m, A, outputBuffer, sizeof(outputBuffer));
+	runGaussianEliminationWithPivoting(m_n, m_m, m_matrixA, m_outputBuffer, sizeof(m_outputBuffer));
 
-	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nMatrix after Gaussian elimination:\n");
+	snprintf(m_outputBuffer + len, sizeof(m_outputBuffer) - len, "\nMatrix after Gaussian elimination:\n");
 	
-	printMatrix(n, m, A, outputBuffer, sizeof(outputBuffer));
+	printMatrix(m_n, m_m, m_matrixA, m_outputBuffer, sizeof(m_outputBuffer));
 
-	double det = getMatrixDeterminant(n, m, A);
-	len = strlen(outputBuffer);
-	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nDeterminant: %.2f \n", det);
+	double det = getMatrixDeterminant(m_n, m_m, m_matrixA);
+	len = strlen(m_outputBuffer);
+	snprintf(m_outputBuffer + len, sizeof(m_outputBuffer) - len, "\nDeterminant: %.2f \n", det);
 
 	pProgramOutput->requestedInputType = InputType::TypesCount;
-	pProgramOutput->pOutput = outputBuffer;
+	pProgramOutput->pOutput = m_outputBuffer;
 	pProgramOutput->outputIsError = false;
 }
 
 void MatrixDeterminant::runStage1(ProgramOutput* pProgramOutput)
 {
-	snprintf(outputBuffer, sizeof(outputBuffer), "Welcome to the matrix determinant calculator via Gaussian elimination with pivoting!\n\n");
-	size_t len = strlen(outputBuffer);
-	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "Enter the matrix dimension:\n");
+	snprintf(m_outputBuffer, sizeof(m_outputBuffer), "Welcome to the matrix determinant calculator via Gaussian elimination with pivoting!\n\n");
+	size_t len = strlen(m_outputBuffer);
+	snprintf(m_outputBuffer + len, sizeof(m_outputBuffer) - len, "Enter the matrix dimension:\n");
 
 	pProgramOutput->requestedInputType = InputType::Int;
-	pProgramOutput->pOutput = outputBuffer;
+	pProgramOutput->pOutput = m_outputBuffer;
 	pProgramOutput->outputIsError = false;
-	currentStage = 2;
+	m_currentStage = 2;
 }
 
 void MatrixDeterminant::runStage2(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
-	memset(outputBuffer, 0, sizeof(outputBuffer));
-	m = input.inputInt;
-	n = input.inputInt;
+	memset(m_outputBuffer, 0, sizeof(m_outputBuffer));
+	m_m = input.inputInt;
+	m_n = input.inputInt;
 
-	A = new float[n * m];
+	m_matrixA = new float[m_n * m_m];
 
-	snprintf(outputBuffer, sizeof(outputBuffer), "%d x %d matrix\n\n", n, m);
+	snprintf(m_outputBuffer, sizeof(m_outputBuffer), "%d x %d matrix\n\n", m_n, m_m);
 
-	size_t len = strlen(outputBuffer);
-	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "Enter the elements one by one, separated by Enter \n");
+	size_t len = strlen(m_outputBuffer);
+	snprintf(m_outputBuffer + len, sizeof(m_outputBuffer) - len, "Enter the elements one by one, separated by Enter \n");
 
 	pProgramOutput->requestedInputType = InputType::Float;
-	pProgramOutput->pOutput = outputBuffer;
+	pProgramOutput->pOutput = m_outputBuffer;
 	pProgramOutput->outputIsError = true;
 	
-	currentStage = 3;
+	m_currentStage = 3;
 }
 
 void MatrixDeterminant::runStage3(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	scanAndPrint(pProgramOutput, input);
 
-	if(scannedElementsCount == n * m)
+	if(m_scannedElementsCount == m_n * m_m)
 	{
 		calculateAndPrint(pProgramOutput, input);
 		reset();
@@ -102,35 +102,35 @@ void MatrixDeterminant::runStage3(ProgramOutput* pProgramOutput, const ProgramIn
 
 void MatrixDeterminant::reset()
 {
-	currentStage = 0;
-	scannedElementsCount = 0;
-	n = 0, m = 0;
+	m_currentStage = 0;
+	m_scannedElementsCount = 0;
+	m_n = 0, m_m = 0;
 
-	if (A != nullptr)
+	if (m_matrixA != nullptr)
 	{
-		delete[] A;
-		A = nullptr;
+		delete[] m_matrixA;
+		m_matrixA = nullptr;
 	}
 }
 
 void MatrixDeterminant::start(ProgramOutput* pProgramOutput)
 {
 	reset();
-	memset(outputBuffer, 0, sizeof(outputBuffer));
+	memset(m_outputBuffer, 0, sizeof(m_outputBuffer));
 
 	runStage1(pProgramOutput);
 }
 
 void MatrixDeterminant::proceed(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
-	if (currentStage == 0)
+	if (m_currentStage == 0)
 	{
 		return;
 	}
 
 	pProgramOutput->outputIsError = false;
 
-	switch (currentStage)
+	switch (m_currentStage)
 	{
 	case 2:
 		runStage2(pProgramOutput, input);
@@ -144,9 +144,9 @@ void MatrixDeterminant::proceed(ProgramOutput* pProgramOutput, const ProgramInpu
 void MatrixDeterminant::getCode(ProgramOutput* pProgramOutput)
 {
 	reset();
-	memset(outputBuffer, 0, sizeof(outputBuffer));
+	memset(m_outputBuffer, 0, sizeof(m_outputBuffer));
 
-	snprintf(outputBuffer, sizeof(outputBuffer),
+	snprintf(m_outputBuffer, sizeof(m_outputBuffer),
 		R"(inline double getMatrixDeterminant(int n, int m, float* A)
 {
 	double det = 1.0;
@@ -168,7 +168,7 @@ double det = getMatrixDeterminant(n, m, A);
 
 )");
 
-	pProgramOutput->pOutput = outputBuffer;
+	pProgramOutput->pOutput = m_outputBuffer;
 	pProgramOutput->outputIsError = true;
 	pProgramOutput->requestedInputType = InputType::TypesCount;
 }

@@ -18,14 +18,13 @@ struct ProgramInterface
 	const char* pName;
 	const char* pCategoryName;
 
-	ProgramInterface(const char* pNameString, const char* pCtgryName = nullptr)
+	ProgramInterface(const char* pNameString, const char* pCtgryName = nullptr) : 
+		index(-1), 
+		pName(pNameString),
+		pCategoryName(pCtgryName)
 	{
 		static int count = 0;
-
 		index = count;
-		pName = pNameString;
-		pCategoryName = pCtgryName;
-
 		count++;
 	}
 
@@ -38,12 +37,10 @@ struct ProgramOutput
 	bool outputIsError;
 	const char* pOutput;
 
-	ProgramOutput()
-	{
-		requestedInputType = InputType::TypesCount;
-		outputIsError = false;
-		pOutput = nullptr;
-	}
+	ProgramOutput() : 
+		requestedInputType(InputType::TypesCount), 
+		outputIsError(false), 
+		pOutput(nullptr) {}
 };
 
 struct ProgramInput
@@ -51,21 +48,15 @@ struct ProgramInput
 	int inputInt;
 	float inputFloat;
 
-	ProgramInput()
-	{
-		inputInt = 0;
-		inputFloat = 0.0f;
-	}
+	ProgramInput() : inputInt(0), inputFloat(0.0f) {}
 };
 
 class Program
 {
 public:
-	Program() 
+	Program() : m_currentStage(0), m_stageCount(-1)
 	{
-		currentStage = 0;
-		stageCount = -1;
-		memset(outputBuffer, 0, sizeof(outputBuffer));
+		memset(m_outputBuffer, 0, sizeof(m_outputBuffer));
 	};
 	virtual ~Program() {}
 
@@ -74,9 +65,9 @@ public:
 	void virtual reset() = 0;
 	void virtual getCode(ProgramOutput* pProgramOutput) = 0;
 protected:
-	int currentStage;
-	int stageCount;
-	char outputBuffer[4096];
+	int m_currentStage;
+	int m_stageCount;
+	char m_outputBuffer[4096];
 };
 
 #endif

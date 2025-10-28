@@ -24,14 +24,14 @@ private:
 	void runStage4(ProgramOutput* pProgramOutput, const ProgramInput& input);
 	void runStage5(ProgramOutput* pProgramOutput, const ProgramInput& input);
 
-	int scannedElementsCount = 0;
-	int degree = 0;
-	int termCount = 0;
-	float* F = nullptr;
+	int m_scannedElementsCount = 0;
+	int m_degree = 0;
+	int m_termCount = 0;
+	float* m_matrixF = nullptr;
 
-	static const int maxIterationCount = 80;
-	static const int guessCount = 2;
-	float G[guessCount];
+	static const int m_sMaxIterationCount = 80;
+	static const int m_sGuessCount = 2;
+	float m_matrixG[m_sGuessCount];
 };
 
 #endif

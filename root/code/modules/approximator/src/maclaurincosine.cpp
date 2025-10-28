@@ -8,7 +8,7 @@
 
 MaclaurinCosine::MaclaurinCosine() : Program()
 {
-	stageCount = 2;
+	m_stageCount = 2;
 	reset();
 }
 
@@ -64,55 +64,55 @@ float getCosine(float x, int maxIterationCount)
 
 void MaclaurinCosine::scanArgumentAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
-	x = input.inputFloat;
+	m_x = input.inputFloat;
 
-	size_t len = strlen(outputBuffer);
-	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "%f \n\n", x);
+	size_t len = strlen(m_outputBuffer);
+	snprintf(m_outputBuffer + len, sizeof(m_outputBuffer) - len, "%f \n\n", m_x);
 }
 
 void MaclaurinCosine::scanResolutionAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
-	maxIterationCount = input.inputInt;
+	m_maxIterationCount = input.inputInt;
 
-	size_t len = strlen(outputBuffer);
-	snprintf(outputBuffer + len, sizeof(outputBuffer)- len, "%d	\n\n", maxIterationCount);
+	size_t len = strlen(m_outputBuffer);
+	snprintf(m_outputBuffer + len, sizeof(m_outputBuffer)- len, "%d	\n\n", m_maxIterationCount);
 }
 
 void MaclaurinCosine::calculateAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
-	float cosine = getCosine(x, maxIterationCount);
+	float cosine = getCosine(m_x, m_maxIterationCount);
 
-	size_t len = strlen(outputBuffer);
-	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "Cosine of %.2f = %f \n",x, cosine);
+	size_t len = strlen(m_outputBuffer);
+	snprintf(m_outputBuffer + len, sizeof(m_outputBuffer) - len, "Cosine of %.2f = %f \n",m_x, cosine);
 
 	pProgramOutput->requestedInputType = InputType::TypesCount;
-	pProgramOutput->pOutput = outputBuffer;
+	pProgramOutput->pOutput = m_outputBuffer;
 	pProgramOutput->outputIsError = false;
 }
 
 void MaclaurinCosine::runStage1(ProgramOutput* pProgramOutput)
 {
-	snprintf(outputBuffer, sizeof(outputBuffer), "Welcome to the cosine calculator using the Maclaurin series!\n\n");
-	size_t len = strlen(outputBuffer);
-	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "Enter x in radians:  ");
+	snprintf(m_outputBuffer, sizeof(m_outputBuffer), "Welcome to the cosine calculator using the Maclaurin series!\n\n");
+	size_t len = strlen(m_outputBuffer);
+	snprintf(m_outputBuffer + len, sizeof(m_outputBuffer) - len, "Enter x in radians:  ");
 
 	pProgramOutput->requestedInputType = InputType::Float;
-	pProgramOutput->pOutput = outputBuffer;
+	pProgramOutput->pOutput = m_outputBuffer;
 	pProgramOutput->outputIsError = true;
-	currentStage = 2;
+	m_currentStage = 2;
 }
 
 void MaclaurinCosine::runStage2(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	scanArgumentAndPrint(pProgramOutput, input);
 
-	size_t len = strlen(outputBuffer);
-	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "Enter the approximation limit:  ");
+	size_t len = strlen(m_outputBuffer);
+	snprintf(m_outputBuffer + len, sizeof(m_outputBuffer) - len, "Enter the approximation limit:  ");
 
 	pProgramOutput->requestedInputType = InputType::Int;
-	pProgramOutput->pOutput = outputBuffer;
+	pProgramOutput->pOutput = m_outputBuffer;
 	pProgramOutput->outputIsError = true;
-	currentStage = 3;
+	m_currentStage = 3;
 }
 
 
@@ -126,28 +126,28 @@ void MaclaurinCosine::runStage3(ProgramOutput* pProgramOutput, const ProgramInpu
 
 void MaclaurinCosine::reset()
 {
-	currentStage = 0;
-	x = 0;
+	m_currentStage = 0;
+	m_x = 0;
 }
 
 void MaclaurinCosine::start(ProgramOutput* pProgramOutput)
 {
 	reset();
-	memset(outputBuffer, 0, sizeof(outputBuffer));
+	memset(m_outputBuffer, 0, sizeof(m_outputBuffer));
 
 	runStage1(pProgramOutput);
 }
 
 void MaclaurinCosine::proceed(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
-	if (currentStage == 0)
+	if (m_currentStage == 0)
 	{
 		return;
 	}
 
 	pProgramOutput->outputIsError = false;
 
-	switch (currentStage)
+	switch (m_currentStage)
 	{
 	case 2:
 		runStage2(pProgramOutput, input);
@@ -161,9 +161,9 @@ void MaclaurinCosine::proceed(ProgramOutput* pProgramOutput, const ProgramInput&
 void MaclaurinCosine::getCode(ProgramOutput* pProgramOutput)
 {
 	reset();
-	memset(outputBuffer, 0, sizeof(outputBuffer));
+	memset(m_outputBuffer, 0, sizeof(m_outputBuffer));
 
-	snprintf(outputBuffer, sizeof(outputBuffer),
+	snprintf(m_outputBuffer, sizeof(m_outputBuffer),
 		R"(int factorial(int x) 
 {
 	if (x == 0)
@@ -209,7 +209,7 @@ float getCosine(float x, int maxIterationCount)
 	return cos;
 })");
 
-	pProgramOutput->pOutput = outputBuffer;
+	pProgramOutput->pOutput = m_outputBuffer;
 	pProgramOutput->outputIsError = true;
 	pProgramOutput->requestedInputType = InputType::TypesCount;
 }

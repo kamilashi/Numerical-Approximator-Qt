@@ -8,8 +8,8 @@
 
 GaussLinear::GaussLinear() : Program()
 {
-	stageCount = 3;
-	A = nullptr;
+	m_stageCount = 3;
+	m_matrixA = nullptr;
 	reset();
 }
 
@@ -20,54 +20,54 @@ GaussLinear::~GaussLinear()
 
 void GaussLinear::scanTermsAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
-	A[scannedElementsCount] = input.inputFloat;
-	scannedElementsCount++;
+	m_matrixA[m_scannedElementsCount] = input.inputFloat;
+	m_scannedElementsCount++;
 
-	size_t len = strlen(outputBuffer);
+	size_t len = strlen(m_outputBuffer);
 
-	size_t index = scannedElementsCount - 1;
-	char* signStr = index % termCount == 0 && (A[index] > 0) ? "" : A[index] < 0 ? "-" : "+";
+	size_t index = m_scannedElementsCount - 1;
+	char* signStr = index % m_termCount == 0 && (m_matrixA[index] > 0) ? "" : m_matrixA[index] < 0 ? "-" : "+";
 
-	if (scannedElementsCount % termCount != 0)
+	if (m_scannedElementsCount % m_termCount != 0)
 	{
-		int column = scannedElementsCount / termCount;
-		int row = scannedElementsCount % termCount;
-		snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "%s %f * x[%d][%d]  ", signStr, fabs(A[index]), column, row);
+		int column = m_scannedElementsCount / m_termCount;
+		int row = m_scannedElementsCount % m_termCount;
+		snprintf(m_outputBuffer + len, sizeof(m_outputBuffer) - len, "%s %f * x[%d][%d]  ", signStr, fabs(m_matrixA[index]), column, row);
 	}
 	else
 	{
-		snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "  =   %f\n", (A[index]));
+		snprintf(m_outputBuffer + len, sizeof(m_outputBuffer) - len, "  =   %f\n", (m_matrixA[index]));
 	}
 
 
 	pProgramOutput->outputIsError = true;
 	pProgramOutput->requestedInputType = InputType::Float;
-	pProgramOutput->pOutput = outputBuffer;
+	pProgramOutput->pOutput = m_outputBuffer;
 }
 
 void GaussLinear::calculateAndPrint(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
-	size_t len = strlen(outputBuffer);
-	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nApplying Gaussian elimination:\n\n");
+	size_t len = strlen(m_outputBuffer);
+	snprintf(m_outputBuffer + len, sizeof(m_outputBuffer) - len, "\nApplying Gaussian elimination:\n\n");
 
-	float* X = new float[degree];
+	float* X = new float[m_degree];
 
-	runGaussianEliminationWithPivoting(degree, termCount, A, outputBuffer, sizeof(outputBuffer));
+	runGaussianEliminationWithPivoting(m_degree, m_termCount, m_matrixA, m_outputBuffer, sizeof(m_outputBuffer));
 
-	printMatrix(degree, termCount, A, outputBuffer, sizeof(outputBuffer));
+	printMatrix(m_degree, m_termCount, m_matrixA, m_outputBuffer, sizeof(m_outputBuffer));
 
-	substUpperTAugmentedA(degree, termCount, A, X);
+	substUpperTAugmentedA(m_degree, m_termCount, m_matrixA, X);
 
-	len = strlen(outputBuffer);
-	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "\nThe roots are: \n");
-	for (int i = 0; i < degree; i++)
+	len = strlen(m_outputBuffer);
+	snprintf(m_outputBuffer + len, sizeof(m_outputBuffer) - len, "\nThe roots are: \n");
+	for (int i = 0; i < m_degree; i++)
 	{
-		size_t len = strlen(outputBuffer);
-		snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "x[%d]  =  %f \n", i, X[i]);
+		size_t len = strlen(m_outputBuffer);
+		snprintf(m_outputBuffer + len, sizeof(m_outputBuffer) - len, "x[%d]  =  %f \n", i, X[i]);
 	}
 	
 	pProgramOutput->requestedInputType = InputType::TypesCount;
-	pProgramOutput->pOutput = outputBuffer;
+	pProgramOutput->pOutput = m_outputBuffer;
 	pProgramOutput->outputIsError = false;
 
 	delete[] X;
@@ -75,41 +75,41 @@ void GaussLinear::calculateAndPrint(ProgramOutput* pProgramOutput, const Program
 
 void GaussLinear::runStage1(ProgramOutput* pProgramOutput)
 {
-	snprintf(outputBuffer, sizeof(outputBuffer), "Welcome to the linear equation system solver via Gauss elimination with pivoting!\n\n");
-	size_t len = strlen(outputBuffer);
-	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "Enter the number of unknowns:	");
+	snprintf(m_outputBuffer, sizeof(m_outputBuffer), "Welcome to the linear equation system solver via Gauss elimination with pivoting!\n\n");
+	size_t len = strlen(m_outputBuffer);
+	snprintf(m_outputBuffer + len, sizeof(m_outputBuffer) - len, "Enter the number of unknowns:	");
 
 	pProgramOutput->requestedInputType = InputType::Int;
-	pProgramOutput->pOutput = outputBuffer;
+	pProgramOutput->pOutput = m_outputBuffer;
 	pProgramOutput->outputIsError = true;
-	currentStage = 2;
+	m_currentStage = 2;
 }
 
 void GaussLinear::runStage2(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
-	degree = input.inputInt;
-	termCount = degree + 1;
+	m_degree = input.inputInt;
+	m_termCount = m_degree + 1;
 
-	size_t len = strlen(outputBuffer);
-	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "%d \n\n", degree);
+	size_t len = strlen(m_outputBuffer);
+	snprintf(m_outputBuffer + len, sizeof(m_outputBuffer) - len, "%d \n\n", m_degree);
 
-	A = new float[termCount * degree];
+	m_matrixA = new float[m_termCount * m_degree];
 
-	len = strlen(outputBuffer);
-	snprintf(outputBuffer + len, sizeof(outputBuffer) - len, "Enter the coefficients and the RHS one by one, separated by Enter: \n");
+	len = strlen(m_outputBuffer);
+	snprintf(m_outputBuffer + len, sizeof(m_outputBuffer) - len, "Enter the coefficients and the RHS one by one, separated by Enter: \n");
 
 	pProgramOutput->requestedInputType = InputType::Float;
-	pProgramOutput->pOutput = outputBuffer;
+	pProgramOutput->pOutput = m_outputBuffer;
 	pProgramOutput->outputIsError = true;
 	
-	currentStage = 3;
+	m_currentStage = 3;
 }
 
 void GaussLinear::runStage3(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
 	scanTermsAndPrint(pProgramOutput, input);
 
-	if(scannedElementsCount == termCount * degree)
+	if(m_scannedElementsCount == m_termCount * m_degree)
 	{
 		calculateAndPrint(pProgramOutput, input);
 	}
@@ -117,36 +117,36 @@ void GaussLinear::runStage3(ProgramOutput* pProgramOutput, const ProgramInput& i
 
 void GaussLinear::reset()
 {
-	currentStage = 0;
-	scannedElementsCount = 0;
-	degree = 0;
-	termCount = 0;
+	m_currentStage = 0;
+	m_scannedElementsCount = 0;
+	m_degree = 0;
+	m_termCount = 0;
 
-	if (A != nullptr)
+	if (m_matrixA != nullptr)
 	{
-		delete[] A;
-		A = nullptr;
+		delete[] m_matrixA;
+		m_matrixA = nullptr;
 	}
 }
 
 void GaussLinear::start(ProgramOutput* pProgramOutput)
 {
 	reset();
-	memset(outputBuffer, 0, sizeof(outputBuffer));
+	memset(m_outputBuffer, 0, sizeof(m_outputBuffer));
 
 	runStage1(pProgramOutput);
 }
 
 void GaussLinear::proceed(ProgramOutput* pProgramOutput, const ProgramInput& input)
 {
-	if (currentStage == 0)
+	if (m_currentStage == 0)
 	{
 		return;
 	}
 
 	pProgramOutput->outputIsError = false;
 
-	switch (currentStage)
+	switch (m_currentStage)
 	{
 	case 2:
 		runStage2(pProgramOutput, input);
@@ -160,9 +160,9 @@ void GaussLinear::proceed(ProgramOutput* pProgramOutput, const ProgramInput& inp
 void GaussLinear::getCode(ProgramOutput* pProgramOutput)
 {
 	reset();
-	memset(outputBuffer, 0, sizeof(outputBuffer));
+	memset(m_outputBuffer, 0, sizeof(m_outputBuffer));
 
-	snprintf(outputBuffer, sizeof(outputBuffer),
+	snprintf(m_outputBuffer, sizeof(m_outputBuffer),
 		R"(inline void pivotMatrix(int startrow, int n, int m, float* A)
 {
 	int k = startrow, h;
@@ -239,7 +239,7 @@ runGaussianEliminationWithPivoting(degree, termCount, A, outputBuffer, sizeof(ou
 substUpperTAugmentedA(degree, termCount, A, Roots, outputBuffer, sizeof(outputBuffer));
 )");
 
-	pProgramOutput->pOutput = outputBuffer;
+	pProgramOutput->pOutput = m_outputBuffer;
 	pProgramOutput->outputIsError = true;
 	pProgramOutput->requestedInputType = InputType::TypesCount;
 }

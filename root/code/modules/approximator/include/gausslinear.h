@@ -22,10 +22,10 @@ private:
 	void runStage2(ProgramOutput* pProgramOutput, const ProgramInput& input);
 	void runStage3(ProgramOutput* pProgramOutput, const ProgramInput& input);
 
-	int scannedElementsCount = 0;
-	int degree = 0;
-	int termCount = 0;
-	float* A = nullptr;
+	int m_scannedElementsCount = 0;
+	int m_degree = 0;
+	int m_termCount = 0;
+	float* m_matrixA = nullptr;
 };
 
 #endif
