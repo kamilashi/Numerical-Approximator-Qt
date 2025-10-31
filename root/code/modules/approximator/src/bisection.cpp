@@ -39,7 +39,7 @@ float runBisection(float xl, float xr, int iter,int maxIter, int termCount, floa
 		
 		if (ym * yr < 0)
 		{
-			return runBisection(xm, xr, iter,  maxIter, termCount,F, pBuffer, bufferSize);
+			return runBisection(xm, xr, iter,  maxIter, termCount, F, pBuffer, bufferSize);
 		}
 	}
 	else
